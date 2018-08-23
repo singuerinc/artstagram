@@ -1,0 +1,6 @@
+[Settings]
+ID = "Your_Site_ID"
+
+[build]
+  publish = "dist/"
+  command = "yarn build"
