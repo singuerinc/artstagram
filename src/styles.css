@@ -15,11 +15,10 @@ ul {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
+  width: 100%;
 }
 
 li {
-  width: 200px;
-  height: 200px;
 }
 
 img {

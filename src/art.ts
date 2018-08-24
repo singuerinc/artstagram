@@ -6,7 +6,7 @@ const mapData = prop("data");
 
 const findImage = (x: RawArtImage): ArtImage => ({
   id: x.id,
-  src: x.cover.small_square_url
+  src: x.cover.medium_image_url
 });
 
 const mapImages = map(findImage);

@@ -45,7 +45,7 @@ class App extends React.Component<{}, State> {
   };
 
   loadImagesByPage = (images: ArtImage[], page: number) => {
-    load(`.netlify/functions/fetch?page=${page}&sorting=latest`)
+    load(`.netlify/functions/fetch?page=${page}&sorting=picks`)
       .then(this.updatePage(page + 1))
       .then(this.addImages(images));
   };
@@ -81,6 +81,7 @@ class App extends React.Component<{}, State> {
 
     this.scroll = ScrollOut({
       targets: ".last",
+      percentVisible: 0.2,
       once: true,
       onShown: el => {
         const page = parseInt(el.attributes["data-next-page"].value, 10);
