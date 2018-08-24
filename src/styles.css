@@ -18,9 +18,7 @@ ul {
   width: 100%;
 }
 
-li {
-}
-
 img {
   vertical-align: top;
+  max-width: 100%;
 }
