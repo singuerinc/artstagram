@@ -28,6 +28,12 @@ class App extends React.Component<{}, State> {
     this.list = React.createRef();
   }
 
+  openLargeImage = (small_image_url: string) => {
+    const largeFrom = (x: string) => x.replace("/small/", "/large/");
+
+    window.open(largeFrom(small_image_url));
+  };
+
   updateSorting = (sorting: string) => {
     this.setState(prevState => ({
       ...prevState,
@@ -77,15 +83,18 @@ class App extends React.Component<{}, State> {
     const lastIndex = images.length - 1;
 
     const asItem = lastIdx => (
-      { id, title, adult_content, src }: ArtImage,
+      { id, title, cover, permalink }: ArtImage,
       idx: number
     ) => (
       <li
         key={id}
         data-next-page={lastIdx === idx ? page : null}
         className={lastIdx === idx ? "item last" : "item"}
+        onClick={() => {
+          this.openLargeImage(cover.small_image_url);
+        }}
       >
-        <img src={src} />
+        <img src={cover.medium_image_url} />
         <h1 className="title">{title}</h1>
       </li>
     );
