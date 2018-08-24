@@ -1,25 +1,27 @@
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 html,
 body {
-	margin: 0;
-	padding: 0;
-	background: #000;
+  margin: 0;
+  padding: 0;
+  background: #000;
 }
 
 ul {
-	margin: 0;
-	padding: 0;
-	list-style-type: none;
-	display: flex;
-	flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 li {
+  width: 200px;
+  height: 200px;
 }
 
 img {
-	vertical-align: top;
+  vertical-align: top;
 }

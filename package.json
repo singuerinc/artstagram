@@ -27,6 +27,7 @@
     "node-fetch": "^2.2.0",
     "ramda": "^0.25.0",
     "react": "^16.4.2",
-    "react-dom": "^16.4.2"
+    "react-dom": "^16.4.2",
+    "scroll-out": "^2.1.0"
   }
 }

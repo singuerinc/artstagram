@@ -4683,6 +4683,10 @@ sax@^1.2.4, sax@~1.2.1, sax@~1.2.4:
   version "1.2.4"
   resolved "https://registry.npmjs.org/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
 
+scroll-out@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.npmjs.org/scroll-out/-/scroll-out-2.1.0.tgz#3ddaf758dc6d8456aded55e01c5134add988dfaf"
+
 semver-diff@^2.0.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/semver-diff/-/semver-diff-2.1.0.tgz#4bbb8437c8d37e4b0cf1a68fd726ec6d645d6d36"
