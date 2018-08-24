@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "start": "concurrently 'yarn start:client' 'yarn start:server'",
-    "start:client": "parcel index.html",
+    "start:client": "node start.js",
     "start:server": "netlify-lambda serve ./lambda",
     "build": "yarn build:client && yarn build:server",
     "build:client": "parcel build index.html --out-dir dist/client",
@@ -15,6 +15,8 @@
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
     "concurrently": "^3.6.1",
+    "express": "^4.16.3",
+    "http-proxy-middleware": "^0.18.0",
     "netlify-lambda": "^0.4.0",
     "nodemon": "^1.18.3",
     "parcel-bundler": "^1.9.7",
