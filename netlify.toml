@@ -4,3 +4,4 @@ ID = "eloquent-meitner-1e5058"
 [build]
   publish = "dist/"
   command = "yarn build && yarn build:lambda"
+  functions = "functions"
