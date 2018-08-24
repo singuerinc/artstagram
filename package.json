@@ -8,7 +8,7 @@
     "start:client": "node start.js",
     "start:server": "netlify-lambda serve ./lambda",
     "build": "yarn build:client && yarn build:server",
-    "build:client": "parcel build index.html --out-dir dist/client",
+    "build:client": "parcel build src/index.html --out-dir dist/client",
     "build:server": "netlify-lambda build ./lambda"
   },
   "devDependencies": {
