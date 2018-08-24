@@ -3,6 +3,7 @@ import ScrollOut from "scroll-out";
 import { addIndex, concat, map } from "ramda";
 import { load } from "./art";
 import { ArtImage } from "./artImage";
+import { Nav } from "./nav";
 
 const mapIndexed = addIndex(map);
 
@@ -65,13 +66,17 @@ class App extends React.Component<{}, State> {
     const { page, images } = this.state;
     const lastIndex = images.length - 1;
 
-    const asItem = lastIdx => ({ id, src }: ArtImage, idx: number) => (
+    const asItem = lastIdx => (
+      { id, title, adult_content, src }: ArtImage,
+      idx: number
+    ) => (
       <li
         key={id}
         data-next-page={lastIdx === idx ? page : null}
-        className={lastIdx === idx ? "last" : null}
+        className={lastIdx === idx ? "item last" : "item"}
       >
         <img src={src} />
+        <h1 className="title">{title}</h1>
       </li>
     );
 
@@ -91,7 +96,14 @@ class App extends React.Component<{}, State> {
       }
     });
 
-    return <ul ref={this.list}>{mapIndexed(asItem(lastIndex), images)}</ul>;
+    return (
+      <React.Fragment>
+        <Nav onClick={(sorting: string) => {}} />
+        <ul className="collection" ref={this.list}>
+          {mapIndexed(asItem(lastIndex), images)}
+        </ul>
+      </React.Fragment>
+    );
   }
 }
 

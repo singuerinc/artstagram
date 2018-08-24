@@ -1,5 +1,7 @@
 export type RawArtImage = {
   id: string;
+  title: string;
+  adult_content: boolean;
   cover: {
     small_image_url: string;
     medium_image_url: string;
@@ -11,5 +13,7 @@ export type RawArtImage = {
 
 export type ArtImage = {
   id: string;
+  title: string;
+  adult_content: boolean;
   src: string;
 };

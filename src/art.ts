@@ -6,6 +6,8 @@ const mapData = prop("data");
 
 const findImage = (x: RawArtImage): ArtImage => ({
   id: x.id,
+  title: x.title,
+  adult_content: x.adult_content,
   src: x.cover.medium_image_url
 });
 
