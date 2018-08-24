@@ -7,7 +7,7 @@ class App extends React.Component {
   };
 
   componentDidMount() {
-    load("https://www.artstation.com/projects.json").then(images => {
+    load(".netlify/functions/fetch").then(images => {
       this.setState(prevState => {
         return {
           ...prevState,

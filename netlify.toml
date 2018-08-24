@@ -1,6 +1,7 @@
 [Settings]
-ID = "Your_Site_ID"
+ID = "eloquent-meitner-1e5058"
 
 [build]
   publish = "dist/"
   command = "yarn build"
+  functions = "functions/"
