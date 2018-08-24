@@ -1,6 +1,6 @@
 import * as React from "react";
 import ScrollOut from "scroll-out";
-import { addIndex, concat, map } from "ramda";
+import { addIndex, concat, filter, map } from "ramda";
 import { load } from "./art";
 import { ArtImage } from "./artImage";
 import { Nav } from "./nav";
@@ -9,6 +9,7 @@ const mapIndexed = addIndex(map);
 
 type State = {
   page: number;
+  sorting: string;
   images: ArtImage[];
 };
 
@@ -18,6 +19,7 @@ class App extends React.Component<{}, State> {
 
   state = {
     page: 1,
+    sorting: "picks",
     images: [] as ArtImage[]
   };
 
@@ -25,6 +27,13 @@ class App extends React.Component<{}, State> {
     super(props);
     this.list = React.createRef();
   }
+
+  updateSorting = (sorting: string) => {
+    this.setState(prevState => ({
+      ...prevState,
+      sorting
+    }));
+  };
 
   updatePage = (page: number) => (newImages: ArtImage[]): ArtImage[] => {
     this.setState(prevState => ({
@@ -36,26 +45,27 @@ class App extends React.Component<{}, State> {
   };
 
   addImages = (images: ArtImage[]) => (newImages: ArtImage[]) => {
-    console.log("more images", images.length, newImages.length);
+    const notAdult = (x: ArtImage) => !x.adult_content;
     this.setState(prevState => {
       return {
         ...prevState,
-        images: concat(images, newImages)
+        images: concat(images, filter(notAdult, newImages))
       };
     });
   };
 
-  loadImagesByPage = (images: ArtImage[], page: number) => {
-    load(`.netlify/functions/fetch?page=${page}&sorting=picks`)
+  loadImagesByPage = (images: ArtImage[], page: number, sorting: string) => {
+    console.log({ page, sorting });
+    load(`.netlify/functions/fetch?page=${page}&sorting=${sorting}`)
       .then(this.updatePage(page + 1))
       .then(this.addImages(images));
   };
 
   componentDidMount() {
-    const { page } = this.state;
+    const { page, sorting } = this.state;
 
     // load first page
-    this.loadImagesByPage([], page);
+    this.loadImagesByPage([], page, sorting);
   }
 
   componentWillUnmount() {
@@ -63,7 +73,7 @@ class App extends React.Component<{}, State> {
   }
 
   render() {
-    const { page, images } = this.state;
+    const { page, sorting, images } = this.state;
     const lastIndex = images.length - 1;
 
     const asItem = lastIdx => (
@@ -86,19 +96,24 @@ class App extends React.Component<{}, State> {
 
     this.scroll = ScrollOut({
       targets: ".last",
-      percentVisible: 0.2,
+      percentVisible: 0.1,
       once: true,
       onShown: el => {
         const page = parseInt(el.attributes["data-next-page"].value, 10);
         console.log("load new page", { page });
         // load next page
-        this.loadImagesByPage(images, page);
+        this.loadImagesByPage(images, page, sorting);
       }
     });
 
     return (
       <React.Fragment>
-        <Nav onClick={(sorting: string) => {}} />
+        <Nav
+          onClick={(sorting: string) => {
+            this.updateSorting(sorting);
+            this.loadImagesByPage([], 1, sorting);
+          }}
+        />
         <ul className="collection" ref={this.list}>
           {mapIndexed(asItem(lastIndex), images)}
         </ul>

@@ -28,7 +28,8 @@ body {
 .item .title {
   color: white;
   position: absolute;
-  top: 0;
+  right: 0;
+  bottom: 0;
   font-size: 1rem;
   font-weight: 100;
   padding: 1rem;
@@ -39,4 +40,24 @@ body {
   max-width: 100%;
   display: block;
   margin: 0 auto;
+}
+
+.nav {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  width: 100%;
+}
+
+.nav li {
+  flex: 1;
+  text-align: center;
+}
+
+.nav li a {
+  padding: 1rem;
+  display: block;
+  text-decoration: none;
+  color: white;
 }

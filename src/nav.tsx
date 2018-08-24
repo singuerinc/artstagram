@@ -2,7 +2,7 @@ import * as React from "react";
 
 type State = {};
 type Props = {
-  onClick: (sorting: string) => void;
+  onClick: (event) => void;
 };
 
 class Nav extends React.Component<Props, State> {
@@ -14,23 +14,23 @@ class Nav extends React.Component<Props, State> {
     return (
       <ul className="nav">
         <li>
-          <a href="#" onClick={this.onClick("randomize")}>
-            Community
+          <a href="#" onClick={() => this.onClick("picks")}>
+            Picks
           </a>
         </li>
         <li>
-          <a href="#" onClick={this.onClick("trending")}>
+          <a href="#" onClick={() => this.onClick("trending")}>
             Trending
           </a>
         </li>
         <li>
-          <a href="#" onClick={this.onClick("latest")}>
+          <a href="#" onClick={() => this.onClick("latest")}>
             Latest
           </a>
         </li>
         <li>
-          <a href="#" onClick={this.onClick("picks")}>
-            Picks
+          <a href="#" onClick={() => this.onClick("randomize")}>
+            Community
           </a>
         </li>
       </ul>
