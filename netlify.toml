@@ -2,6 +2,6 @@
 ID = "eloquent-meitner-1e5058"
 
 [build]
-  publish = "dist/"
-  command = "yarn build && yarn build:lambda"
-  functions = "functions"
+  publish = "dist/client"
+  command = "yarn build:client && yarn build:server"
+  functions = "dist/server"

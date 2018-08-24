@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 const API_ENDPOINT = "https://www.artstation.com/projects.json";
 
@@ -7,7 +7,7 @@ exports.handler = async (event, context) => {
     .then(response => response.json())
     .then(data => ({
       statusCode: 200,
-      body: data
+      body: JSON.stringify(data)
     }))
     .catch(error => ({ statusCode: 422, body: String(error) }));
 };
