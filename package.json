@@ -5,11 +5,13 @@
   "license": "MIT",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html"
+    "build": "parcel build index.html",
+    "build:lambda": "netlify-lambda build ./lambda"
   },
   "devDependencies": {
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
+    "netlify-lambda": "^0.4.0",
     "nodemon": "^1.18.3",
     "parcel-bundler": "^1.9.7",
     "typescript": "^3.0.1"
