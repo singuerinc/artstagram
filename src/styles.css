@@ -12,12 +12,12 @@ body {
 }
 
 .collection {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  width: 100%;
+  max-width: 48rem;
 }
 
 .item {
@@ -28,7 +28,7 @@ body {
 
 .item .user {
   font-size: 0.7rem;
-  padding: 0rem 1rem 1rem;
+  padding: 0rem 1rem 2rem;
   margin: 0;
 }
 
@@ -51,11 +51,11 @@ body {
 }
 
 .nav {
-  margin: 0;
+  margin: 0 auto;
   padding: 0;
   list-style-type: none;
   display: flex;
-  width: 100%;
+  max-width: 48rem;
 }
 
 .nav li {
@@ -68,4 +68,10 @@ body {
   display: block;
   text-decoration: none;
   color: white;
+  background-color: black;
+}
+
+.nav li a:hover {
+  color: black;
+  background-color: white;
 }

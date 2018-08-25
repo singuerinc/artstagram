@@ -1,37 +1,22 @@
 import * as React from "react";
 
-type State = {};
-type Props = {
-  onClick: (event) => void;
-};
-
-class Nav extends React.Component<Props, State> {
+class Nav extends React.Component {
   state = {};
-
-  onClick = (sorting: string) => this.props.onClick(sorting);
 
   render() {
     return (
       <ul className="nav">
         <li>
-          <a href="#" onClick={() => this.onClick("picks")}>
-            Picks
-          </a>
+          <a href="?sorting=latest">Latest</a>
         </li>
         <li>
-          <a href="#" onClick={() => this.onClick("trending")}>
-            Trending
-          </a>
+          <a href="?sorting=picks">Picks</a>
         </li>
         <li>
-          <a href="#" onClick={() => this.onClick("latest")}>
-            Latest
-          </a>
+          <a href="?sorting=trending">Trending</a>
         </li>
         <li>
-          <a href="#" onClick={() => this.onClick("randomize")}>
-            Community
-          </a>
+          <a href="?sorting=randomize">Community</a>
         </li>
       </ul>
     );

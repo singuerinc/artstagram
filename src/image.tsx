@@ -11,7 +11,7 @@ class Image extends React.Component<Props, State> {
 
   render() {
     const { cover, title, user } = this.props.art;
-    const { medium_avatar_url, username } = user;
+    const { username } = user;
     return (
       <div>
         <img src={cover.medium_image_url} />

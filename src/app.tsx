@@ -1,6 +1,6 @@
 import * as React from "react";
 import ScrollOut from "scroll-out";
-import { addIndex, concat, filter, map } from "ramda";
+import { addIndex, concat, filter, compose, map } from "ramda";
 import { load } from "./art";
 import { ArtImage } from "./artImage";
 import { Nav } from "./nav";
@@ -27,9 +27,14 @@ class App extends React.Component<{}, State> {
   constructor(props) {
     super(props);
     this.list = React.createRef();
+
+    const params = new URLSearchParams(document.location.search);
+    if (params.has("sorting")) {
+      this.state.sorting = params.get("sorting");
+    }
   }
 
-  openLargeImage = (small_image_url: string) => {
+  openLargeImage = (small_image_url: string) => event => {
     const largeFrom = (x: string) => x.replace("/small/", "/large/");
 
     window.open(largeFrom(small_image_url));
@@ -42,27 +47,34 @@ class App extends React.Component<{}, State> {
     }));
   };
 
-  updatePage = (page: number) => (newImages: ArtImage[]): ArtImage[] => {
+  updatePage = (page: number) => (images: ArtImage[]): ArtImage[] => {
     this.setState(prevState => ({
       ...prevState,
       page
     }));
 
-    return newImages;
+    return images;
   };
 
-  addImages = (images: ArtImage[]) => (newImages: ArtImage[]) => {
+  addImages = (prevImages: ArtImage[]) => (images: ArtImage[]) => {
+    const withCover = (x: ArtImage) => !!x.cover;
     const notAdult = (x: ArtImage) => !x.adult_content;
+
+    const add = compose(
+      concat(prevImages),
+      filter(notAdult),
+      filter(withCover)
+    );
+
     this.setState(prevState => {
       return {
         ...prevState,
-        images: concat(images, filter(notAdult, newImages))
+        images: add(images)
       };
     });
   };
 
   loadImagesByPage = (images: ArtImage[], page: number, sorting: string) => {
-    console.log({ page, sorting });
     load(`.netlify/functions/fetch`, { page, sorting })
       .then(this.updatePage(page + 1))
       .then(this.addImages(images));
@@ -84,15 +96,16 @@ class App extends React.Component<{}, State> {
     const lastIndex = images.length - 1;
 
     const asItem = lastIdx => (art: ArtImage, idx: number) => {
-      const { id, title, cover, permalink } = art;
+      const { id, cover } = art;
+      const nextPage = lastIdx === idx ? page : null;
+      const className = lastIdx === idx ? "item last" : "item";
+
       return (
         <li
           key={id}
-          data-next-page={lastIdx === idx ? page : null}
-          className={lastIdx === idx ? "item last" : "item"}
-          onClick={() => {
-            this.openLargeImage(cover.small_image_url);
-          }}
+          data-next-page={nextPage}
+          className={className}
+          onClick={this.openLargeImage(cover.small_image_url)}
         >
           <Image art={art} />
         </li>
@@ -109,22 +122,18 @@ class App extends React.Component<{}, State> {
       once: true,
       onShown: el => {
         const page = parseInt(el.attributes["data-next-page"].value, 10);
-        console.log("load new page", { page });
         // load next page
         this.loadImagesByPage(images, page, sorting);
       }
     });
 
+    const listItems = mapIndexed(asItem(lastIndex), images);
+
     return (
       <React.Fragment>
-        <Nav
-          onClick={(sorting: string) => {
-            this.updateSorting(sorting);
-            this.loadImagesByPage([], 1, sorting);
-          }}
-        />
+        <Nav />
         <ul className="collection" ref={this.list}>
-          {mapIndexed(asItem(lastIndex), images)}
+          {listItems}
         </ul>
       </React.Fragment>
     );

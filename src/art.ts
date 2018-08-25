@@ -1,4 +1,4 @@
-import { map, prop } from "ramda";
+import { prop } from "ramda";
 import { request } from "./api";
 import { ArtImage } from "./artImage";
 
@@ -9,9 +9,7 @@ const load = (
   { page, sorting }: { page: number; sorting: string }
 ): Promise<ArtImage[]> =>
   request(`${url}?page=${page}&sorting=${sorting}`).then(({ data }) => {
-    const collection: ArtImage[] = mapData(data);
-
-    return collection;
+    return mapData(data) as ArtImage[];
   });
 
 export { load };
