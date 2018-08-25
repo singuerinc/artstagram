@@ -1,7 +1,7 @@
 import * as axios from "axios";
 
-const get = (x, url, params) => {
-  return x.get(url, params);
+const get = (x, url) => {
+  return x.get(url);
 };
 
-export const request = (url: string, params: object) => get(axios, url, params);
+export const request = (url: string) => get(axios, url);

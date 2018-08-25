@@ -4,6 +4,7 @@ import { addIndex, concat, filter, map } from "ramda";
 import { load } from "./art";
 import { ArtImage } from "./artImage";
 import { Nav } from "./nav";
+import { Image } from "./image";
 
 const mapIndexed = addIndex(map);
 
@@ -19,7 +20,7 @@ class App extends React.Component<{}, State> {
 
   state = {
     page: 1,
-    sorting: "picks",
+    sorting: "latest",
     images: [] as ArtImage[]
   };
 
@@ -62,7 +63,7 @@ class App extends React.Component<{}, State> {
 
   loadImagesByPage = (images: ArtImage[], page: number, sorting: string) => {
     console.log({ page, sorting });
-    load(`.netlify/functions/fetch?page=${page}&sorting=${sorting}`)
+    load(`.netlify/functions/fetch`, { page, sorting })
       .then(this.updatePage(page + 1))
       .then(this.addImages(images));
   };
@@ -82,22 +83,21 @@ class App extends React.Component<{}, State> {
     const { page, sorting, images } = this.state;
     const lastIndex = images.length - 1;
 
-    const asItem = lastIdx => (
-      { id, title, cover, permalink }: ArtImage,
-      idx: number
-    ) => (
-      <li
-        key={id}
-        data-next-page={lastIdx === idx ? page : null}
-        className={lastIdx === idx ? "item last" : "item"}
-        onClick={() => {
-          this.openLargeImage(cover.small_image_url);
-        }}
-      >
-        <img src={cover.medium_image_url} />
-        <h1 className="title">{title}</h1>
-      </li>
-    );
+    const asItem = lastIdx => (art: ArtImage, idx: number) => {
+      const { id, title, cover, permalink } = art;
+      return (
+        <li
+          key={id}
+          data-next-page={lastIdx === idx ? page : null}
+          className={lastIdx === idx ? "item last" : "item"}
+          onClick={() => {
+            this.openLargeImage(cover.small_image_url);
+          }}
+        >
+          <Image art={art} />
+        </li>
+      );
+    };
 
     try {
       this.scroll.teardown();

@@ -4,11 +4,11 @@ import { ArtImage } from "./artImage";
 
 const mapData = prop("data");
 
-const load = (url: string): Promise<ArtImage[]> =>
-  request(url, {
-    page: 1,
-    sorting: "picks"
-  }).then(({ data }) => {
+const load = (
+  url: string,
+  { page, sorting }: { page: number; sorting: string }
+): Promise<ArtImage[]> =>
+  request(`${url}?page=${page}&sorting=${sorting}`).then(({ data }) => {
     const collection: ArtImage[] = mapData(data);
 
     return collection;

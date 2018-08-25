@@ -22,17 +22,25 @@ body {
 
 .item {
   width: 100%;
-  position: relative;
+  background-color: #fff;
+  color: black;
+}
+
+.item .user {
+  font-size: 0.7rem;
+  padding: 0rem 1rem 1rem;
+  margin: 0;
+}
+
+.item .user span {
+  font-weight: 100;
+  margin-right: 3px;
 }
 
 .item .title {
-  color: white;
-  position: absolute;
-  right: 0;
-  bottom: 0;
   font-size: 1rem;
   font-weight: 100;
-  padding: 1rem;
+  padding: 1rem 1rem 0rem;
   margin: 0;
 }
 
