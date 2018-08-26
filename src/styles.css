@@ -13,7 +13,7 @@ body {
 
 .collection {
   margin: 0 auto;
-  padding: 0;
+  padding: 1.8rem 0 0;
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
@@ -55,7 +55,12 @@ body {
   padding: 0;
   list-style-type: none;
   display: flex;
+  width: 100%;
   max-width: 48rem;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .nav li {
@@ -64,11 +69,13 @@ body {
 }
 
 .nav li a {
-  padding: 1rem;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
   display: block;
   text-decoration: none;
   color: white;
-  background-color: black;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .nav li a:hover {
