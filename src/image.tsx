@@ -1,26 +1,45 @@
 import * as React from "react";
 import { ArtImage } from "./artImage";
 
-type State = {};
 type Props = {
   art: ArtImage;
 };
 
-class Image extends React.Component<Props, State> {
-  state = {};
+class Image extends React.Component<Props> {
+  openLargeImage = (small_image_url: string) => event => {
+    const largeFrom = (x: string) => x.replace("/small/", "/large/");
+    window.open(largeFrom(small_image_url));
+  };
+
+  openUserProfile = (link: string) => event => {
+    window.open(link);
+  };
 
   render() {
     const { cover, title, user } = this.props.art;
-    const { username } = user;
+    const { username, medium_avatar_url } = user;
     return (
-      <div>
-        <img src={cover.medium_image_url} />
+      <div className="image">
+        <div
+          className="user-header"
+          onClick={this.openUserProfile(user.permalink)}
+        >
+          <img
+            className="avatar"
+            title={username}
+            alt={username}
+            src={medium_avatar_url}
+          />
+          <h2 className="user">{username}</h2>
+        </div>
+        <img
+          src={cover.medium_image_url}
+          title={title}
+          alt={title}
+          onClick={this.openLargeImage(cover.small_image_url)}
+        />
         <div>
           <h1 className="title">{title}</h1>
-          <h2 className="user">
-            <span>by</span>
-            {username}
-          </h2>
         </div>
       </div>
     );

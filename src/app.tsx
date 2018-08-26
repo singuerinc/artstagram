@@ -34,12 +34,6 @@ class App extends React.Component<{}, State> {
     }
   }
 
-  openLargeImage = (small_image_url: string) => event => {
-    const largeFrom = (x: string) => x.replace("/small/", "/large/");
-
-    window.open(largeFrom(small_image_url));
-  };
-
   updateSorting = (sorting: string) => {
     this.setState(prevState => ({
       ...prevState,
@@ -101,12 +95,7 @@ class App extends React.Component<{}, State> {
       const className = lastIdx === idx ? "item last" : "item";
 
       return (
-        <li
-          key={id}
-          data-next-page={nextPage}
-          className={className}
-          onClick={this.openLargeImage(cover.small_image_url)}
-        >
+        <li key={id} data-next-page={nextPage} className={className}>
           <Image art={art} />
         </li>
       );
