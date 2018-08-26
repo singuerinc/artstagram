@@ -25,22 +25,22 @@ body {
   color: black;
 }
 
-.item .user {
-  font-size: 1rem;
-  padding: 0;
-  margin: 1rem;
-}
-
 .item .user-header {
-  margin: 0.4rem 1rem;
+  margin: 0.5rem 1rem;
   display: flex;
   align-items: center;
 }
 
+.item .user {
+  font-size: 1rem;
+  padding: 0;
+  margin: 0 0.5rem;
+}
+
 .item .avatar {
   margin: 0 0;
-  width: 42px;
-  height: 42px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   border: 2px solid black;
   overflow: hidden;
