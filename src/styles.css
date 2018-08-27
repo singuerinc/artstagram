@@ -45,6 +45,10 @@ body {
   color: black;
 }
 
+.item.adult {
+  background-color: pink;
+}
+
 .item .user-header {
   margin: 0.7rem 1rem;
   display: flex;
@@ -79,6 +83,12 @@ body {
   margin: 0 auto;
   position: absolute;
   top: 0;
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+.item .cover[data-src] {
+  opacity: 0;
 }
 
 .item .image-container {

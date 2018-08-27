@@ -32,6 +32,7 @@ type State = {
 
 class App extends React.Component<{}, State> {
   private scroll;
+  private scrollImages;
   private list;
 
   state = {
@@ -55,10 +56,10 @@ class App extends React.Component<{}, State> {
     newImages: ArtImage[]
   ) => {
     const withCover = (x: ArtImage) => !!x.cover;
-    const notAdult = (x: ArtImage) => !x.adult_content;
+    // const notAdult = (x: ArtImage) => !x.adult_content;
 
     const add = compose(
-      filter(notAdult),
+      // filter(notAdult),
       filter(withCover),
       uniqBy(prop("id")),
       concat(prevImages)
@@ -92,6 +93,7 @@ class App extends React.Component<{}, State> {
 
   componentWillUnmount() {
     this.scroll.teardown();
+    this.scrollImages.teardown();
   }
 
   render() {
@@ -102,9 +104,14 @@ class App extends React.Component<{}, State> {
       const { id } = art;
       const nextPage = lastIdx === idx ? page : null;
       const className = lastIdx === idx ? "item last" : "item";
+      const adultClass = art.adult_content ? "adult" : null;
 
       return (
-        <li key={id} data-next-page={nextPage} className={className}>
+        <li
+          key={id}
+          data-next-page={nextPage}
+          className={`${className} ${adultClass}`}
+        >
           <Image art={art} />
         </li>
       );
@@ -112,6 +119,10 @@ class App extends React.Component<{}, State> {
 
     try {
       this.scroll.teardown();
+    } catch (error) {}
+
+    try {
+      this.scrollImages.teardown();
     } catch (error) {}
 
     this.scroll = ScrollOut({
@@ -122,6 +133,19 @@ class App extends React.Component<{}, State> {
         const page = parseInt(el.attributes["data-next-page"].value, 10);
         // load next page
         this.loadImagesByPage(images, page, sorting);
+      }
+    });
+
+    this.scrollImages = ScrollOut({
+      targets: ".item",
+      percentVisible: 0.1,
+      once: true,
+      onShown: el => {
+        const img = el.querySelector(".cover");
+        img.setAttribute("src", img.getAttribute("data-src"));
+        img.onload = () => {
+          img.removeAttribute("data-src");
+        };
       }
     });
 

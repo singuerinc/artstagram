@@ -42,7 +42,7 @@ class Image extends React.Component<Props> {
         >
           <img
             className="cover"
-            src={cover.medium_image_url}
+            data-src={cover.medium_image_url}
             title={title}
             alt={title}
             onClick={this.openLargeImage(cover.small_image_url)}
