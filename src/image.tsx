@@ -2,6 +2,7 @@ import * as React from "react";
 import { ArtImage } from "./artImage";
 
 type Props = {
+  innerRef?: any;
   art: ArtImage;
 };
 
@@ -21,7 +22,7 @@ class Image extends React.Component<Props> {
     const { username, medium_avatar_url } = user;
 
     return (
-      <div className="image">
+      <div className="image" ref={this.props.innerRef}>
         <div
           className="user-header"
           onClick={this.openUserProfile(user.permalink)}

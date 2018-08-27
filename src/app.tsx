@@ -1,7 +1,7 @@
 import * as React from "react";
+import Waypoint from "react-waypoint";
 import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import ScrollOut from "scroll-out";
 import { addIndex, concat, filter, compose, prop, uniqBy, map } from "ramda";
 import { load } from "./art";
 import { ArtImage } from "./artImage";
@@ -31,8 +31,6 @@ type State = {
 };
 
 class App extends React.Component<{}, State> {
-  private scroll;
-  private scrollImages;
   private list;
 
   state = {
@@ -91,63 +89,43 @@ class App extends React.Component<{}, State> {
     this.loadImagesByPage([], page, sorting);
   }
 
-  componentWillUnmount() {
-    this.scroll.teardown();
-    this.scrollImages.teardown();
-  }
+  _handleWaypointEnter = ({ element }: Waypoint.CallbackArgs) => {
+    const img = element.querySelector(".cover");
+    img.setAttribute("src", img.getAttribute("data-src"));
+    img.onload = () => {
+      img.removeAttribute("data-src");
+    };
+  };
+
+  _loadNextPage = (page: number, images: ArtImage[], sorting: string) => () => {
+    this.loadImagesByPage(images, page, sorting);
+  };
 
   render() {
+    if (this.state.images.length === 0) return null;
+
     const { page, sorting, images } = this.state;
     const lastIndex = images.length - 1;
 
     const asItem = lastIdx => (art: ArtImage, idx: number) => {
       const { id } = art;
-      const nextPage = lastIdx === idx ? page : null;
       const className = lastIdx === idx ? "item last" : "item";
-      const adultClass = art.adult_content ? "adult" : null;
-
+      const adultClass = art.adult_content ? "adult" : "";
+      const ref = React.createRef();
       return (
-        <li
-          key={id}
-          data-next-page={nextPage}
-          className={`${className} ${adultClass}`}
-        >
-          <Image art={art} />
+        <li key={id} ref={ref} className={`${className} ${adultClass}`}>
+          <Waypoint
+            topOffset={1500}
+            onEnter={meta => {
+              meta["element"] = ref.current;
+              this._handleWaypointEnter(meta);
+            }}
+          >
+            <Image art={art} />
+          </Waypoint>
         </li>
       );
     };
-
-    try {
-      this.scroll.teardown();
-    } catch (error) {}
-
-    try {
-      this.scrollImages.teardown();
-    } catch (error) {}
-
-    this.scroll = ScrollOut({
-      targets: ".last",
-      percentVisible: 0.1,
-      once: true,
-      onShown: el => {
-        const page = parseInt(el.attributes["data-next-page"].value, 10);
-        // load next page
-        this.loadImagesByPage(images, page, sorting);
-      }
-    });
-
-    this.scrollImages = ScrollOut({
-      targets: ".item",
-      percentVisible: 0.1,
-      once: true,
-      onShown: el => {
-        const img = el.querySelector(".cover");
-        img.setAttribute("src", img.getAttribute("data-src"));
-        img.onload = () => {
-          img.removeAttribute("data-src");
-        };
-      }
-    });
 
     const listItems = mapIndexed(asItem(lastIndex), images);
 
@@ -157,6 +135,7 @@ class App extends React.Component<{}, State> {
         <Nav sorting={sorting} />
         <ul className="collection" ref={this.list}>
           {listItems}
+          <Waypoint onEnter={this._loadNextPage(page, images, sorting)} />
         </ul>
       </React.Fragment>
     );
