@@ -8,25 +8,17 @@ const Nav = ({ sorting }) => {
 
   return (
     <ul className="nav">
-      <li>
-        <a className={selectedWhen("latest")} href="?sorting=latest">
-          Latest
-        </a>
+      <li className={selectedWhen("latest")}>
+        <a href="?sorting=latest">Latest</a>
       </li>
-      <li>
-        <a className={selectedWhen("picks")} href="?sorting=picks">
-          Picks
-        </a>
+      <li className={selectedWhen("picks")}>
+        <a href="?sorting=picks">Picks</a>
       </li>
-      <li>
-        <a className={selectedWhen("trending")} href="?sorting=trending">
-          Trending
-        </a>
+      <li className={selectedWhen("trending")}>
+        <a href="?sorting=trending">Trending</a>
       </li>
-      <li>
-        <a className={selectedWhen("randomize")} href="?sorting=randomize">
-          Community
-        </a>
+      <li className={selectedWhen("randomize")}>
+        <a href="?sorting=randomize">Community</a>
       </li>
     </ul>
   );
