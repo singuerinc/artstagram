@@ -35,37 +35,29 @@ class App extends React.Component<{}, State> {
   }
 
   updateSorting = (sorting: string) => {
-    this.setState(prevState => ({
-      ...prevState,
-      sorting
-    }));
+    this.setState({ sorting });
   };
 
   updatePage = (page: number) => (images: ArtImage[]): ArtImage[] => {
-    this.setState(prevState => ({
-      ...prevState,
-      page
-    }));
+    this.setState({ page });
 
+    // FIXME: feels weird
     return images;
   };
 
-  addImages = (prevImages: ArtImage[]) => (images: ArtImage[]) => {
+  addImages = (prevImages: ArtImage[]) => (newImages: ArtImage[]) => {
     const withCover = (x: ArtImage) => !!x.cover;
     const notAdult = (x: ArtImage) => !x.adult_content;
 
     const add = compose(
-      concat(prevImages),
       filter(notAdult),
       filter(withCover),
-      uniqBy(prop("id"))
+      uniqBy(prop("id")),
+      concat(prevImages)
     );
 
-    this.setState(prevState => {
-      return {
-        ...prevState,
-        images: add(images)
-      };
+    this.setState({
+      images: add(newImages)
     });
   };
 
@@ -91,7 +83,7 @@ class App extends React.Component<{}, State> {
     const lastIndex = images.length - 1;
 
     const asItem = lastIdx => (art: ArtImage, idx: number) => {
-      const { id, cover } = art;
+      const { id } = art;
       const nextPage = lastIdx === idx ? page : null;
       const className = lastIdx === idx ? "item last" : "item";
 
