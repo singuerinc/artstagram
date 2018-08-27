@@ -1,5 +1,6 @@
-# ArtStation pseudo Instagram feed
+# ArtStationgram
 
 App that displays the ArtStation projects in a similar way that Instagram does.
 
-![](./chrome-2.jpg)
+![](./screen-01.png)
+![](./screen-02.png)
