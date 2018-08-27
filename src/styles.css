@@ -11,6 +11,19 @@ body {
   background-color: rgba(0, 0, 0, 0.025);
 }
 
+#nprogress .bar {
+  background: #ccc !important;
+}
+
+#nprogress .peg {
+  box-shadow: 0 0 10px #ccc, 0 0 5px #ccc !important;
+}
+
+#nprogress .spinner-icon {
+  border-top-color: #ccc !important;
+  border-left-color: #ccc !important;
+}
+
 .cat-title {
   margin: 0;
   padding: 1rem;

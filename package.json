@@ -26,6 +26,7 @@
     "axios": "^0.18.0",
     "feather-icons": "^4.7.3",
     "node-fetch": "^2.2.0",
+    "nprogress": "^0.2.0",
     "ramda": "^0.25.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",

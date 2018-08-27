@@ -1,4 +1,6 @@
 import * as React from "react";
+import * as NProgress from "nprogress";
+import "nprogress/nprogress.css";
 import ScrollOut from "scroll-out";
 import { addIndex, concat, filter, compose, prop, uniqBy, map } from "ramda";
 import { load } from "./art";
@@ -73,9 +75,12 @@ class App extends React.Component<{}, State> {
     page: number,
     sorting: string
   ) => {
-    load(NETLIFY_LAMBDA_FETCH, { page, sorting }).then(
-      this.addImagesInPage(prevImages, page + 1)
-    );
+    NProgress.start();
+    load(NETLIFY_LAMBDA_FETCH, { page, sorting })
+      .then(this.addImagesInPage(prevImages, page + 1))
+      .then(() => {
+        NProgress.done();
+      });
   };
 
   componentDidMount() {
