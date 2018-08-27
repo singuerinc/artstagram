@@ -120,7 +120,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <React.Fragment>
-        <Nav />
+        <Nav selected={sorting} />
         <ul className="collection" ref={this.list}>
           {listItems}
         </ul>

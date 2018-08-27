@@ -35,22 +35,18 @@ class Image extends React.Component<Props> {
         <div
           className="image-container"
           style={{
-            backgroundColor: "lightgrey",
-            paddingTop: 100 / cover.aspect + "%",
-            position: "relative"
+            paddingTop: 100 / cover.aspect + "%"
           }}
         >
           <img
-            style={{ position: "absolute", top: 0 }}
+            className="cover"
             src={cover.medium_image_url}
             title={title}
             alt={title}
             onClick={this.openLargeImage(cover.small_image_url)}
           />
         </div>
-        <div>
-          <h1 className="title">{title}</h1>
-        </div>
+        <h1 className="title">{title}</h1>
       </div>
     );
   }
