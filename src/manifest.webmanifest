@@ -1,0 +1,10 @@
+{
+  "short_name": "ArtStationgram",
+  "name": "ArtStationgram",
+  "icons": [],
+  "start_url": "/",
+  "background_color": "#000",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#000"
+}
