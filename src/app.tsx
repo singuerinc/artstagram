@@ -1,6 +1,6 @@
 import * as React from "react";
 import ScrollOut from "scroll-out";
-import { addIndex, concat, filter, compose, map } from "ramda";
+import { addIndex, concat, filter, compose, prop, uniqBy, map } from "ramda";
 import { load } from "./art";
 import { ArtImage } from "./artImage";
 import { Nav } from "./nav";
@@ -57,7 +57,8 @@ class App extends React.Component<{}, State> {
     const add = compose(
       concat(prevImages),
       filter(notAdult),
-      filter(withCover)
+      filter(withCover),
+      uniqBy(prop("id"))
     );
 
     this.setState(prevState => {
