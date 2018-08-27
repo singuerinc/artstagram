@@ -91,7 +91,11 @@ class App extends React.Component<{}, State> {
 
   _handleWaypointEnter = ({ element }: Waypoint.CallbackArgs) => {
     const img = element.querySelector(".cover");
+    if (img.getAttribute("data-loaded") === "true") {
+      return;
+    }
     img.setAttribute("src", img.getAttribute("data-src"));
+    img.setAttribute("data-loaded", "true");
     img.onload = () => {
       img.removeAttribute("data-src");
     };
@@ -115,7 +119,8 @@ class App extends React.Component<{}, State> {
       return (
         <li key={id} ref={ref} className={`${className} ${adultClass}`}>
           <Waypoint
-            topOffset={1500}
+            key={id}
+            topOffset={idx === 0 ? 0 : 1500}
             onEnter={meta => {
               meta["element"] = ref.current;
               this._handleWaypointEnter(meta);
