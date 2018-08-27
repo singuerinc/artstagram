@@ -8,6 +8,13 @@ import { Image } from "./image";
 
 const mapIndexed = addIndex(map);
 
+const NETLIFY_LAMBDA_FETCH = ".netlify/functions/fetch";
+
+const querySorting = () => {
+  const params = new URLSearchParams(document.location.search);
+  return params.get("sorting");
+};
+
 type State = {
   page: number;
   sorting: string;
@@ -20,7 +27,7 @@ class App extends React.Component<{}, State> {
 
   state = {
     page: 1,
-    sorting: "latest",
+    sorting: null,
     images: [] as ArtImage[]
   };
 
@@ -28,24 +35,16 @@ class App extends React.Component<{}, State> {
     super(props);
     this.list = React.createRef();
 
-    const params = new URLSearchParams(document.location.search);
-    if (params.has("sorting")) {
-      this.state.sorting = params.get("sorting");
-    }
+    this.state.sorting = querySorting() || "latest";
   }
 
   updateSorting = (sorting: string) => {
     this.setState({ sorting });
   };
 
-  updatePage = (page: number) => (images: ArtImage[]): ArtImage[] => {
-    this.setState({ page });
-
-    // FIXME: feels weird
-    return images;
-  };
-
-  addImages = (prevImages: ArtImage[]) => (newImages: ArtImage[]) => {
+  addImagesInPage = (prevImages: ArtImage[], page: number) => (
+    newImages: ArtImage[]
+  ) => {
     const withCover = (x: ArtImage) => !!x.cover;
     const notAdult = (x: ArtImage) => !x.adult_content;
 
@@ -57,14 +56,19 @@ class App extends React.Component<{}, State> {
     );
 
     this.setState({
+      page,
       images: add(newImages)
     });
   };
 
-  loadImagesByPage = (images: ArtImage[], page: number, sorting: string) => {
-    load(`.netlify/functions/fetch`, { page, sorting })
-      .then(this.updatePage(page + 1))
-      .then(this.addImages(images));
+  loadImagesByPage = (
+    prevImages: ArtImage[],
+    page: number,
+    sorting: string
+  ) => {
+    load(NETLIFY_LAMBDA_FETCH, { page, sorting }).then(
+      this.addImagesInPage(prevImages, page + 1)
+    );
   };
 
   componentDidMount() {

@@ -7,8 +7,9 @@ type Props = {
 
 class Image extends React.Component<Props> {
   openLargeImage = (small_image_url: string) => event => {
-    const largeFrom = (x: string) => x.replace("/small/", "/large/");
-    window.open(largeFrom(small_image_url));
+    const smallToLarge = (x: string) => x.replace("/small/", "/large/");
+
+    window.open(smallToLarge(small_image_url));
   };
 
   openUserProfile = (link: string) => event => {
@@ -18,6 +19,7 @@ class Image extends React.Component<Props> {
   render() {
     const { cover, title, user } = this.props.art;
     const { username, medium_avatar_url } = user;
+
     return (
       <div className="image">
         <div
