@@ -2,4 +2,4 @@
 
 App that displays the ArtStation projects in a similar way that Instagram does.
 
-![](./chrome.jpg)
+![](./chrome-2.jpg)
