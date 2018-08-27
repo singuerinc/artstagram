@@ -8,7 +8,7 @@ body {
   padding: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-color: rgba(0, 0, 0, 0.025);
+  background-color: white;
 }
 
 #nprogress .bar {
@@ -43,6 +43,7 @@ body {
   width: 100%;
   background-color: #fff;
   color: black;
+  margin: 1rem 0;
 }
 
 .item.adult {
@@ -53,6 +54,20 @@ body {
   margin: 0.7rem 1rem;
   display: flex;
   align-items: center;
+  position: relative;
+}
+
+.item .user-header::before {
+  border: 2px solid grey;
+  border-radius: 50%;
+  content: "";
+  z-index: 9999999;
+  display: block;
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  width: 36px;
+  height: 36px;
 }
 
 .item .user {
@@ -66,7 +81,6 @@ body {
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  border: 2px solid black;
   overflow: hidden;
 }
 
@@ -134,6 +148,11 @@ body {
 }
 
 @media only screen and (min-width: 48rem) {
+  body,
+  html {
+    background-color: rgba(0, 0, 0, 0.025);
+  }
+
   .cat-title {
     display: none;
   }
@@ -157,7 +176,6 @@ body {
   }
 
   .item {
-    margin: 1rem 0;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 3px;
   }
