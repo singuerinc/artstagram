@@ -15,6 +15,13 @@ const querySorting = () => {
   return params.get("sorting");
 };
 
+const title = (sorting: string): string => {
+  if (sorting === "randomize") {
+    sorting = "community";
+  }
+  return sorting[0].toUpperCase() + sorting.substr(1);
+};
+
 type State = {
   page: number;
   sorting: string;
@@ -117,6 +124,7 @@ class App extends React.Component<{}, State> {
 
     return (
       <React.Fragment>
+        <h3 className="cat-title">{title(sorting)}</h3>
         <Nav sorting={sorting} />
         <ul className="collection" ref={this.list}>
           {listItems}

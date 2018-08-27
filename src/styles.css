@@ -11,6 +11,12 @@ body {
   background-color: rgba(0, 0, 0, 0.025);
 }
 
+.cat-title {
+  margin: 0;
+  padding: 1rem;
+  background-color: #fff;
+}
+
 .collection {
   margin: 0 auto;
   padding: 0;
@@ -105,14 +111,26 @@ body {
 }
 
 @media only screen and (min-width: 48rem) {
+  .cat-title {
+    display: none;
+  }
+
   .nav {
     margin: 0 auto;
     padding: 1rem;
+    position: relative;
+    left: auto;
+    transform: none;
+    background-color: transparent;
   }
 
   .nav li a {
     padding: 0.75rem 1rem;
     font-size: 1rem;
+  }
+
+  .nav li.selected a {
+    color: #111;
   }
 
   .item {
