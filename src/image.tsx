@@ -9,21 +9,21 @@ type Props = {
 class Image extends React.Component<Props> {
   matureLayer: React.RefObject<HTMLDivElement>;
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
     this.matureLayer = React.createRef();
   }
-  openLargeImage = (small_image_url: string) => event => {
+  openLargeImage = (small_image_url: string) => () => {
     const smallToLarge = (x: string) => x.replace("/small/", "/large/");
 
     window.open(smallToLarge(small_image_url));
   };
 
-  openUserProfile = (link: string) => event => {
+  openUserProfile = (link: string) => () => {
     window.open(link);
   };
 
-  hideMe = el => {
+  hideMe = (el: HTMLDivElement) => {
     el.classList.add("hide");
   };
 

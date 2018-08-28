@@ -13,9 +13,9 @@ const mapIndexed = addIndex(map);
 
 const NETLIFY_LAMBDA_FETCH = ".netlify/functions/fetch";
 
-const querySorting = () => {
+const querySorting = (): Sorting => {
   const params = new URLSearchParams(document.location.search);
-  return params.get("sorting");
+  return params.get("sorting") as Sorting;
 };
 
 const title = (sorting: Sorting): string => {
@@ -32,7 +32,7 @@ type State = {
 };
 
 class App extends React.Component<{}, State> {
-  private list;
+  private list: React.RefObject<HTMLUListElement>;
 
   state = {
     page: 1,
@@ -44,7 +44,7 @@ class App extends React.Component<{}, State> {
     super(props);
     this.list = React.createRef();
 
-    this.state.sorting = querySorting() || "latest";
+    this.state.sorting = querySorting() || Sorting.LATEST;
 
     navigator.serviceWorker.register("service-worker.js");
   }
