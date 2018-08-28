@@ -1,6 +1,8 @@
 # ArtStagram
 
-Unofficial ArtStation client with an Instagram like feed.
+Unofficial ArtStation client with an Instagram inspired feed.
+
+[https://artstagram.singuerinc.com/](https://artstagram.singuerinc.com/)
 
 ## Features
 
