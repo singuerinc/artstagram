@@ -7,6 +7,7 @@ const smallToLarge = R.replace("/small/", "/large/");
 type Props = {
   innerRef?: any;
   art: ArtImage;
+  loaded: boolean;
 };
 
 class Image extends React.Component<Props> {
@@ -30,12 +31,8 @@ class Image extends React.Component<Props> {
   };
 
   render() {
-    const {
-      cover,
-      title,
-      user,
-      adult_content: isMatureContent
-    } = this.props.art;
+    const { art, loaded } = this.props;
+    const { cover, title, user, adult_content: isMatureContent } = art;
     const { username, medium_avatar_url } = user;
     const style = {
       paddingTop: 100 / cover.aspect + "%"
@@ -67,6 +64,11 @@ class Image extends React.Component<Props> {
                 <br />
                 Click to view
               </span>
+            </div>
+          )}
+          {!loaded && (
+            <div className="loader">
+              <div className="loader-icon" />
             </div>
           )}
           <img
