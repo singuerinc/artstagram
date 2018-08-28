@@ -1,5 +1,8 @@
 import * as React from "react";
+import * as R from "ramda";
 import { ArtImage } from "./artImage";
+
+const smallToLarge = R.replace("/small/", "/large/");
 
 type Props = {
   innerRef?: any;
@@ -13,9 +16,8 @@ class Image extends React.Component<Props> {
     super(props);
     this.matureLayer = React.createRef();
   }
-  openLargeImage = (small_image_url: string) => () => {
-    const smallToLarge = (x: string) => x.replace("/small/", "/large/");
 
+  openLargeImage = (small_image_url: string) => () => {
     window.open(smallToLarge(small_image_url));
   };
 
@@ -28,9 +30,13 @@ class Image extends React.Component<Props> {
   };
 
   render() {
-    const { cover, title, user, adult_content } = this.props.art;
+    const {
+      cover,
+      title,
+      user,
+      adult_content: isMatureContent
+    } = this.props.art;
     const { username, medium_avatar_url } = user;
-    const isMatureContent = adult_content === true;
     const style = {
       paddingTop: 100 / cover.aspect + "%"
     };

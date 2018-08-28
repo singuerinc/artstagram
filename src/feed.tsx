@@ -2,23 +2,21 @@ import * as React from "react";
 import Waypoint from "react-waypoint";
 import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import { addIndex, concat, filter, compose, prop, uniqBy, map } from "ramda";
+import * as R from "ramda";
 import { load } from "./art";
 import { ArtImage } from "./artImage";
 import { Nav } from "./nav";
 import { Image } from "./image";
 import { Sorting } from "./sorting";
 
-const mapIndexed = addIndex(map);
-
 const NETLIFY_LAMBDA_FETCH = "/.netlify/functions/fetch";
 
-const title = (sorting: Sorting): string => {
-  if (sorting === Sorting.COMMUNITY) {
-    return "Community";
-  }
-  return sorting[0].toUpperCase() + sorting.substr(1);
-};
+const mapIndexed = R.addIndex(R.map);
+const hasCover = R.has(["cover"]);
+const capitalize = R.compose(
+  R.join(""),
+  R.over(R.lensIndex(0), R.toUpper)
+);
 
 type Props = {
   sorting: Sorting;
@@ -51,12 +49,10 @@ class Feed extends React.Component<Props, State> {
   addImagesInPage = (prevImages: ArtImage[], page: number) => (
     newImages: ArtImage[]
   ) => {
-    const withCover = (x: ArtImage) => !!x.cover;
-
-    const add = compose(
-      filter(withCover),
-      uniqBy(prop("id")),
-      concat(prevImages)
+    const add = R.compose(
+      R.filter(hasCover),
+      R.uniqBy(R.prop("id")),
+      R.concat(prevImages)
     );
 
     const parsed = add(newImages);
@@ -92,9 +88,12 @@ class Feed extends React.Component<Props, State> {
     this.loadImagesByPage([], page, sorting);
   }
 
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.images === null) {
-      this.loadImagesByPage([], this.state.page, this.state.sorting);
+  componentDidUpdate() {
+    const { images, page, sorting } = this.state;
+
+    // load the images if we don't have any
+    if (R.isNil(images)) {
+      this.loadImagesByPage([], page, sorting);
     }
   }
 
@@ -135,9 +134,8 @@ class Feed extends React.Component<Props, State> {
   };
 
   render() {
-    const isLoading = this.state.images === null;
-
     const { page, sorting, images } = this.state;
+    const isLoading = R.isNil(images);
 
     const asItem = lastIdx => (art: ArtImage, idx: number) => {
       const { id } = art;
@@ -162,7 +160,7 @@ class Feed extends React.Component<Props, State> {
 
     return (
       <React.Fragment>
-        <h3 className="cat-title">{title(sorting)}</h3>
+        <h3 className="cat-title">{capitalize(sorting)}</h3>
         <Nav sorting={sorting} />
         {!isLoading && (
           <ul className="collection" ref={this.list}>

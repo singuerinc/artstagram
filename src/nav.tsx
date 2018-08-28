@@ -1,48 +1,49 @@
 import * as React from "react";
+import * as R from "ramda";
 import { NavLink } from "react-router-dom";
 import { icons } from "feather-icons";
+import { Sorting } from "./sorting";
 
-const Nav = ({ sorting }) => {
-  return (
-    <ul className="nav">
+const is = (sorting: Sorting) => match =>
+  R.isNil(match) ? false : R.equals(match.url, `/feed/${sorting}`);
+
+const links = [
+  {
+    to: "/feed/latest",
+    sorting: Sorting.LATEST,
+    icon: "zap"
+  },
+  {
+    to: "/feed/picks",
+    sorting: Sorting.PICKS,
+    icon: "award"
+  },
+  {
+    to: "/feed/trending",
+    sorting: Sorting.TRENDING,
+    icon: "trending-up"
+  },
+  {
+    to: "/feed/randomize",
+    sorting: Sorting.COMMUNITY,
+    icon: "users"
+  }
+];
+
+const Nav = () => (
+  <ul className="nav">
+    {links.map(({ to, sorting, icon }) => (
       <li>
-        <NavLink to="/feed/latest" activeClassName="selected">
+        <NavLink to={to} activeClassName="selected" isActive={is(sorting)}>
           <div
             dangerouslySetInnerHTML={{
-              __html: icons.zap.toSvg()
+              __html: icons[icon].toSvg()
             }}
           />
         </NavLink>
       </li>
-      <li>
-        <NavLink to="/feed/picks" activeClassName="selected">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: icons.award.toSvg()
-            }}
-          />
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/feed/trending" activeClassName="selected">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: icons["trending-up"].toSvg()
-            }}
-          />
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/feed/randomize" activeClassName="selected">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: icons.users.toSvg()
-            }}
-          />
-        </NavLink>
-      </li>
-    </ul>
-  );
-};
+    ))}
+  </ul>
+);
 
 export { Nav };
