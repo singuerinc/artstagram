@@ -11,6 +11,10 @@ body {
   background-color: white;
 }
 
+.hide {
+  display: none !important;
+}
+
 #nprogress .bar {
   background: #ccc !important;
 }
@@ -44,10 +48,27 @@ body {
   background-color: #fff;
   color: black;
   margin: 1rem 0;
+  position: relative;
 }
 
-.item.adult {
-  background-color: pink;
+.image-container .mature-content {
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-container .mature-content span {
+  display: block;
+  color: gray;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 300;
 }
 
 .item .user-header {
@@ -61,7 +82,7 @@ body {
   border: 2px solid grey;
   border-radius: 50%;
   content: "";
-  z-index: 9999999;
+  z-index: 1;
   display: block;
   position: absolute;
   top: -4px;

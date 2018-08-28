@@ -54,10 +54,8 @@ class App extends React.Component<{}, State> {
     newImages: ArtImage[]
   ) => {
     const withCover = (x: ArtImage) => !!x.cover;
-    // const notAdult = (x: ArtImage) => !x.adult_content;
 
     const add = compose(
-      // filter(notAdult),
       filter(withCover),
       uniqBy(prop("id")),
       concat(prevImages)
@@ -89,8 +87,10 @@ class App extends React.Component<{}, State> {
     this.loadImagesByPage([], page, sorting);
   }
 
-  _handleWaypointEnter = ({ element }: Waypoint.CallbackArgs) => {
-    const img = element.querySelector(".cover");
+  _handleWaypointEnter = ({
+    element
+  }: Waypoint.CallbackArgs & { element: HTMLLIElement }) => {
+    const img = element.querySelector(".cover") as HTMLImageElement;
     if (img.getAttribute("data-loaded") === "true") {
       return;
     }
@@ -114,10 +114,11 @@ class App extends React.Component<{}, State> {
     const asItem = lastIdx => (art: ArtImage, idx: number) => {
       const { id } = art;
       const className = lastIdx === idx ? "item last" : "item";
-      const adultClass = art.adult_content ? "adult" : "";
-      const ref = React.createRef();
+
+      const ref: React.RefObject<HTMLLIElement> = React.createRef();
+
       return (
-        <li key={id} ref={ref} className={`${className} ${adultClass}`}>
+        <li key={id} ref={ref} className={`${className}`}>
           <Waypoint
             key={id}
             topOffset={idx === 0 ? 0 : 1500}

@@ -7,6 +7,12 @@ type Props = {
 };
 
 class Image extends React.Component<Props> {
+  matureLayer: React.RefObject<HTMLDivElement>;
+
+  constructor(props) {
+    super(props);
+    this.matureLayer = React.createRef();
+  }
   openLargeImage = (small_image_url: string) => event => {
     const smallToLarge = (x: string) => x.replace("/small/", "/large/");
 
@@ -17,9 +23,17 @@ class Image extends React.Component<Props> {
     window.open(link);
   };
 
+  hideMe = el => {
+    el.classList.add("hide");
+  };
+
   render() {
-    const { cover, title, user } = this.props.art;
+    const { cover, title, user, adult_content } = this.props.art;
     const { username, medium_avatar_url } = user;
+    const isMatureContent = adult_content === true;
+    const style = {
+      paddingTop: Math.floor(100 / cover.aspect) + 1 + "%"
+    };
 
     return (
       <div className="image" ref={this.props.innerRef}>
@@ -35,12 +49,20 @@ class Image extends React.Component<Props> {
           />
           <h2 className="user">{username}</h2>
         </div>
-        <div
-          className="image-container"
-          style={{
-            paddingTop: 100 / cover.aspect + "%"
-          }}
-        >
+        <div className="image-container" style={style}>
+          {isMatureContent && (
+            <div
+              className="mature-content"
+              ref={this.matureLayer}
+              onClick={() => this.hideMe(this.matureLayer.current)}
+            >
+              <span>
+                Mature content
+                <br />
+                Click to view
+              </span>
+            </div>
+          )}
           <img
             className="cover"
             data-src={cover.medium_image_url}
