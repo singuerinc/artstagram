@@ -5,4 +5,4 @@ import { App } from "./components/app";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
-navigator.serviceWorker.register("service-worker.js");
+navigator.serviceWorker.register("./services/service-worker.js");
