@@ -1,6 +1,6 @@
 # ArtStationgram
 
-App that displays the ArtStation projects in a similar way that Instagram does.
+Unofficial ArtStation client with an Instagram like feed.
 
 ![](./screen-01.png)
 ![](./screen-02.png)
