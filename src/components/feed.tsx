@@ -3,20 +3,17 @@ import Waypoint from "react-waypoint";
 import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import * as R from "ramda";
-import { load } from "./art";
-import { ArtImage } from "./artImage";
+import { load } from "../art";
+import { ArtImage } from "../services/artImage";
 import { Nav } from "./nav";
-import { Image } from "./image";
-import { Sorting } from "./sorting";
+import { Sorting } from "../sorting";
+import { SortingTitle } from "./sortingTitle";
+import { FeedItem } from "./feedItem";
 
 const NETLIFY_LAMBDA_FETCH = "/.netlify/functions/fetch";
 
 const mapIndexed = R.addIndex(R.map);
 const hasCover = R.has(["cover"]);
-const capitalize = R.compose(
-  R.join(""),
-  R.over(R.lensIndex(0), R.toUpper)
-);
 
 type Props = {
   sorting: Sorting;
@@ -110,20 +107,6 @@ class Feed extends React.Component<Props, State> {
       });
   };
 
-  handleWaypointEnter = ({
-    element
-  }: Waypoint.CallbackArgs & { element: HTMLLIElement }) => {
-    const img = element.querySelector(".cover") as HTMLImageElement;
-    if (img.getAttribute("data-loaded") === "true") {
-      return;
-    }
-    img.setAttribute("src", img.getAttribute("data-src"));
-    img.setAttribute("data-loaded", "true");
-    img.onload = () => {
-      img.removeAttribute("data-src");
-    };
-  };
-
   _loadNextPage = (
     page: number,
     images: ArtImage[],
@@ -137,34 +120,23 @@ class Feed extends React.Component<Props, State> {
     const { page, sorting, images } = this.state;
     const isLoading = R.isNil(images);
 
-    const asItem = lastIdx => (art: ArtImage, idx: number) => {
-      const { id } = art;
-      const className = lastIdx === idx ? "item last" : "item";
-      const ref: React.RefObject<HTMLLIElement> = React.createRef();
-
-      return (
-        <li key={id} ref={ref} className={`${className}`}>
-          <Waypoint
-            key={id}
-            topOffset={idx === 0 ? 0 : 1500}
-            onEnter={meta => {
-              meta["element"] = ref.current;
-              this.handleWaypointEnter(meta);
-            }}
-          >
-            <Image art={art} />
-          </Waypoint>
-        </li>
-      );
-    };
-
     return (
       <React.Fragment>
-        <h3 className="cat-title">{capitalize(sorting)}</h3>
-        <Nav sorting={sorting} />
+        <SortingTitle sorting={sorting} />
+        <Nav />
         {!isLoading && (
           <ul className="collection" ref={this.list}>
-            {mapIndexed(asItem(images.length - 1), images)}
+            {mapIndexed(
+              (art: ArtImage, idx: number) => (
+                <FeedItem
+                  key={art.id}
+                  art={art}
+                  idx={idx}
+                  lastIdx={images.length - 1}
+                />
+              ),
+              images
+            )}
             <Waypoint onEnter={this._loadNextPage(page, images, sorting)} />
           </ul>
         )}

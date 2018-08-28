@@ -1,5 +1,5 @@
 import { prop } from "ramda";
-import { request } from "./api";
+import { request } from "./services/api";
 import { ArtImage } from "./artImage";
 import { Sorting } from "./sorting";
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as R from "ramda";
-import { ArtImage } from "./artImage";
+import { ArtImage } from "../artImage";
 
 const smallToLarge = R.replace("/small/", "/large/");
 
