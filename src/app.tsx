@@ -44,6 +44,15 @@ class App extends React.Component<{}, State> {
     this.list = React.createRef();
 
     this.state.sorting = querySorting() || "latest";
+
+    navigator.serviceWorker.register("service-worker.js");
+    navigator.serviceWorker.ready
+      .then(() => {
+        console.log("service worker ready");
+      })
+      .catch(() => {
+        console.log("service worker shit");
+      });
   }
 
   updateSorting = (sorting: string) => {
