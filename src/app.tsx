@@ -7,6 +7,7 @@ import { load } from "./art";
 import { ArtImage } from "./artImage";
 import { Nav } from "./nav";
 import { Image } from "./image";
+import { Sorting } from "./sorting";
 
 const mapIndexed = addIndex(map);
 
@@ -17,16 +18,16 @@ const querySorting = () => {
   return params.get("sorting");
 };
 
-const title = (sorting: string): string => {
-  if (sorting === "randomize") {
-    sorting = "community";
+const title = (sorting: Sorting): string => {
+  if (sorting === Sorting.COMMUNITY) {
+    return "Community";
   }
   return sorting[0].toUpperCase() + sorting.substr(1);
 };
 
 type State = {
   page: number;
-  sorting: string;
+  sorting: Sorting;
   images: ArtImage[];
 };
 
@@ -46,16 +47,9 @@ class App extends React.Component<{}, State> {
     this.state.sorting = querySorting() || "latest";
 
     navigator.serviceWorker.register("service-worker.js");
-    navigator.serviceWorker.ready
-      .then(() => {
-        console.log("service worker ready");
-      })
-      .catch(() => {
-        console.log("service worker shit");
-      });
   }
 
-  updateSorting = (sorting: string) => {
+  updateSorting = (sorting: Sorting) => {
     this.setState({ sorting });
   };
 
@@ -79,7 +73,7 @@ class App extends React.Component<{}, State> {
   loadImagesByPage = (
     prevImages: ArtImage[],
     page: number,
-    sorting: string
+    sorting: Sorting
   ) => {
     NProgress.start();
     load(NETLIFY_LAMBDA_FETCH, { page, sorting })
@@ -110,7 +104,11 @@ class App extends React.Component<{}, State> {
     };
   };
 
-  _loadNextPage = (page: number, images: ArtImage[], sorting: string) => () => {
+  _loadNextPage = (
+    page: number,
+    images: ArtImage[],
+    sorting: Sorting
+  ) => () => {
     this.loadImagesByPage(images, page, sorting);
   };
 

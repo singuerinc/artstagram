@@ -32,7 +32,7 @@ class Image extends React.Component<Props> {
     const { username, medium_avatar_url } = user;
     const isMatureContent = adult_content === true;
     const style = {
-      paddingTop: Math.floor(100 / cover.aspect) + 1 + "%"
+      paddingTop: 100 / cover.aspect + "%"
     };
 
     return (

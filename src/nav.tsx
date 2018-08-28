@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ifElse, equals, always } from "ramda";
 import { icons } from "feather-icons";
+import { Sorting } from "./sorting";
 
 const Nav = ({ sorting }) => {
   const selectedWhen = ifElse(equals(), always("selected"), always(null))(
@@ -9,7 +10,7 @@ const Nav = ({ sorting }) => {
 
   return (
     <ul className="nav">
-      <li className={selectedWhen("latest")}>
+      <li className={selectedWhen(Sorting.LATEST)}>
         <a href="?sorting=latest">
           <div
             dangerouslySetInnerHTML={{
@@ -18,7 +19,7 @@ const Nav = ({ sorting }) => {
           />
         </a>
       </li>
-      <li className={selectedWhen("picks")}>
+      <li className={selectedWhen(Sorting.PICKS)}>
         <a href="?sorting=picks">
           <div
             dangerouslySetInnerHTML={{
@@ -27,7 +28,7 @@ const Nav = ({ sorting }) => {
           />
         </a>
       </li>
-      <li className={selectedWhen("trending")}>
+      <li className={selectedWhen(Sorting.TRENDING)}>
         <a href="?sorting=trending">
           <div
             dangerouslySetInnerHTML={{
@@ -36,7 +37,7 @@ const Nav = ({ sorting }) => {
           />
         </a>
       </li>
-      <li className={selectedWhen("randomize")}>
+      <li className={selectedWhen(Sorting.COMMUNITY)}>
         <a href="?sorting=randomize">
           <div
             dangerouslySetInnerHTML={{
