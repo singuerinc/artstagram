@@ -1,50 +1,45 @@
 import * as React from "react";
-import { ifElse, equals, always } from "ramda";
+import { NavLink } from "react-router-dom";
 import { icons } from "feather-icons";
-import { Sorting } from "./sorting";
 
 const Nav = ({ sorting }) => {
-  const selectedWhen = ifElse(equals(), always("selected"), always(null))(
-    sorting
-  );
-
   return (
     <ul className="nav">
-      <li className={selectedWhen(Sorting.LATEST)}>
-        <a href="?sorting=latest">
+      <li>
+        <NavLink to="/feed/latest" activeClassName="selected">
           <div
             dangerouslySetInnerHTML={{
               __html: icons.zap.toSvg()
             }}
           />
-        </a>
+        </NavLink>
       </li>
-      <li className={selectedWhen(Sorting.PICKS)}>
-        <a href="?sorting=picks">
+      <li>
+        <NavLink to="/feed/picks" activeClassName="selected">
           <div
             dangerouslySetInnerHTML={{
               __html: icons.award.toSvg()
             }}
           />
-        </a>
+        </NavLink>
       </li>
-      <li className={selectedWhen(Sorting.TRENDING)}>
-        <a href="?sorting=trending">
+      <li>
+        <NavLink to="/feed/trending" activeClassName="selected">
           <div
             dangerouslySetInnerHTML={{
               __html: icons["trending-up"].toSvg()
             }}
           />
-        </a>
+        </NavLink>
       </li>
-      <li className={selectedWhen(Sorting.COMMUNITY)}>
-        <a href="?sorting=randomize">
+      <li>
+        <NavLink to="/feed/randomize" activeClassName="selected">
           <div
             dangerouslySetInnerHTML={{
               __html: icons.users.toSvg()
             }}
           />
-        </a>
+        </NavLink>
       </li>
     </ul>
   );

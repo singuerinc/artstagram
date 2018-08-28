@@ -4,3 +4,5 @@ import "./styles.css";
 import { App } from "./app";
 
 ReactDOM.render(<App />, document.getElementById("root"));
+
+navigator.serviceWorker.register("service-worker.js");

@@ -30,6 +30,8 @@
     "ramda": "^0.25.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "react-waypoint": "^8.0.3"
   }
 }
