@@ -1,44 +1,31 @@
-var CACHE = "network-or-cache";
+const CACHE = "network-or-cache";
 
-self.addEventListener("install", function(evt) {
-  console.log("The service worker is being installed.");
+self.addEventListener("install", evt => {
   evt.waitUntil(precache());
 });
 
-self.addEventListener("fetch", function(evt) {
-  console.log("The service worker is serving the asset.");
-
+self.addEventListener("fetch", evt => {
   if (evt.request.url.match(/netlify/)) {
     return false;
   }
 
-  evt.respondWith(
-    fromNetwork(evt.request, 4000).catch(function() {
-      return fromCache(evt.request);
-    })
-  );
+  evt.respondWith(fromNetwork(evt.request, 4000).catch(fromCache(evt.request)));
 });
 
-function precache() {
-  return caches.open(CACHE).then(function(cache) {
-    return cache.addAll([]);
-  });
-}
+const precache = () => caches.open(CACHE).then(cache => cache.addAll([]));
 
-function fromNetwork(request, timeout) {
-  return new Promise(function(fulfill, reject) {
-    var timeoutId = setTimeout(reject, timeout);
-    fetch(request).then(function(response) {
+const fromNetwork = (request, timeout) =>
+  new Promise((fulfill, reject) => {
+    const timeoutId = setTimeout(reject, timeout);
+    fetch(request).then(response => {
       clearTimeout(timeoutId);
       fulfill(response);
     }, reject);
   });
-}
 
-function fromCache(request) {
-  return caches.open(CACHE).then(function(cache) {
-    return cache.match(request).then(function(matching) {
+const fromCache = request =>
+  caches.open(CACHE).then(cache =>
+    cache.match(request).then(matching => {
       return matching || Promise.reject("no-match");
-    });
-  });
-}
+    })
+  );
