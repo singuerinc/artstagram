@@ -9,10 +9,26 @@ type Props = {
   sorting: string;
 };
 
-class UserProfile extends React.Component<RouteComponentProps<Props>> {
+type State = {
+  open: boolean;
+};
+
+class UserProfile extends React.Component<RouteComponentProps<Props>, State> {
+  state = {
+    open: false
+  };
+
   openUserProfile = (link: string) => () => {
     window.open(link);
   };
+
+  componentDidMount() {
+    setTimeout(() => {
+      this.setState(() => ({
+        open: true
+      }));
+    }, 5);
+  }
 
   render() {
     const { match } = this.props;
@@ -27,7 +43,7 @@ class UserProfile extends React.Component<RouteComponentProps<Props>> {
     } = art.user;
 
     return (
-      <UserProfileContainer>
+      <UserProfileContainer open={this.state.open}>
         <BackButton to={`/feed/${sorting}/`}>
           <div
             dangerouslySetInnerHTML={{
@@ -60,7 +76,9 @@ const BackButton = styled(NavLink)`
   }
 `;
 
-const UserProfileContainer = styled.div`
+const UserProfileContainer = styled.div.attrs<{ open: boolean }>({
+  open: props => props.open
+})`
   background-color: #111;
   height: 100vh;
   margin: 0 auto;
@@ -76,8 +94,9 @@ const UserProfileContainer = styled.div`
   overflow: hidden;
   position: fixed;
   z-index: 9999999;
-  left: 50%;
-  transform: translateX(-50%);
+  left: ${props => (props.open ? "0%" : "100vw")};
+  transition: left 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transform: translate3d(-50%);
 `;
 
 const UserBackground = styled.img`
