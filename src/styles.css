@@ -82,6 +82,8 @@ body {
   align-items: center;
   position: relative;
   cursor: pointer;
+  color: #111;
+  text-decoration: none;
 }
 
 .item .user-header:hover {

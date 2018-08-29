@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { ArtImage } from "../artImage";
+import { NavLink } from "react-router-dom";
 
 const smallToLarge = R.replace("/small/", "/large/");
 
@@ -22,9 +23,7 @@ class Image extends React.Component<Props> {
     window.open(smallToLarge(small_image_url));
   };
 
-  openUserProfile = (link: string) => () => {
-    window.open(link);
-  };
+  openUserProfile = (link: string) => () => {};
 
   hideMe = (el: HTMLDivElement) => {
     el.classList.add("hide");
@@ -40,9 +39,9 @@ class Image extends React.Component<Props> {
 
     return (
       <div className="image" ref={this.props.innerRef}>
-        <div
+        <NavLink
           className="user-header"
-          onClick={this.openUserProfile(user.permalink)}
+          to={{ pathname: `/user/${user.id}`, state: { art } }}
         >
           <img
             className="avatar"
@@ -51,7 +50,7 @@ class Image extends React.Component<Props> {
             src={medium_avatar_url}
           />
           <h2 className="user">{username}</h2>
-        </div>
+        </NavLink>
         <div className="image-container" style={style}>
           {isMatureContent && (
             <div

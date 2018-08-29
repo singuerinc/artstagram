@@ -9,6 +9,7 @@ import { Nav } from "./nav";
 import { Sorting } from "../sorting";
 import { SortingTitle } from "./sortingTitle";
 import { FeedItem } from "./feedItem";
+import { RouteComponentProps } from "../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
 
 const NETLIFY_LAMBDA_FETCH = "/.netlify/functions/fetch";
 
@@ -25,7 +26,7 @@ type State = {
   images: ArtImage[];
 };
 
-class Feed extends React.Component<Props, State> {
+class Feed extends React.Component<RouteComponentProps<Props>, State> {
   private list: React.RefObject<HTMLUListElement>;
 
   state = {
@@ -34,7 +35,7 @@ class Feed extends React.Component<Props, State> {
     images: null
   };
 
-  constructor(props: Props) {
+  constructor(props: RouteComponentProps<Props>) {
     super(props);
     this.list = React.createRef();
   }
@@ -60,7 +61,10 @@ class Feed extends React.Component<Props, State> {
     });
   };
 
-  static getDerivedStateFromProps({ match }, prevState) {
+  static getDerivedStateFromProps(
+    { match }: RouteComponentProps<Props>,
+    prevState
+  ) {
     const { params } = match;
     const { sorting } = params;
 
@@ -80,7 +84,7 @@ class Feed extends React.Component<Props, State> {
   componentDidMount() {
     const { page } = this.state;
     const { params } = this.props.match;
-    const { sorting } = params || Sorting.LATEST;
+    const { sorting } = params;
 
     this.loadImagesByPage([], page, sorting);
   }

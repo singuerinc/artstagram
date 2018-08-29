@@ -8,24 +8,34 @@ type Props = { lastIdx: number; art: ArtImage; idx: number };
 type State = { loaded: boolean };
 
 class FeedItem extends React.Component<Props, State> {
+  private image: HTMLImageElement;
+
   state = {
     loaded: false
   };
 
   lazyLoading = (element: HTMLLIElement) => {
-    const img = element.querySelector(".cover") as HTMLImageElement;
-    if (img.getAttribute("data-loaded") === "true") {
+    this.image = element.querySelector(".cover") as HTMLImageElement;
+    if (this.image.getAttribute("data-loaded") === "true") {
       return;
     }
-    img.setAttribute("src", img.getAttribute("data-src"));
-    img.setAttribute("data-loaded", "true");
-    img.onload = () => {
-      img.removeAttribute("data-src");
-      this.setState(prevState => ({
+    this.image.setAttribute("src", this.image.getAttribute("data-src"));
+    this.image.setAttribute("data-loaded", "true");
+    this.image.onload = () => {
+      this.image.removeAttribute("data-src");
+      this.setState(() => ({
         loaded: true
       }));
     };
   };
+
+  componentWillUnmount() {
+    try {
+      this.image.onload = () => {
+        //
+      };
+    } catch (e) {}
+  }
 
   render() {
     const { loaded } = this.state;
