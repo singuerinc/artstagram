@@ -11,8 +11,17 @@ Unofficial ArtStation client with an Instagram inspired feed.
 
 ## Screenshots
 
-![Desktop](./screen-01.png)
-![Mobile](./screen-02.png)
+### Feed (desktop)
+
+![Feed - Desktop](./desktop-feed.png)
+
+### Feed (mobile)
+
+![Feed - Mobile](./mobile-feed.png)
+
+### Artist profile
+
+![Artist Profile](./user-profile.png)
 
 ## Good stuff that make my life easier
 
