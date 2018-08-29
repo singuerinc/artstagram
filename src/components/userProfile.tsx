@@ -2,19 +2,21 @@ import * as React from "react";
 import { icons } from "feather-icons";
 import styled from "styled-components";
 import { ArtImage } from "../artImage";
-import { RouteProps } from "../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
 import { NavLink } from "react-router-dom";
+import { RouteComponentProps } from "react-router";
 
-class UserProfile extends React.Component<RouteProps> {
+type Props = {
+  sorting: string;
+};
+
+class UserProfile extends React.Component<RouteComponentProps<Props>> {
   openUserProfile = (link: string) => () => {
     window.open(link);
   };
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
-
   render() {
+    const { match } = this.props;
+    const { sorting } = match.params;
     const { art }: { art: ArtImage } = this.props.location.state;
     const {
       headline,
@@ -26,10 +28,10 @@ class UserProfile extends React.Component<RouteProps> {
 
     return (
       <UserProfileContainer>
-        <BackButton to="/feed/latest">
+        <BackButton to={`/feed/${sorting}/`}>
           <div
             dangerouslySetInnerHTML={{
-              __html: icons["arrow-left"].toSvg()
+              __html: icons["x"].toSvg()
             }}
           />
         </BackButton>
@@ -72,7 +74,10 @@ const UserProfileContainer = styled.div`
   width: 100%;
   color: white;
   overflow: hidden;
-  position: relative;
+  position: fixed;
+  z-index: 9999999;
+  left: 50%;
+  transform: translateX(-50%);
 `;
 
 const UserBackground = styled.img`
@@ -108,17 +113,21 @@ const UserAvatar = styled.div`
 `;
 
 const UserFullName = styled.h1`
-  margin: 1rem 0 0;
+  text-align: center;
+  margin: 2rem 1rem 0;
   padding: 0;
 `;
 
 const UserCountryCityName = styled.p`
-  margin: 1rem 0;
+  font-style: italic;
+  text-align: center;
+  margin: 1rem 1rem;
   padding: 0;
 `;
 
 const UserHeadline = styled.p`
-  margin: 0;
+  text-align: center;
+  margin: 1rem 2rem;
   padding: 0;
 `;
 

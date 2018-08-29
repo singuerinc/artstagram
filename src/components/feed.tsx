@@ -3,7 +3,9 @@ import Waypoint from "react-waypoint";
 import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import * as R from "ramda";
+import { Route } from "react-router-dom";
 import { load } from "../art";
+import { UserProfile } from "./userProfile";
 import { ArtImage } from "../services/artImage";
 import { Nav } from "./nav";
 import { Sorting } from "../sorting";
@@ -44,23 +46,6 @@ class Feed extends React.Component<RouteComponentProps<Props>, State> {
     this.setState({ sorting });
   };
 
-  addImagesInPage = (prevImages: ArtImage[], page: number) => (
-    newImages: ArtImage[]
-  ) => {
-    const add = R.compose(
-      R.filter(hasCover),
-      R.uniqBy(R.prop("id")),
-      R.concat(prevImages)
-    );
-
-    const parsed = add(newImages);
-
-    this.setState({
-      page,
-      images: parsed
-    });
-  };
-
   static getDerivedStateFromProps(
     { match }: RouteComponentProps<Props>,
     prevState
@@ -81,6 +66,30 @@ class Feed extends React.Component<RouteComponentProps<Props>, State> {
     return null;
   }
 
+  loadImagesByPage = async (
+    prevImages: ArtImage[],
+    page: number,
+    sorting: Sorting
+  ) => {
+    NProgress.start();
+
+    const newImages = await load(NETLIFY_LAMBDA_FETCH, { page, sorting });
+    const add = R.compose(
+      R.filter(hasCover),
+      R.uniqBy(R.prop("id")),
+      R.concat(prevImages)
+    );
+
+    const parsed = add(newImages);
+
+    this.setState({
+      page: page + 1,
+      images: parsed
+    });
+
+    NProgress.done();
+  };
+
   componentDidMount() {
     const { page } = this.state;
     const { params } = this.props.match;
@@ -98,19 +107,6 @@ class Feed extends React.Component<RouteComponentProps<Props>, State> {
     }
   }
 
-  loadImagesByPage = (
-    prevImages: ArtImage[],
-    page: number,
-    sorting: Sorting
-  ) => {
-    NProgress.start();
-    load(NETLIFY_LAMBDA_FETCH, { page, sorting })
-      .then(this.addImagesInPage(prevImages, page + 1))
-      .then(() => {
-        NProgress.done();
-      });
-  };
-
   _loadNextPage = (
     page: number,
     images: ArtImage[],
@@ -126,6 +122,7 @@ class Feed extends React.Component<RouteComponentProps<Props>, State> {
 
     return (
       <React.Fragment>
+        <Route path="/feed/:sorting/user/:id" component={UserProfile} />
         <SortingTitle sorting={sorting} />
         <Nav />
         {!isLoading && (

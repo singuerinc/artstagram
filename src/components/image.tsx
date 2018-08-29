@@ -23,8 +23,6 @@ class Image extends React.Component<Props> {
     window.open(smallToLarge(small_image_url));
   };
 
-  openUserProfile = (link: string) => () => {};
-
   hideMe = (el: HTMLDivElement) => {
     el.classList.add("hide");
   };
@@ -41,7 +39,7 @@ class Image extends React.Component<Props> {
       <div className="image" ref={this.props.innerRef}>
         <NavLink
           className="user-header"
-          to={{ pathname: `/user/${user.id}`, state: { art } }}
+          to={{ pathname: `user/${user.id}`, state: { art } }}
         >
           <img
             className="avatar"
