@@ -9,21 +9,25 @@ const is = (sorting: Sorting) => match =>
 
 const links = [
   {
+    title: "Latest",
     to: "/feed/latest",
     sorting: Sorting.LATEST,
     icon: "zap"
   },
   {
+    title: "Picks",
     to: "/feed/picks",
     sorting: Sorting.PICKS,
     icon: "award"
   },
   {
+    title: "Trending",
     to: "/feed/trending",
     sorting: Sorting.TRENDING,
     icon: "trending-up"
   },
   {
+    title: "Community",
     to: "/feed/randomize",
     sorting: Sorting.COMMUNITY,
     icon: "users"
@@ -32,9 +36,14 @@ const links = [
 
 const Nav = () => (
   <ul className="nav">
-    {links.map(({ to, sorting, icon }, idx) => (
+    {links.map(({ to, title, sorting, icon }, idx) => (
       <li key={idx}>
-        <NavLink to={to} activeClassName="selected" isActive={is(sorting)}>
+        <NavLink
+          to={to}
+          title={title}
+          activeClassName="selected"
+          isActive={is(sorting)}
+        >
           <div
             dangerouslySetInnerHTML={{
               __html: icons[icon].toSvg()
