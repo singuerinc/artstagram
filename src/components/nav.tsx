@@ -7,6 +7,10 @@ import { Sorting } from "../sorting";
 const is = (sorting: Sorting) => match =>
   R.isNil(match) ? false : R.equals(match.url, `/feed/${sorting}`);
 
+const scrollToTop = () => {
+  window.scrollTo(0, 0);
+};
+
 const links = [
   {
     title: "Latest",
@@ -43,6 +47,7 @@ const Nav = () => (
           title={title}
           activeClassName="selected"
           isActive={is(sorting)}
+          onClick={scrollToTop()}
         >
           <div
             dangerouslySetInnerHTML={{
