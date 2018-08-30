@@ -1,10 +1,9 @@
 import * as React from "react";
 import * as R from "ramda";
-import styled from "styled-components";
-import { icons } from "feather-icons";
 import { ArtImage } from "../artImage";
-import { NavLink } from "react-router-dom";
-import { ShareButton } from "./feedItem/ShareButton";
+import { FeedItemHeader } from "./feedItem/FeedItemHeader";
+import { MatureContentLayer } from "./feedItem/MatureContentLayer";
+import { FeedItemFooter } from "./feedItem/FeedItemFooter";
 
 const smallToLarge = R.replace("/small/", "/large/");
 
@@ -14,63 +13,48 @@ type Props = {
   loaded: boolean;
 };
 
-class Image extends React.Component<Props> {
-  matureLayer: React.RefObject<HTMLDivElement>;
+type State = {
+  visibleMatureLayer: boolean;
+};
 
-  constructor(props: Props) {
-    super(props);
-    this.matureLayer = React.createRef();
+class Image extends React.Component<Props, State> {
+  state = {
+    visibleMatureLayer: false
+  };
+
+  hideMatureLayer = () => {
+    this.setState({
+      visibleMatureLayer: false
+    });
+  };
+
+  componentWillReceiveProps(nextProps: Props) {
+    this.setState({ visibleMatureLayer: nextProps.art.adult_content });
   }
 
   openLargeImage = (small_image_url: string) => () => {
     window.open(smallToLarge(small_image_url));
   };
 
-  hideMe = (el: HTMLDivElement) => {
-    el.classList.add("hide");
-  };
-
   render() {
     const { art, loaded } = this.props;
-    const { cover, title, user, adult_content: isMatureContent } = art;
-    const { full_name, username, medium_avatar_url } = user;
+    const { cover, title } = art;
+    const { visibleMatureLayer } = this.state;
     const style = {
       paddingTop: 100 / cover.aspect + "%"
     };
 
     return (
       <div className="image" ref={this.props.innerRef}>
-        <NavLink
-          className="user-header"
-          to={{ pathname: `user/${user.id}`, state: { art } }}
-        >
-          <img
-            className="avatar"
-            title={username}
-            alt={username}
-            src={medium_avatar_url}
-          />
-          <h2 className="user">{full_name}</h2>
-          <h3 className="username">@{username}</h3>
-        </NavLink>
+        <FeedItemHeader art={art} />
         <div className="image-container" style={style}>
-          {isMatureContent && (
-            <div
-              className="mature-content"
-              ref={this.matureLayer}
-              onClick={() => this.hideMe(this.matureLayer.current)}
-            >
-              <span>
-                Mature content
-                <br />
-                Click to view
-              </span>
-            </div>
-          )}
           {!loaded && (
             <div className="loader">
               <div className="loader-icon" />
             </div>
+          )}
+          {visibleMatureLayer && (
+            <MatureContentLayer hideMatureLayer={this.hideMatureLayer} />
           )}
           <img
             className="cover"
@@ -80,19 +64,10 @@ class Image extends React.Component<Props> {
             onClick={this.openLargeImage(cover.small_image_url)}
           />
         </div>
-        <Footer>
-          <h1 className="title">{title}</h1>
-          {navigator.share && <ShareButton art={art} />}
-        </Footer>
+        <FeedItemFooter art={art} />
       </div>
     );
   }
 }
-
-const Footer = styled.footer`
-  display: flex;
-  padding: 1rem;
-  align-items: center;
-`;
 
 export { Image };
