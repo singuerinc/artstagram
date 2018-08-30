@@ -15,17 +15,19 @@ type Props = {
 
 type State = {
   visibleMatureLayer: boolean;
+  loaded: boolean;
 };
 
 class Image extends React.Component<Props, State> {
   state = {
-    visibleMatureLayer: false
+    visibleMatureLayer: false,
+    loaded: false
   };
 
   hideMatureLayer = () => {
-    this.setState({
+    this.setState(() => ({
       visibleMatureLayer: false
-    });
+    }));
   };
 
   componentWillReceiveProps(nextProps: Props) {
@@ -35,7 +37,7 @@ class Image extends React.Component<Props, State> {
   render() {
     const { art, src } = this.props;
     const { cover, title } = art;
-    const { visibleMatureLayer } = this.state;
+    const { visibleMatureLayer, loaded } = this.state;
     const style = {
       paddingTop: 100 / cover.aspect + "%"
     };
@@ -44,11 +46,16 @@ class Image extends React.Component<Props, State> {
       <div className="image" ref={this.props.innerRef}>
         <FeedItemHeader art={art} />
         <div className="image-container" style={style}>
-          {R.isNil(src) && <Spinner />}
+          {!loaded && <Spinner />}
           {visibleMatureLayer && (
             <MatureContentLayer hideMatureLayer={this.hideMatureLayer} />
           )}
           <Cover
+            onLoad={() => {
+              this.setState(() => ({
+                loaded: true
+              }));
+            }}
             src={src}
             title={title}
             smallImageUrl={cover.small_image_url}

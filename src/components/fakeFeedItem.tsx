@@ -32,11 +32,6 @@ const FakeFeedItemWrapper = styled.li`
   margin: 1rem 0;
   position: relative;
 
-  .image-container {
-    position: relative;
-    background-color: lightgrey;
-  }
-
   ${UserFullName} {
     background-color: rgba(0, 0, 0, 0.05);
     width: 100px;
@@ -44,6 +39,7 @@ const FakeFeedItemWrapper = styled.li`
   }
 
   .image-container {
+    position: relative;
     padding-top: 75%;
     background-color: rgba(0, 0, 0, 0.05);
   }

@@ -49,7 +49,7 @@ body {
 
 .item .image-container {
   position: relative;
-  background-color: lightgrey;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 @media only screen and (min-width: 48rem) {

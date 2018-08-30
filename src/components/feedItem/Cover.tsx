@@ -6,6 +6,7 @@ type Props = {
   title: string;
   smallImageUrl: string;
   src: string | null;
+  onLoad: () => void;
 };
 
 type State = {
@@ -30,6 +31,7 @@ class Cover extends React.Component<Props> {
     return (
       <StyledImage
         onLoad={() => {
+          this.props.onLoad();
           this.setState(() => ({
             loaded: true
           }));
