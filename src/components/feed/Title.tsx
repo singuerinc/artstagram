@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 
-type Props = {
+interface IProps {
   title: string;
-};
+}
 
-const Title = ({ title }: Props) => <StyledTitle>{title}</StyledTitle>;
+const Title = ({ title }: IProps) => <StyledTitle>{title}</StyledTitle>;
 
 const StyledTitle = styled.h3`
   margin: 0;

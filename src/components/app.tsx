@@ -1,7 +1,7 @@
+import * as React from "react";
 import { hashHistory } from "react-router";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
-import * as React from "react";
-import { Feed } from "./feed";
+import { Feed } from "./Feed";
 
 const App = () => (
   <BrowserRouter history={hashHistory}>

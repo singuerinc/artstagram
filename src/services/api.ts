@@ -1,8 +1,26 @@
 import * as axios from "axios";
-import { ArtImage } from "../artImage";
+import { prop } from "ramda";
+import { IArtImage } from "../IArtImage";
+import { Sorting } from "../Sorting";
+
+interface IParams {
+  sorting: Sorting;
+  page: number;
+}
 
 const get = (x, url) => x.get(url);
+const mapData = prop("data");
 
-export const request = (
-  url: string
-): axios.AxiosPromise<{ data: ArtImage[] }> => get(axios, url);
+const request = (url: string): axios.AxiosPromise<{ data: IArtImage[] }> =>
+  get(axios, url);
+
+const load = async (
+  url: string,
+  { page, sorting }: IParams
+): Promise<IArtImage[]> => {
+  const { data } = await request(`${url}?page=${page}&sorting=${sorting}`);
+
+  return mapData(data);
+};
+
+export { load };

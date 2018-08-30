@@ -1,13 +1,13 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ArtImage } from "../../artImage";
+import { IArtImage } from "../../IArtImage";
 import { ShareButton } from "./ShareButton";
 
-type Props = {
-  art: ArtImage;
-};
+interface IProps {
+  art: IArtImage;
+}
 
-const FeedItemFooter = ({ art }: Props) => (
+const FeedItemFooter = ({ art }: IProps) => (
   <Footer>
     <ArtTitle>{art.title}</ArtTitle>
     {navigator.share && <ShareButton art={art} />}

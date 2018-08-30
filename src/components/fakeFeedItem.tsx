@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
-import { StyledNavLink, Avatar, UserFullName } from "./feedItem/FeedItemHeader";
-import { Footer, ArtTitle } from "./feedItem/FeedItemFooter";
+import { ArtTitle, Footer } from "./feedItem/FeedItemFooter";
+import { StyledNavLink, UserFullName } from "./feedItem/FeedItemHeader";
 
 const FakeFeedItem = () => (
   <FakeFeedItemWrapper>
@@ -26,6 +26,7 @@ const FakeAvatar = styled.div`
 `;
 
 const FakeFeedItemWrapper = styled.li`
+  border: 1px solid rgba(0, 0, 0, 0.1);
   width: 100%;
   background-color: #fff;
   color: black;

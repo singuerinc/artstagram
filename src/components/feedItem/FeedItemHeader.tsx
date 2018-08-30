@@ -1,9 +1,9 @@
 import * as React from "react";
-import styled from "styled-components";
 import { NavLink } from "react-router-dom";
-import { ArtImage } from "../../artImage";
+import styled from "styled-components";
+import { IArtImage } from "../../IArtImage";
 
-const FeedItemHeader = ({ art }: { art: ArtImage }) => (
+const FeedItemHeader = ({ art }: { art: IArtImage }) => (
   <StyledNavLink to={{ pathname: `user/${art.user.id}`, state: { art } }}>
     <Avatar
       title={art.user.username}

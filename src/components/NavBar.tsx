@@ -1,9 +1,9 @@
-import * as React from "react";
-import * as R from "ramda";
-import { NavLink } from "react-router-dom";
 import { icons } from "feather-icons";
-import { Sorting } from "../sorting";
+import * as R from "ramda";
+import * as React from "react";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { Sorting } from "../Sorting";
 
 const is = (sorting: Sorting) => match =>
   R.isNil(match) ? false : R.equals(match.url, `/feed/${sorting}/`);
@@ -14,32 +14,32 @@ const scrollToTop = () => {
 
 const links = [
   {
-    title: "Picks",
-    to: "/feed/picks/",
+    icon: "award",
     sorting: Sorting.PICKS,
-    icon: "award"
+    title: "Picks",
+    to: "/feed/picks/"
   },
   {
-    title: "Latest",
-    to: "/feed/latest/",
+    icon: "zap",
     sorting: Sorting.LATEST,
-    icon: "zap"
+    title: "Latest",
+    to: "/feed/latest/"
   },
   {
-    title: "Trending",
-    to: "/feed/trending/",
+    icon: "trending-up",
     sorting: Sorting.TRENDING,
-    icon: "trending-up"
+    title: "Trending",
+    to: "/feed/trending/"
   },
   {
-    title: "Community",
-    to: "/feed/randomize/",
+    icon: "users",
     sorting: Sorting.COMMUNITY,
-    icon: "users"
+    title: "Community",
+    to: "/feed/randomize/"
   }
 ];
 
-const Nav = () => (
+const NavBar = () => (
   <Wrapper>
     {links.map(({ to, title, sorting, icon }, idx) => (
       <li key={idx}>
@@ -118,4 +118,4 @@ const Wrapper = styled.ul`
   }
 `;
 
-export { Nav };
+export { NavBar };

@@ -1,17 +1,17 @@
-import * as React from "react";
 import * as R from "ramda";
+import * as React from "react";
 import styled from "styled-components";
 
-type Props = {
+interface IProps {
   title: string;
   smallImageUrl: string;
   src: string | null;
   onLoad: () => void;
-};
+}
 
-type State = {
+interface IState {
   loaded: boolean;
-};
+}
 
 const smallToLarge = R.replace("/small/", "/large/");
 
@@ -19,12 +19,12 @@ const openLargeImage = (smallImageUrl: string) => () => {
   window.open(smallToLarge(smallImageUrl));
 };
 
-class Cover extends React.Component<Props> {
-  state = {
+class Cover extends React.Component<IProps, IState> {
+  public state = {
     loaded: false
   };
 
-  render() {
+  public render() {
     const { title, smallImageUrl, src } = this.props;
     const { loaded } = this.state;
 

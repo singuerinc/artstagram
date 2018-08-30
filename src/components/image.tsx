@@ -1,40 +1,39 @@
 import * as React from "react";
-import * as R from "ramda";
-import { ArtImage } from "../artImage";
-import { FeedItemHeader } from "./feedItem/FeedItemHeader";
-import { Cover } from "./feedItem/Cover";
-import { MatureContentLayer } from "./feedItem/MatureContentLayer";
-import { FeedItemFooter } from "./feedItem/FeedItemFooter";
+import { IArtImage } from "../IArtImage";
 import { Spinner } from "./common/Spinner";
+import { Cover } from "./feedItem/Cover";
+import { FeedItemFooter } from "./feedItem/FeedItemFooter";
+import { FeedItemHeader } from "./feedItem/FeedItemHeader";
+import { MatureContentLayer } from "./feedItem/MatureContentLayer";
 
-type Props = {
+interface IProps {
   innerRef?: any;
-  art: ArtImage;
+  art: IArtImage;
   src: string | null;
-};
+}
 
-type State = {
+interface IState {
   visibleMatureLayer: boolean;
   loaded: boolean;
-};
+}
 
-class Image extends React.Component<Props, State> {
-  state = {
-    visibleMatureLayer: false,
-    loaded: false
+class Image extends React.Component<IProps, IState> {
+  public state = {
+    loaded: false,
+    visibleMatureLayer: false
   };
 
-  hideMatureLayer = () => {
+  public hideMatureLayer = () => {
     this.setState(() => ({
       visibleMatureLayer: false
     }));
   };
 
-  componentWillReceiveProps(nextProps: Props) {
+  public componentWillReceiveProps(nextProps: IProps) {
     this.setState({ visibleMatureLayer: nextProps.art.adult_content });
   }
 
-  render() {
+  public render() {
     const { art, src } = this.props;
     const { cover, title } = art;
     const { visibleMatureLayer, loaded } = this.state;

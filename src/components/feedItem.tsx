@@ -1,17 +1,23 @@
 import * as React from "react";
 import Waypoint from "react-waypoint";
-import { Image } from "./image";
-import { ArtImage } from "../artImage";
+import { IArtImage } from "../IArtImage";
+import { Image } from "./Image";
 
-type Props = { lastIdx: number; art: ArtImage; idx: number };
-type State = { src: string };
+interface IProps {
+  lastIdx: number;
+  art: IArtImage;
+  idx: number;
+}
+interface IState {
+  src: string;
+}
 
-class FeedItem extends React.Component<Props, State> {
-  state = {
+class FeedItem extends React.Component<IProps, IState> {
+  public state = {
     src: null
   };
 
-  render() {
+  public render() {
     const { src } = this.state;
     const { lastIdx, art, idx } = this.props;
     const { id, cover } = art;

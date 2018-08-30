@@ -1,7 +1,7 @@
-import * as React from "react";
 import { icons } from "feather-icons";
+import * as React from "react";
 import styled from "styled-components";
-import { ArtImage } from "../../artImage";
+import { IArtImage } from "../../IArtImage";
 
 const ShareButtonAsset = styled.a`
   display: block;
@@ -15,27 +15,31 @@ const ShareButtonAsset = styled.a`
   }
 `;
 
-type Props = {
-  art: ArtImage;
-};
+interface IProps {
+  art: IArtImage;
+}
 
-const share = ({ title, permalink: url }: ArtImage) => async () => {
+const share = ({ title, permalink: url }: IArtImage) => async () => {
   // native share: only Android
   // @ts-ignore
   if (navigator.share) {
     navigator
       // @ts-ignore
       .share({
-        title,
         text: "",
+        title,
         url
       })
-      .then(() => console.log("Successful share"))
-      .catch(error => console.log("Error sharing", error));
+      .then(() => {
+        //
+      })
+      .catch(error => {
+        //
+      });
   }
 };
 
-const ShareButton = ({ art }: Props) => (
+const ShareButton = ({ art }: IProps) => (
   <ShareButtonAsset
     onClick={share(art)}
     dangerouslySetInnerHTML={{

@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
 
-type Props = {
-  hideMatureLayer: Function;
-};
+interface IProps {
+  hideMatureLayer: () => void;
+}
 
-const MatureContentLayer = ({ hideMatureLayer }: Props) => (
+const MatureContentLayer = ({ hideMatureLayer }: IProps) => (
   <Wrapper onClick={() => hideMatureLayer()}>
     <ClickToViewText>
       Mature content
