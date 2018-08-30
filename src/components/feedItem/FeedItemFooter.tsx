@@ -8,16 +8,23 @@ type Props = {
 };
 
 const FeedItemFooter = ({ art }: Props) => (
-  <Wrapper>
-    <h1 className="title">{art.title}</h1>
+  <Footer>
+    <ArtTitle>{art.title}</ArtTitle>
     {navigator.share && <ShareButton art={art} />}
-  </Wrapper>
+  </Footer>
 );
 
-const Wrapper = styled.footer`
+const Footer = styled.footer`
   display: flex;
   padding: 1rem;
   align-items: center;
 `;
 
-export { FeedItemFooter };
+const ArtTitle = styled.h1`
+  font-size: 1rem;
+  font-weight: 300;
+  margin: 0;
+  color: lightslategray;
+`;
+
+export { FeedItemFooter, Footer, ArtTitle };

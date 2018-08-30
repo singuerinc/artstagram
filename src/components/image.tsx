@@ -5,6 +5,7 @@ import { FeedItemHeader } from "./feedItem/FeedItemHeader";
 import { Cover } from "./feedItem/Cover";
 import { MatureContentLayer } from "./feedItem/MatureContentLayer";
 import { FeedItemFooter } from "./feedItem/FeedItemFooter";
+import { Spinner } from "./common/Spinner";
 
 type Props = {
   innerRef?: any;
@@ -43,11 +44,7 @@ class Image extends React.Component<Props, State> {
       <div className="image" ref={this.props.innerRef}>
         <FeedItemHeader art={art} />
         <div className="image-container" style={style}>
-          {R.isNil(src) && (
-            <div className="loader">
-              <div className="loader-icon" />
-            </div>
-          )}
+          {R.isNil(src) && <Spinner />}
           {visibleMatureLayer && (
             <MatureContentLayer hideMatureLayer={this.hideMatureLayer} />
           )}

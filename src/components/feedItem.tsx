@@ -11,14 +11,6 @@ class FeedItem extends React.Component<Props, State> {
     src: null
   };
 
-  // componentWillUnmount() {
-  //   try {
-  //     this.image.onload = () => {
-  //       //
-  //     };
-  //   } catch (e) {}
-  // }
-
   render() {
     const { src } = this.state;
     const { lastIdx, art, idx } = this.props;

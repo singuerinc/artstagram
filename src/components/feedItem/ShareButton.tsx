@@ -8,6 +8,8 @@ const ShareButtonAsset = styled.a`
   margin-left: auto;
   color: lightgrey;
   cursor: pointer;
+  transition: color 300ms;
+
   &:hover {
     color: grey;
   }

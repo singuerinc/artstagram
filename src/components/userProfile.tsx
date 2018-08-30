@@ -71,6 +71,7 @@ const BackButton = styled(NavLink)`
   padding: 16px;
   color: gray;
   cursor: pointer;
+  transition: color 300ms;
   &:hover {
     color: white;
   }
@@ -167,4 +168,12 @@ const UserProfileLink = styled.a`
   }
 `;
 
-export { UserProfile };
+export {
+  UserProfile,
+  UserBackground,
+  UserAvatar,
+  UserFullName,
+  UserCountryCityName,
+  UserHeadline,
+  UserProfileLink
+};

@@ -19,6 +19,7 @@ const UserFullName = styled.h2`
   font-size: 1rem;
   padding: 0;
   margin: 0 0.8rem;
+  font-weight: 500;
 `;
 
 const UserName = styled.h3`
@@ -45,6 +46,7 @@ const StyledNavLink = styled(NavLink)`
   cursor: pointer;
   color: #111;
   text-decoration: none;
+  transition: color 300ms;
 
   &:hover {
     color: gray;
@@ -64,4 +66,4 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export { FeedItemHeader };
+export { FeedItemHeader, StyledNavLink, UserFullName, UserName, Avatar };

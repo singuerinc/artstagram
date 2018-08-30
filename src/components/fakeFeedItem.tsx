@@ -1,19 +1,71 @@
 import * as React from "react";
-import Waypoint from "react-waypoint";
-import { Image } from "./image";
-import { ArtImage } from "../artImage";
+import styled from "styled-components";
+import { StyledNavLink, Avatar, UserFullName } from "./feedItem/FeedItemHeader";
+import { Footer, ArtTitle } from "./feedItem/FeedItemFooter";
 
 const FakeFeedItem = () => (
-  <li className="item when-loading">
+  <FakeFeedItemWrapper>
     <div className="image">
-      <a className="user-header">
-        <div className="avatar" />
-        <h2 className="user" />
-      </a>
-      <div className="image-container" style={{}} />
-      <h1 className="title" />
+      <StyledNavLink to="">
+        <FakeAvatar />
+        <UserFullName />
+      </StyledNavLink>
+      <div className="image-container" />
+      <Footer>
+        <ArtTitle />
+      </Footer>
     </div>
-  </li>
+  </FakeFeedItemWrapper>
 );
+
+const FakeAvatar = styled.div`
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.05);
+`;
+
+const FakeFeedItemWrapper = styled.li`
+  width: 100%;
+  background-color: #fff;
+  color: black;
+  margin: 1rem 0;
+  position: relative;
+
+  .image-container {
+    position: relative;
+    background-color: lightgrey;
+  }
+
+  ${UserFullName} {
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 100px;
+    height: 18px;
+  }
+
+  .image-container {
+    padding-top: 75%;
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+
+  ${StyledNavLink} {
+    pointer-events: none;
+    &::before {
+      border: 2px solid rgba(0, 0, 0, 0.05);
+    }
+  }
+
+  ${ArtTitle} {
+    background-color: rgba(0, 0, 0, 0.05);
+    width: 250px;
+    height: 18px;
+  }
+
+  @media only screen and (min-width: 48rem) {
+    &:first-child {
+      margin: 0 0 1rem;
+    }
+  }
+`;
 
 export { FakeFeedItem };

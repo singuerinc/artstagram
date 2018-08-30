@@ -9,7 +9,7 @@ import { UserProfile } from "./userProfile";
 import { ArtImage } from "../artImage";
 import { Nav } from "./nav";
 import { Sorting } from "../sorting";
-import { SortingTitle } from "./sortingTitle";
+import { Title } from "./feed/Title";
 import { FeedItem } from "./feedItem";
 import { RouteComponentProps } from "../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
 import { FakeFeedItem } from "./fakeFeedItem";
@@ -121,7 +121,7 @@ class Feed extends React.Component<RouteComponentProps<Props>, State> {
     return (
       <React.Fragment>
         <Route path="/feed/:sorting/user/:id" component={UserProfile} />
-        <SortingTitle sorting={sorting} />
+        <Title title={sorting} />
         <Nav />
         {isLoading && (
           <ul className="collection">
