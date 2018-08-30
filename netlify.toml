@@ -1,7 +1,9 @@
-[Settings]
-ID = "eloquent-meitner-1e5058"
-
 [build]
   publish = "dist/client"
   command = "yarn build:client && yarn build:server"
   functions = "dist/server"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
