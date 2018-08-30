@@ -1,7 +1,10 @@
 import * as React from "react";
 import * as R from "ramda";
+import styled from "styled-components";
+import { icons } from "feather-icons";
 import { ArtImage } from "../artImage";
 import { NavLink } from "react-router-dom";
+import { ShareButton } from "./feedItem/ShareButton";
 
 const smallToLarge = R.replace("/small/", "/large/");
 
@@ -77,10 +80,19 @@ class Image extends React.Component<Props> {
             onClick={this.openLargeImage(cover.small_image_url)}
           />
         </div>
-        <h1 className="title">{title}</h1>
+        <Footer>
+          <h1 className="title">{title}</h1>
+          <ShareButton art={art} />
+        </Footer>
       </div>
     );
   }
 }
+
+const Footer = styled.footer`
+  display: flex;
+  padding: 1rem;
+  align-items: center;
+`;
 
 export { Image };
