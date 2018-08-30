@@ -131,7 +131,15 @@ body {
 .item .user {
   font-size: 1rem;
   padding: 0;
-  margin: 0 0.5rem;
+  margin: 0 0.8rem;
+}
+
+.item .username {
+  margin: 0;
+  font-weight: 300;
+  color: lightgray;
+  margin-left: auto;
+  font-size: 0.9rem;
 }
 
 .item .avatar {

@@ -30,7 +30,7 @@ class Image extends React.Component<Props> {
   render() {
     const { art, loaded } = this.props;
     const { cover, title, user, adult_content: isMatureContent } = art;
-    const { username, medium_avatar_url } = user;
+    const { full_name, username, medium_avatar_url } = user;
     const style = {
       paddingTop: 100 / cover.aspect + "%"
     };
@@ -47,7 +47,8 @@ class Image extends React.Component<Props> {
             alt={username}
             src={medium_avatar_url}
           />
-          <h2 className="user">{username}</h2>
+          <h2 className="user">{full_name}</h2>
+          <h3 className="username">@{username}</h3>
         </NavLink>
         <div className="image-container" style={style}>
           {isMatureContent && (
