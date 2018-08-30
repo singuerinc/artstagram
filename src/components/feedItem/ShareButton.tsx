@@ -22,36 +22,28 @@ const share = ({
   description: text,
   permalink: url
 }: ArtImage) => async () => {
-  // if (navigator.share) {
-  //   await navigator.share({
-  //     title,
-  //     text,
-  //     url
-  //   });
-  // }
-
-  navigator
-    .share({
-      title: "Web Fundamentals",
-      text: "Check out Web Fundamentals — it rocks!",
-      url: "https://developers.google.com/web"
-    })
-    .then(() => console.log("Successful share"))
-    .catch(error => console.log("Error sharing", error));
+  // native share: only Android
+  // @ts-ignore
+  if (navigator.share) {
+    navigator
+      // @ts-ignore
+      .share({
+        title,
+        text,
+        url
+      })
+      .then(() => console.log("Successful share"))
+      .catch(error => console.log("Error sharing", error));
+  }
 };
 
-class ShareButton extends React.Component<Props> {
-  render() {
-    const { art } = this.props;
-    return (
-      <ShareButtonAsset
-        onClick={share(art)}
-        dangerouslySetInnerHTML={{
-          __html: icons["share-2"].toSvg()
-        }}
-      />
-    );
-  }
-}
+const ShareButton = ({ art }: Props) => (
+  <ShareButtonAsset
+    onClick={share(art)}
+    dangerouslySetInnerHTML={{
+      __html: icons["share-2"].toSvg()
+    }}
+  />
+);
 
 export { ShareButton };
