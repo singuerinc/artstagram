@@ -88,21 +88,6 @@ body {
   color: lightslategray;
 }
 
-.item .cover {
-  width: 100%;
-  display: block;
-  margin: 0 auto;
-  position: absolute;
-  top: 0;
-  opacity: 1;
-  transition: opacity 0.3s;
-  cursor: pointer;
-}
-
-.item .cover[data-src] {
-  opacity: 0;
-}
-
 .item .image-container {
   position: relative;
   background-color: lightgrey;

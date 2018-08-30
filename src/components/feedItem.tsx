@@ -4,42 +4,25 @@ import { Image } from "./image";
 import { ArtImage } from "../artImage";
 
 type Props = { lastIdx: number; art: ArtImage; idx: number };
-type State = { loaded: boolean };
+type State = { src: string };
 
 class FeedItem extends React.Component<Props, State> {
-  private image: HTMLImageElement;
-
   state = {
-    loaded: false
+    src: null
   };
 
-  lazyLoading = (element: HTMLLIElement) => {
-    this.image = element.querySelector(".cover") as HTMLImageElement;
-    if (this.image.getAttribute("data-loaded") === "true") {
-      return;
-    }
-    this.image.setAttribute("src", this.image.getAttribute("data-src"));
-    this.image.setAttribute("data-loaded", "true");
-    this.image.onload = () => {
-      this.image.removeAttribute("data-src");
-      this.setState(() => ({
-        loaded: true
-      }));
-    };
-  };
-
-  componentWillUnmount() {
-    try {
-      this.image.onload = () => {
-        //
-      };
-    } catch (e) {}
-  }
+  // componentWillUnmount() {
+  //   try {
+  //     this.image.onload = () => {
+  //       //
+  //     };
+  //   } catch (e) {}
+  // }
 
   render() {
-    const { loaded } = this.state;
+    const { src } = this.state;
     const { lastIdx, art, idx } = this.props;
-    const { id } = art;
+    const { id, cover } = art;
     const className = lastIdx === idx ? "item last" : "item";
     const ref: React.RefObject<HTMLLIElement> = React.createRef();
 
@@ -50,10 +33,14 @@ class FeedItem extends React.Component<Props, State> {
           scrollableAncestor={window}
           bottomOffset={-500}
           onEnter={() => {
-            this.lazyLoading(ref.current);
+            if (src === null) {
+              this.setState(prevState => ({
+                src: cover.medium_image_url
+              }));
+            }
           }}
         >
-          <Image art={art} loaded={loaded} />
+          <Image art={art} src={src} />
         </Waypoint>
       </li>
     );
