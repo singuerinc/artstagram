@@ -6,12 +6,13 @@ import * as R from "ramda";
 import { Route } from "react-router-dom";
 import { load } from "../art";
 import { UserProfile } from "./userProfile";
-import { ArtImage } from "../services/artImage";
+import { ArtImage } from "../artImage";
 import { Nav } from "./nav";
 import { Sorting } from "../sorting";
 import { SortingTitle } from "./sortingTitle";
 import { FeedItem } from "./feedItem";
 import { RouteComponentProps } from "../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
+import { FakeFeedItem } from "./fakeFeedItem";
 
 const NETLIFY_LAMBDA_FETCH = "/.netlify/functions/fetch";
 
@@ -28,19 +29,16 @@ type State = {
   images: ArtImage[];
 };
 
-class Feed extends React.Component<RouteComponentProps<Props>, State> {
-  private list: React.RefObject<HTMLUListElement>;
+const FeedItemFactory = (lastIdx: number) => (art: ArtImage, idx: number) => (
+  <FeedItem key={art.id} art={art} idx={idx} lastIdx={lastIdx} />
+);
 
+class Feed extends React.Component<RouteComponentProps<Props>, State> {
   state = {
     page: 1,
     sorting: null,
     images: null
   };
-
-  constructor(props: RouteComponentProps<Props>) {
-    super(props);
-    this.list = React.createRef();
-  }
 
   updateSorting = (sorting: Sorting) => {
     this.setState({ sorting });
@@ -125,19 +123,15 @@ class Feed extends React.Component<RouteComponentProps<Props>, State> {
         <Route path="/feed/:sorting/user/:id" component={UserProfile} />
         <SortingTitle sorting={sorting} />
         <Nav />
+        {isLoading && (
+          <ul className="collection">
+            <FakeFeedItem />
+            <FakeFeedItem />
+          </ul>
+        )}
         {!isLoading && (
-          <ul className="collection" ref={this.list}>
-            {mapIndexed(
-              (art: ArtImage, idx: number) => (
-                <FeedItem
-                  key={art.id}
-                  art={art}
-                  idx={idx}
-                  lastIdx={images.length - 1}
-                />
-              ),
-              images
-            )}
+          <ul className="collection">
+            {mapIndexed(FeedItemFactory(images.length - 1), images)}
             <Waypoint onEnter={this._loadNextPage(page, images, sorting)} />
           </ul>
         )}

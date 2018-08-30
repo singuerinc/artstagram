@@ -1,5 +1,4 @@
 import * as React from "react";
-import { icons } from "feather-icons";
 import Waypoint from "react-waypoint";
 import { Image } from "./image";
 import { ArtImage } from "../artImage";
@@ -48,7 +47,8 @@ class FeedItem extends React.Component<Props, State> {
       <li key={id} ref={ref} className={`${className}`}>
         <Waypoint
           key={id}
-          topOffset={idx === 0 ? 0 : 1500}
+          scrollableAncestor={window}
+          bottomOffset={-500}
           onEnter={() => {
             this.lazyLoading(ref.current);
           }}

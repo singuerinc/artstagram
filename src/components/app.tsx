@@ -6,7 +6,7 @@ import { Feed } from "./feed";
 const App = () => (
   <BrowserRouter history={hashHistory}>
     <div>
-      <Route exact path="/" render={() => <Redirect to="/feed/latest/" />} />
+      <Route exact path="/" render={() => <Redirect to="/feed/picks/" />} />
       <Route path="/feed/:sorting/" component={Feed} />
     </div>
   </BrowserRouter>

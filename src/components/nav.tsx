@@ -13,16 +13,16 @@ const scrollToTop = () => {
 
 const links = [
   {
-    title: "Latest",
-    to: "/feed/latest/",
-    sorting: Sorting.LATEST,
-    icon: "zap"
-  },
-  {
     title: "Picks",
     to: "/feed/picks/",
     sorting: Sorting.PICKS,
     icon: "award"
+  },
+  {
+    title: "Latest",
+    to: "/feed/latest/",
+    sorting: Sorting.LATEST,
+    icon: "zap"
   },
   {
     title: "Trending",

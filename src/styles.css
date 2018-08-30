@@ -56,6 +56,31 @@ body {
   position: relative;
 }
 
+.item.when-loading .avatar {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.item.when-loading .user {
+  background-color: rgba(0, 0, 0, 0.05);
+  width: 150px;
+  height: 18px;
+}
+
+.item.when-loading .image-container {
+  padding-top: 75%;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.item.when-loading .user-header::before {
+  border: 2px solid rgba(0, 0, 0, 0.05);
+}
+
+.item.when-loading .title {
+  background-color: rgba(0, 0, 0, 0.05);
+  width: 250px;
+  height: 18px;
+}
+
 .image-container .mature-content {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.9);
