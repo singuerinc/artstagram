@@ -17,11 +17,7 @@ type Props = {
   art: ArtImage;
 };
 
-const share = ({
-  title,
-  description: text,
-  permalink: url
-}: ArtImage) => async () => {
+const share = ({ title, permalink: url }: ArtImage) => async () => {
   // native share: only Android
   // @ts-ignore
   if (navigator.share) {
@@ -29,7 +25,7 @@ const share = ({
       // @ts-ignore
       .share({
         title,
-        text,
+        text: "",
         url
       })
       .then(() => console.log("Successful share"))

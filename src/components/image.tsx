@@ -82,7 +82,7 @@ class Image extends React.Component<Props> {
         </div>
         <Footer>
           <h1 className="title">{title}</h1>
-          <ShareButton art={art} />
+          {navigator.share && <ShareButton art={art} />}
         </Footer>
       </div>
     );
