@@ -94,9 +94,17 @@ const UserProfileContainer = styled.div.attrs<{ open: boolean }>({
   overflow: hidden;
   position: fixed;
   z-index: 9999999;
-  left: ${props => (props.open ? "0%" : "100vw")};
-  transition: left 0.6s cubic-bezier(0.645, 0.045, 0.355, 1);
-  transform: translate3d(-50%);
+  left: 50%;
+  backface-visibility: hidden;
+  perspective: 1000;
+  transition: transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
+  transform: ${props =>
+    props.open ? "translate3d(-50%, 0, 0)" : "translate3d(50%, 0, 0)"};
+
+  @media only screen and (min-width: 48rem) {
+    transform: ${props =>
+      props.open ? "translate3d(-50%, 0, 0)" : "translate3d(-50%, 100vh, 0)"};
+  }
 `;
 
 const UserBackground = styled.img`
