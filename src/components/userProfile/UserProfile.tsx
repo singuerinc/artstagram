@@ -3,7 +3,7 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { IArtImage } from "../IArtImage";
+import { IArtImage } from "../../IArtImage";
 
 interface IProps {
   sorting: string;

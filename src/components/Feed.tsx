@@ -4,6 +4,7 @@ import * as R from "ramda";
 import * as React from "react";
 import { Route } from "react-router-dom";
 import Waypoint from "react-waypoint";
+import styled from "styled-components";
 import { RouteComponentProps } from "../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
 import { IArtImage } from "../IArtImage";
 import { load } from "../services/api";
@@ -12,8 +13,7 @@ import { FakeFeedItem } from "./FakeFeedItem";
 import { Title } from "./feed/Title";
 import { FeedItem } from "./FeedItem";
 import { NavBar } from "./NavBar";
-import { UserProfile } from "./UserProfile";
-import styled from "styled-components";
+import { UserProfile } from "./userProfile/UserProfile";
 
 const NETLIFY_LAMBDA_FETCH = "/.netlify/functions/fetch";
 
@@ -34,8 +34,9 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
     { match }: RouteComponentProps<IProps>,
     prevState
   ) {
-    const { params } = match;
-    const { sorting } = params;
+    const {
+      params: { sorting }
+    } = match;
 
     if (sorting !== prevState.sorting) {
       const newState = {
@@ -58,8 +59,9 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
 
   public componentDidMount() {
     const { page } = this.state;
-    const { params } = this.props.match;
-    const { sorting } = params;
+    const {
+      params: { sorting }
+    } = this.props.match;
 
     this.loadImagesByPage([], page, sorting);
   }

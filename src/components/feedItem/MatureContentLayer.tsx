@@ -2,11 +2,11 @@ import * as React from "react";
 import styled from "styled-components";
 
 interface IProps {
-  hideMatureLayer: () => void;
+  onClose: () => void;
 }
 
-const MatureContentLayer = ({ hideMatureLayer }: IProps) => (
-  <Wrapper onClick={() => hideMatureLayer()}>
+const MatureContentLayer = ({ onClose }: IProps) => (
+  <Wrapper onClick={onClose}>
     <ClickToViewText>
       Mature content
       <br />

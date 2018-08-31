@@ -3,18 +3,6 @@ import * as React from "react";
 import styled from "styled-components";
 import { IArtImage } from "../../IArtImage";
 
-const ShareButtonAsset = styled.a`
-  display: block;
-  margin-left: 1rem;
-  color: lightgrey;
-  cursor: pointer;
-  transition: color 300ms;
-
-  &:hover {
-    color: grey;
-  }
-`;
-
 interface IProps {
   art: IArtImage;
 }
@@ -47,5 +35,17 @@ const ShareButton = ({ art }: IProps) => (
     }}
   />
 );
+
+const ShareButtonAsset = styled.a`
+  display: block;
+  margin-left: 1rem;
+  color: lightgrey;
+  cursor: pointer;
+  transition: color 300ms;
+
+  &:hover {
+    color: grey;
+  }
+`;
 
 export { ShareButton };

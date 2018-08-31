@@ -15,9 +15,8 @@ interface IState {
 
 const smallToLarge = R.replace("/small/", "/large/");
 
-const openLargeImage = (smallImageUrl: string) => () => {
+const openLargeImage = (smallImageUrl: string) => () =>
   window.open(smallToLarge(smallImageUrl));
-};
 
 class Cover extends React.Component<IProps, IState> {
   public state = {
@@ -30,12 +29,7 @@ class Cover extends React.Component<IProps, IState> {
 
     return (
       <StyledImage
-        onLoad={() => {
-          this.props.onLoad();
-          this.setState(() => ({
-            loaded: true
-          }));
-        }}
+        onLoad={this.onLoad}
         loaded={loaded}
         src={src}
         title={title}
@@ -44,17 +38,22 @@ class Cover extends React.Component<IProps, IState> {
       />
     );
   }
+
+  private onLoad = () => {
+    this.props.onLoad();
+    this.setState({ loaded: true });
+  };
 }
 
 const StyledImage = styled.img.attrs<{ loaded: boolean }>({
-  src: props => props.loaded
+  loaded: ({ loaded }) => loaded
 })`
   width: 100%;
   display: block;
   margin: 0 auto;
   position: absolute;
   top: 0;
-  opacity: ${props => (props.loaded ? 1 : 0)};
+  opacity: ${({ loaded }) => (loaded ? 1 : 0)};
   transition: opacity 0.3s;
   transition-delay: 0.3s;
   cursor: pointer;

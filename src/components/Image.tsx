@@ -12,45 +12,40 @@ interface IProps {
 }
 
 interface IState {
-  visibleMatureLayer: boolean;
+  mature: boolean;
   loaded: boolean;
 }
+
+const paddingTop = x => 100 / x.aspect + "%";
 
 class Image extends React.Component<IProps, IState> {
   public state = {
     loaded: false,
-    visibleMatureLayer: false
+    mature: false
   };
 
   public hideMatureLayer = () => {
-    this.setState(() => ({
-      visibleMatureLayer: false
-    }));
+    this.setState({ mature: false });
   };
 
   public componentWillReceiveProps(nextProps: IProps) {
-    this.setState({ visibleMatureLayer: nextProps.art.adult_content });
+    this.setState({ mature: nextProps.art.adult_content });
   }
 
   public render() {
-    const { art, src } = this.props;
-    const { cover, title } = art;
-    const { visibleMatureLayer, loaded } = this.state;
-    const paddingTop = x => 100 / x.aspect + "%";
+    const {
+      art: { cover, title },
+      src
+    } = this.props;
+    const { mature, loaded } = this.state;
 
     return (
       <div ref={this.props.innerRef}>
-        <ImageContainer paddingtop={paddingTop(cover)}>
+        <ImageContainer pt={paddingTop(cover)}>
           {!loaded && <Spinner />}
-          {visibleMatureLayer && (
-            <MatureContentLayer hideMatureLayer={this.hideMatureLayer} />
-          )}
+          {mature && <MatureContentLayer onClose={this.hideMatureLayer} />}
           <Cover
-            onLoad={() => {
-              this.setState(() => ({
-                loaded: true
-              }));
-            }}
+            onLoad={this.onLoad}
             src={src}
             title={title}
             smallImageUrl={cover.small_image_url}
@@ -59,14 +54,18 @@ class Image extends React.Component<IProps, IState> {
       </div>
     );
   }
+
+  private onLoad = () => {
+    this.setState({ loaded: true });
+  };
 }
 
-const ImageContainer = styled.div.attrs<{ paddingtop: string }>({
-  paddingtop: props => props.paddingtop
+const ImageContainer = styled.div.attrs<{ pt: string }>({
+  pt: ({ pt }) => pt
 })`
   position: relative;
   background-color: rgba(0, 0, 0, 0.05);
-  padding-top: ${({ paddingtop }) => paddingtop};
+  padding-top: ${({ pt }) => pt};
 `;
 
 export { Image };

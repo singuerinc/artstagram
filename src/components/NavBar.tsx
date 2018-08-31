@@ -8,9 +8,7 @@ import { Sorting } from "../Sorting";
 const is = (sorting: Sorting) => match =>
   R.isNil(match) ? false : R.equals(match.url, `/feed/${sorting}/`);
 
-const scrollToTop = () => {
-  window.scrollTo(0, 0);
-};
+const scrollToTop = () => window.scrollTo(0, 0);
 
 const links = [
   {
@@ -42,8 +40,8 @@ const links = [
 const NavBar = () => (
   <Wrapper>
     {links.map(({ to, title, sorting, icon }, idx) => (
-      <li key={idx}>
-        <NavLink
+      <NavBarItem key={idx}>
+        <StyledNavLink
           to={to}
           title={title}
           activeClassName="selected"
@@ -55,8 +53,8 @@ const NavBar = () => (
               __html: icons[icon].toSvg()
             }}
           />
-        </NavLink>
-      </li>
+        </StyledNavLink>
+      </NavBarItem>
     ))}
   </Wrapper>
 );
@@ -75,30 +73,6 @@ const Wrapper = styled.ul`
   background-color: #111;
   z-index: 999;
 
-  li {
-    flex: 1;
-    text-align: center;
-  }
-
-  li a {
-    padding: 0rem;
-    font-size: 1rem;
-    text-transform: uppercase;
-    display: block;
-    text-decoration: none;
-    color: grey;
-    transition: color 300ms;
-  }
-
-  li a:hover {
-    color: lightgray;
-  }
-
-  li a.selected {
-    color: whitesmoke;
-    cursor: auto;
-  }
-
   @media only screen and (min-width: 48rem) {
     margin: 0 auto;
     padding: 1rem;
@@ -106,15 +80,30 @@ const Wrapper = styled.ul`
     left: auto;
     transform: none;
     background-color: transparent;
+  }
+`;
 
-    li a {
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-    }
+const NavBarItem = styled.li`
+  flex: 1;
+  text-align: center;
+`;
 
-    li a.selected {
-      color: #111;
-    }
+const StyledNavLink = styled(NavLink)`
+  padding: 0rem;
+  font-size: 1rem;
+  text-transform: uppercase;
+  display: block;
+  text-decoration: none;
+  color: grey;
+  transition: color 300ms;
+
+  &:hover {
+    color: lightgray;
+  }
+
+  &.selected {
+    color: whitesmoke;
+    cursor: auto;
   }
 `;
 

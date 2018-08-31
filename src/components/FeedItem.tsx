@@ -33,9 +33,7 @@ class FeedItem extends React.Component<IProps, IState> {
           bottomOffset={-500}
           onEnter={() => {
             if (src === null) {
-              this.setState(() => ({
-                src: cover.medium_image_url
-              }));
+              this.setState({ src: cover.medium_image_url });
             }
           }}
         >
