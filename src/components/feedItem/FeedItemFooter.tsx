@@ -17,14 +17,15 @@ const FeedItemFooter = ({ art }: IProps) => (
 const Footer = styled.footer`
   display: flex;
   padding: 1rem;
-  align-items: center;
+  align-items: flex-start;
 `;
 
-const ArtTitle = styled.h1`
+const ArtTitle = styled.p`
   font-size: 1rem;
   font-weight: 300;
   margin: 0;
   color: lightslategray;
+  flex: 1;
 `;
 
 export { FeedItemFooter, Footer, ArtTitle };

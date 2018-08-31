@@ -20,6 +20,10 @@ const UserFullName = styled.h2`
   padding: 0;
   margin: 0 0.8rem;
   font-weight: 500;
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const UserName = styled.h3`

@@ -5,7 +5,7 @@ import { IArtImage } from "../../IArtImage";
 
 const ShareButtonAsset = styled.a`
   display: block;
-  margin-left: auto;
+  margin-left: 1rem;
   color: lightgrey;
   cursor: pointer;
   transition: color 300ms;
