@@ -5,6 +5,7 @@ import { Cover } from "./feedItem/Cover";
 import { FeedItemFooter } from "./feedItem/FeedItemFooter";
 import { FeedItemHeader } from "./feedItem/FeedItemHeader";
 import { MatureContentLayer } from "./feedItem/MatureContentLayer";
+import styled from "styled-components";
 
 interface IProps {
   innerRef?: any;
@@ -37,14 +38,12 @@ class Image extends React.Component<IProps, IState> {
     const { art, src } = this.props;
     const { cover, title } = art;
     const { visibleMatureLayer, loaded } = this.state;
-    const style = {
-      paddingTop: 100 / cover.aspect + "%"
-    };
+    const paddingTop = cover => 100 / cover.aspect + "%";
 
     return (
-      <div className="image" ref={this.props.innerRef}>
+      <div ref={this.props.innerRef}>
         <FeedItemHeader art={art} />
-        <div className="image-container" style={style}>
+        <ImageContainer paddingtop={paddingTop(cover)}>
           {!loaded && <Spinner />}
           {visibleMatureLayer && (
             <MatureContentLayer hideMatureLayer={this.hideMatureLayer} />
@@ -59,11 +58,19 @@ class Image extends React.Component<IProps, IState> {
             title={title}
             smallImageUrl={cover.small_image_url}
           />
-        </div>
+        </ImageContainer>
         <FeedItemFooter art={art} />
       </div>
     );
   }
 }
+
+const ImageContainer = styled.div.attrs<{ paddingtop: string }>({
+  paddingtop: props => props.paddingtop
+})`
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding-top: ${({ paddingtop }) => paddingtop};
+`;
 
 export { Image };

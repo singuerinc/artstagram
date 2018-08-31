@@ -13,10 +13,10 @@ import { Title } from "./feed/Title";
 import { FeedItem } from "./FeedItem";
 import { NavBar } from "./NavBar";
 import { UserProfile } from "./UserProfile";
+import styled from "styled-components";
 
 const NETLIFY_LAMBDA_FETCH = "/.netlify/functions/fetch";
 
-const mapIndexed = R.addIndex(R.map);
 const hasCover = R.has(["cover"]);
 
 interface IProps {
@@ -28,10 +28,6 @@ interface IState {
   page: number;
   sorting: Sorting;
 }
-
-const FeedItemFactory = (lastIdx: number) => (art: IArtImage, idx: number) => (
-  <FeedItem key={art.id} art={art} idx={idx} lastIdx={lastIdx} />
-);
 
 class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
   public static getDerivedStateFromProps(
@@ -87,16 +83,21 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
         <Title title={sorting} />
         <NavBar />
         {isLoading && (
-          <ul className="collection">
+          <FeedContainer>
             <FakeFeedItem />
             <FakeFeedItem />
-          </ul>
+          </FeedContainer>
         )}
         {!isLoading && (
-          <ul className="collection">
-            {mapIndexed(FeedItemFactory(images.length - 1), images)}
+          <FeedContainer>
+            {R.map(
+              (art: IArtImage) => (
+                <FeedItem key={art.id} art={art} />
+              ),
+              images
+            )}
             <Waypoint onEnter={this.loadNextPage(page, images, sorting)} />
-          </ul>
+          </FeedContainer>
         )}
       </React.Fragment>
     );
@@ -139,5 +140,14 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
     this.setState({ sorting });
   };
 }
+
+const FeedContainer = styled.ul`
+  margin: 0 auto;
+  padding: 0;
+  list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 48rem;
+`;
 
 export { Feed };

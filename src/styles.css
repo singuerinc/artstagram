@@ -30,39 +30,8 @@ body {
   border-left-color: #ccc !important;
 }
 
-.collection {
-  margin: 0 auto;
-  padding: 0;
-  list-style-type: none;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 48rem;
-}
-
-.item {
-  width: 100%;
-  background-color: #fff;
-  color: black;
-  margin: 1rem 0;
-  position: relative;
-}
-
-.item .image-container {
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.05);
-}
-
 @media only screen and (min-width: 48rem) {
   html {
     background-color: rgba(0, 0, 0, 0.025);
-  }
-
-  .item {
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 3px;
-  }
-
-  .item:first-child {
-    margin: 0 0 1rem;
   }
 }
