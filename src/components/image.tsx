@@ -1,11 +1,9 @@
 import * as React from "react";
+import styled from "styled-components";
 import { IArtImage } from "../IArtImage";
 import { Spinner } from "./common/Spinner";
 import { Cover } from "./feedItem/Cover";
-import { FeedItemFooter } from "./feedItem/FeedItemFooter";
-import { FeedItemHeader } from "./feedItem/FeedItemHeader";
 import { MatureContentLayer } from "./feedItem/MatureContentLayer";
-import styled from "styled-components";
 
 interface IProps {
   innerRef?: any;
@@ -38,11 +36,10 @@ class Image extends React.Component<IProps, IState> {
     const { art, src } = this.props;
     const { cover, title } = art;
     const { visibleMatureLayer, loaded } = this.state;
-    const paddingTop = cover => 100 / cover.aspect + "%";
+    const paddingTop = x => 100 / x.aspect + "%";
 
     return (
       <div ref={this.props.innerRef}>
-        <FeedItemHeader art={art} />
         <ImageContainer paddingtop={paddingTop(cover)}>
           {!loaded && <Spinner />}
           {visibleMatureLayer && (
@@ -59,7 +56,6 @@ class Image extends React.Component<IProps, IState> {
             smallImageUrl={cover.small_image_url}
           />
         </ImageContainer>
-        <FeedItemFooter art={art} />
       </div>
     );
   }

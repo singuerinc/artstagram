@@ -1,8 +1,10 @@
 import * as React from "react";
 import Waypoint from "react-waypoint";
-import { IArtImage } from "../IArtImage";
-import { Image } from "./Image";
 import styled from "styled-components";
+import { IArtImage } from "../IArtImage";
+import { FeedItemFooter } from "./feedItem/FeedItemFooter";
+import { FeedItemHeader } from "./feedItem/FeedItemHeader";
+import { Image } from "./Image";
 
 interface IProps {
   art: IArtImage;
@@ -24,6 +26,7 @@ class FeedItem extends React.Component<IProps, IState> {
 
     return (
       <FeedItemContainer key={id} ref={ref}>
+        <FeedItemHeader art={art} />
         <Waypoint
           key={id}
           scrollableAncestor={window}
@@ -38,6 +41,7 @@ class FeedItem extends React.Component<IProps, IState> {
         >
           <Image art={art} src={src} />
         </Waypoint>
+        <FeedItemFooter art={art} />
       </FeedItemContainer>
     );
   }
