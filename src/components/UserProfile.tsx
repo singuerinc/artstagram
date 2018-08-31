@@ -1,28 +1,24 @@
-import * as React from "react";
 import { icons } from "feather-icons";
-import styled from "styled-components";
-import { ArtImage } from "../artImage";
-import { NavLink } from "react-router-dom";
+import * as React from "react";
 import { RouteComponentProps } from "react-router";
+import { NavLink } from "react-router-dom";
+import styled from "styled-components";
+import { IArtImage } from "../IArtImage";
 
-type Props = {
+interface IProps {
   sorting: string;
-};
+}
 
-type State = {
+interface IState {
   open: boolean;
-};
+}
 
-class UserProfile extends React.Component<RouteComponentProps<Props>, State> {
-  state = {
+class UserProfile extends React.Component<RouteComponentProps<IProps>, IState> {
+  public state = {
     open: false
   };
 
-  openUserProfile = (link: string) => () => {
-    window.open(link);
-  };
-
-  componentDidMount() {
+  public componentDidMount() {
     setTimeout(() => {
       this.setState(() => ({
         open: true
@@ -30,10 +26,10 @@ class UserProfile extends React.Component<RouteComponentProps<Props>, State> {
     }, 5);
   }
 
-  render() {
+  public render() {
     const { match } = this.props;
     const { sorting } = match.params;
-    const { art }: { art: ArtImage } = this.props.location.state;
+    const { art }: { art: IArtImage } = this.props.location.state;
     const {
       headline,
       medium_avatar_url,
@@ -47,7 +43,7 @@ class UserProfile extends React.Component<RouteComponentProps<Props>, State> {
         <BackButton to={`/feed/${sorting}/`}>
           <div
             dangerouslySetInnerHTML={{
-              __html: icons["x"].toSvg()
+              __html: icons.x.toSvg()
             }}
           />
         </BackButton>
@@ -64,6 +60,10 @@ class UserProfile extends React.Component<RouteComponentProps<Props>, State> {
       </UserProfileContainer>
     );
   }
+
+  private openUserProfile = (link: string) => () => {
+    window.open(link);
+  };
 }
 
 const BackButton = styled(NavLink)`
@@ -71,6 +71,7 @@ const BackButton = styled(NavLink)`
   padding: 16px;
   color: gray;
   cursor: pointer;
+  transition: color 300ms;
   &:hover {
     color: white;
   }
@@ -167,4 +168,12 @@ const UserProfileLink = styled.a`
   }
 `;
 
-export { UserProfile };
+export {
+  UserProfile,
+  UserBackground,
+  UserAvatar,
+  UserFullName,
+  UserCountryCityName,
+  UserHeadline,
+  UserProfileLink
+};

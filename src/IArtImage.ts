@@ -1,12 +1,12 @@
-type Icons = {
+interface Icons {
   image: boolean;
   video: boolean;
   model3d: boolean;
   marmoset: boolean;
   pano: boolean;
-};
+}
 
-type Cover = {
+interface ICover {
   id: number;
   small_image_url: string;
   medium_image_url: string;
@@ -14,9 +14,9 @@ type Cover = {
   thumb_url: string;
   micro_square_image_url: string;
   aspect: number;
-};
+}
 
-type User = {
+interface IUser {
   id: number;
   username: string;
   first_name: string;
@@ -34,9 +34,9 @@ type User = {
   permalink: string;
   artstation_profile_url: string;
   location: string;
-};
+}
 
-export type ArtImage = {
+export interface IArtImage {
   id: number;
   user_id: number;
   title: string;
@@ -53,8 +53,8 @@ export type ArtImage = {
   hash_id: string;
   permalink: string;
   hide_as_adult: boolean;
-  user: User;
-  cover: Cover;
+  user: IUser;
+  cover: ICover;
   icons: Icons;
   assets_count: number;
-};
+}
