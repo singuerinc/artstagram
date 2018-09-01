@@ -102,7 +102,7 @@ const StyledNavLink = styled(NavLink)`
   }
 
   &.selected {
-    color: whitesmoke;
+    color: peru;
     cursor: auto;
   }
 `;

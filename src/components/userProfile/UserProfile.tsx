@@ -1,9 +1,11 @@
 import { icons } from "feather-icons";
 import * as React from "react";
-import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { RouteComponentProps } from "../../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
 import { IArtImage } from "../../IArtImage";
+import { Sorting } from "../../Sorting";
+import { Feed } from "../Feed";
 
 interface IProps {
   sorting: string;
@@ -13,51 +15,60 @@ interface IState {
   open: boolean;
 }
 
-class UserProfile extends React.Component<RouteComponentProps<IProps>, IState> {
+class UserProfile extends React.Component<
+  RouteComponentProps<IProps, {}, { art: IArtImage }>,
+  IState
+> {
   public state = {
     open: false
   };
 
   public componentDidMount() {
-    setTimeout(() => {
-      this.setState(() => ({
-        open: true
-      }));
-    }, 5);
+    setTimeout(this.setState.bind(this), 1, { open: true });
   }
 
   public render() {
-    const { match } = this.props;
-    const { sorting } = match.params;
-    const { art }: { art: IArtImage } = this.props.location.state;
+    const {
+      match: {
+        params: { sorting }
+      }
+    } = this.props;
+    const { art } = this.props.location.state;
     const {
       headline,
       medium_avatar_url,
       full_name,
+      username,
       artstation_profile_url,
       location
     } = art.user;
 
     return (
-      <UserProfileContainer open={this.state.open}>
-        <BackButton to={`/feed/${sorting}/`}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: icons.x.toSvg()
-            }}
-          />
-        </BackButton>
-        <UserAvatar>
-          <img src={medium_avatar_url} alt={full_name} />
-        </UserAvatar>
-        <UserFullName>{full_name}</UserFullName>
-        <UserHeadline>{headline}</UserHeadline>
-        <UserCountryCityName>{location}</UserCountryCityName>
-        <UserProfileLink href={artstation_profile_url} target="_blank">
-          View on ArtStation
-        </UserProfileLink>
-        <UserBackground src={art.cover.medium_image_url} />
-      </UserProfileContainer>
+      <React.Fragment>
+        <UserProfileContainer open={this.state.open}>
+          <BackButton to="" onClick={() => this.props.history.goBack()}>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: icons.x.toSvg()
+              }}
+            />
+          </BackButton>
+          <UserAvatar>
+            <img src={medium_avatar_url} alt={full_name} />
+          </UserAvatar>
+          <UserFullName>{full_name}</UserFullName>
+          <UserHeadline>{headline}</UserHeadline>
+          <UserCountryCityName>{location}</UserCountryCityName>
+          <UserProfileLink href={artstation_profile_url} target="_blank">
+            View on ArtStation
+          </UserProfileLink>
+          {/* <UserBackground src={art.cover.medium_image_url} /> */}
+        </UserProfileContainer>
+        <Feed
+          urlFunc={`/.netlify/functions/fetch?url=https://www.artstation.com/users/${username}/projects.json`}
+          sorting={Sorting.NONE}
+        />
+      </React.Fragment>
     );
   }
 
@@ -73,16 +84,12 @@ const BackButton = styled(NavLink)`
   cursor: pointer;
   transition: color 300ms;
   &:hover {
-    color: white;
+    color: black;
   }
 `;
 
-const UserProfileContainer = styled.div.attrs<{ open: boolean }>({
-  open: props => props.open
-})`
-  background-color: #111;
-  height: 100vh;
-  margin: 0 auto;
+const UserProfileContainer = styled.div`
+  margin: 0 auto 2rem;
   padding: 0;
   list-style-type: none;
   display: flex;
@@ -91,21 +98,6 @@ const UserProfileContainer = styled.div.attrs<{ open: boolean }>({
   align-items: center;
   max-width: 48rem;
   width: 100%;
-  color: white;
-  overflow: hidden;
-  position: fixed;
-  z-index: 9999999;
-  left: 50%;
-  backface-visibility: hidden;
-  perspective: 1000;
-  transition: transform 600ms cubic-bezier(0.19, 1, 0.22, 1);
-  transform: ${props =>
-    props.open ? "translate3d(-50%, 0, 0)" : "translate3d(50%, 0, 0)"};
-
-  @media only screen and (min-width: 48rem) {
-    transform: ${props =>
-      props.open ? "translate3d(-50%, 0, 0)" : "translate3d(-50%, 100vh, 0)"};
-  }
 `;
 
 const UserBackground = styled.img`

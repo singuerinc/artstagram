@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { IArtImage } from "../../IArtImage";
 
 const FeedItemHeader = ({ art }: { art: IArtImage }) => (
-  <StyledNavLink to={{ pathname: `user/${art.user.id}`, state: { art } }}>
+  <StyledNavLink to={{ pathname: `/user/${art.user.id}`, state: { art } }}>
     <Avatar
       title={art.user.username}
       alt={art.user.username}

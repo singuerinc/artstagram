@@ -1,10 +1,7 @@
 import fetch from "node-fetch";
 
-const API_ENDPOINT = "https://www.artstation.com/projects.json";
-
-exports.handler = async event => {
-  const { page, sorting } = event.queryStringParameters;
-  const url = `${API_ENDPOINT}?page=${page}&sorting=${sorting}`;
+exports.handler = async ({ queryStringParameters: { url } }) => {
+  console.log("------------>", url);
 
   return fetch(url)
     .then(response => response.json())

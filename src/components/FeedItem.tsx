@@ -26,7 +26,7 @@ class FeedItem extends React.Component<IProps, IState> {
 
     return (
       <FeedItemContainer key={id} ref={ref}>
-        <FeedItemHeader art={art} />
+        {art.user && <FeedItemHeader art={art} />}
         <Waypoint
           key={id}
           scrollableAncestor={window}

@@ -2,10 +2,8 @@ import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import * as R from "ramda";
 import * as React from "react";
-import { Route } from "react-router-dom";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
-import { RouteComponentProps } from "../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
 import { IArtImage } from "../IArtImage";
 import { load } from "../services/api";
 import { Sorting } from "../Sorting";
@@ -13,14 +11,12 @@ import { FakeFeedItem } from "./FakeFeedItem";
 import { Title } from "./feed/Title";
 import { FeedItem } from "./FeedItem";
 import { NavBar } from "./NavBar";
-import { UserProfile } from "./userProfile/UserProfile";
-
-const NETLIFY_LAMBDA_FETCH = "/.netlify/functions/fetch";
 
 const hasCover = R.has(["cover"]);
 
 interface IProps {
   sorting: Sorting;
+  urlFunc: string;
 }
 
 interface IState {
@@ -29,14 +25,9 @@ interface IState {
   sorting: Sorting;
 }
 
-class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
-  public static getDerivedStateFromProps(
-    { match }: RouteComponentProps<IProps>,
-    prevState
-  ) {
-    const {
-      params: { sorting }
-    } = match;
+class Feed extends React.Component<IProps, IState> {
+  public static getDerivedStateFromProps(props: IProps, prevState: IState) {
+    const { sorting } = props;
 
     if (sorting !== prevState.sorting) {
       const newState = {
@@ -58,30 +49,29 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
   };
 
   public componentDidMount() {
-    const { page } = this.state;
-    const {
-      params: { sorting }
-    } = this.props.match;
+    const { urlFunc } = this.props;
+    const { page, sorting } = this.state;
 
-    this.loadImagesByPage([], page, sorting);
+    this.loadImagesByPage([], page, sorting, urlFunc);
   }
 
   public componentDidUpdate() {
+    const { urlFunc } = this.props;
     const { images, page, sorting } = this.state;
 
     // load the images if we don't have any
     if (R.isNil(images)) {
-      this.loadImagesByPage([], page, sorting);
+      this.loadImagesByPage([], page, sorting, urlFunc);
     }
   }
 
   public render() {
     const { page, sorting, images } = this.state;
+    const { urlFunc } = this.props;
     const isLoading = R.isNil(images);
 
     return (
       <React.Fragment>
-        <Route path="/feed/:sorting/user/:id" component={UserProfile} />
         <Title title={sorting} />
         <NavBar />
         {isLoading && (
@@ -98,7 +88,9 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
               ),
               images
             )}
-            <Waypoint onEnter={this.loadNextPage(page, images, sorting)} />
+            <Waypoint
+              onEnter={this.loadNextPage(page, images, sorting, urlFunc)}
+            />
           </FeedContainer>
         )}
       </React.Fragment>
@@ -108,11 +100,12 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
   private loadImagesByPage = async (
     prevImages: IArtImage[],
     page: number,
-    sorting: Sorting
+    sorting: Sorting,
+    url: string
   ) => {
     NProgress.start();
 
-    const newImages = await load(NETLIFY_LAMBDA_FETCH, { page, sorting });
+    const newImages = await load(url, { page, sorting });
     const add = R.compose(
       R.filter(hasCover),
       R.uniqBy(R.prop("id")),
@@ -132,10 +125,11 @@ class Feed extends React.Component<RouteComponentProps<IProps>, IState> {
   private loadNextPage = (
     page: number,
     images: IArtImage[],
-    sorting: Sorting
+    sorting: Sorting,
+    url: string
   ) => () => {
     this.updateSorting(sorting);
-    this.loadImagesByPage(images, page, sorting);
+    this.loadImagesByPage(images, page, sorting, url);
   };
 
   private updateSorting = (sorting: Sorting) => {
@@ -152,4 +146,4 @@ const FeedContainer = styled.ul`
   max-width: 48rem;
 `;
 
-export { Feed };
+export { Feed, FeedContainer };

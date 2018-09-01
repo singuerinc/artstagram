@@ -40,20 +40,18 @@ class Cover extends React.Component<IProps, IState> {
   }
 
   private onLoad = () => {
-    this.props.onLoad();
     this.setState({ loaded: true });
+    this.props.onLoad();
   };
 }
 
-const StyledImage = styled.img.attrs<{ loaded: boolean }>({
-  loaded: ({ loaded }) => loaded
-})`
+const StyledImage = styled.img`
   width: 100%;
   display: block;
   margin: 0 auto;
   position: absolute;
   top: 0;
-  opacity: ${({ loaded }) => (loaded ? 1 : 0)};
+  opacity: ${({ loaded }: { loaded: boolean }) => (loaded ? 1 : 0)};
   transition: opacity 0.3s;
   transition-delay: 0.3s;
   cursor: pointer;
