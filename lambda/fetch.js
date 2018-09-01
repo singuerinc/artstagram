@@ -1,7 +1,13 @@
 import fetch from "node-fetch";
+const { URLSearchParams } = require("url");
 
-exports.handler = async ({ queryStringParameters: { url } }) => {
-  return fetch(url)
+exports.handler = async ({ queryStringParameters }) => {
+  const { url } = queryStringParameters;
+
+  const params = new URLSearchParams(queryStringParameters);
+  params.delete("url");
+
+  return fetch(`${url}?${params.toString()}`)
     .then(response => response.json())
     .then(data => ({
       statusCode: 200,

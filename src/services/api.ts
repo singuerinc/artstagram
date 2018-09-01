@@ -1,6 +1,5 @@
 import * as axios from "axios";
 import { IArtImage } from "../IArtImage";
-import { Sorting } from "../Sorting";
 
 interface IResponse {
   data: IArtImage[];

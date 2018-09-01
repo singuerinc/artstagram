@@ -4,15 +4,15 @@ import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { IArtImage } from "../../IArtImage";
-import { Sorting } from "../../Sorting";
-import { Feed } from "../Feed";
+import { load } from "../../services/api";
+import { Gallery } from "../gallery/Gallery";
 
 interface IProps {
   sorting: string;
 }
 
 interface IState {
-  open: boolean;
+  gallery: IArtImage[];
 }
 
 const scrollToTop = () => window.scrollTo(0, 0);
@@ -22,12 +22,19 @@ class UserProfile extends React.Component<
   IState
 > {
   public state = {
-    open: false
+    gallery: null
   };
 
   public componentDidMount() {
     scrollToTop();
-    setTimeout(this.setState.bind(this), 1, { open: true });
+
+    const { username } = this.props.location.state.art.user;
+    load(
+      `/.netlify/functions/fetch?url=https://www.artstation.com/users/${username}/projects.json`,
+      {}
+    ).then(gallery => {
+      this.setState({ gallery });
+    });
   }
 
   public render() {
@@ -41,37 +48,33 @@ class UserProfile extends React.Component<
       headline,
       medium_avatar_url,
       full_name,
-      username,
       artstation_profile_url,
       location
     } = art.user;
 
+    const { gallery } = this.state;
+
     return (
-      <React.Fragment>
-        <UserProfileContainer open={this.state.open}>
-          <BackButton to="" onClick={() => this.props.history.goBack()}>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: icons.x.toSvg()
-              }}
-            />
-          </BackButton>
-          <UserAvatar>
-            <img src={medium_avatar_url} alt={full_name} />
-          </UserAvatar>
-          <UserFullName>{full_name}</UserFullName>
-          <UserHeadline>{headline}</UserHeadline>
-          <UserCountryCityName>{location}</UserCountryCityName>
-          <UserProfileLink href={artstation_profile_url} target="_blank">
-            View on ArtStation
-          </UserProfileLink>
-          {/* <UserBackground src={art.cover.medium_image_url} /> */}
-        </UserProfileContainer>
-        <Feed
-          urlFunc={`/.netlify/functions/fetch?url=https://www.artstation.com/users/${username}/projects.json`}
-          sorting={Sorting.NONE}
-        />
-      </React.Fragment>
+      <UserProfileContainer>
+        <BackButton to="" onClick={() => this.props.history.goBack()}>
+          <div
+            dangerouslySetInnerHTML={{
+              __html: icons.x.toSvg()
+            }}
+          />
+        </BackButton>
+        {gallery !== null && <Gallery gallery={gallery} />}
+        <UserAvatar>
+          <img src={medium_avatar_url} alt={full_name} />
+        </UserAvatar>
+        <UserFullName>{full_name}</UserFullName>
+        <UserHeadline>{headline}</UserHeadline>
+        <UserCountryCityName>{location}</UserCountryCityName>
+        <UserProfileLink href={artstation_profile_url} target="_blank">
+          View on ArtStation
+        </UserProfileLink>
+        {/* <UserBackground src={art.cover.medium_image_url} /> */}
+      </UserProfileContainer>
     );
   }
 
@@ -106,15 +109,15 @@ const UserProfileContainer = styled.div`
 const UserBackground = styled.img`
   position: absolute;
   height: 100vh;
-  opacity: 0.1;
+  opacity: 0.3;
   pointer-events: none;
 `;
 
 const UserAvatar = styled.div`
   position: relative;
   margin: 0;
-  width: 96px;
-  height: 96px;
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
 
   img {
@@ -126,38 +129,45 @@ const UserAvatar = styled.div`
     content: "";
     position: absolute;
     z-index: 3;
-    width: 104px;
-    height: 104px;
+    width: 70px;
+    height: 70px;
     border-radius: 50%;
-    border: 4px solid gray;
-    top: -8px;
-    left: -8px;
+    border: 3px solid white;
+    top: -6px;
+    left: -6px;
   }
 `;
 
 const UserFullName = styled.h1`
+  width: 100%;
   text-align: center;
-  margin: 2rem 1rem 0;
+  margin: 1rem;
   padding: 0;
+  font-size: 1.6rem;
 `;
 
 const UserCountryCityName = styled.p`
-  font-style: italic;
+  width: 100%;
   text-align: center;
-  margin: 1rem 1rem;
+  font-style: italic;
+  margin: 0.5rem;
   padding: 0;
 `;
 
 const UserHeadline = styled.p`
+  width: 100%;
   text-align: center;
-  margin: 1rem 2rem;
+  margin: 0 1rem;
   padding: 0;
 `;
 
 const UserProfileLink = styled.a`
+  width: 100%;
+  text-align: center;
   display: block;
   color: grey;
   text-decoration: none;
+  margin: 1rem;
   &:hover {
     color: white;
   }
