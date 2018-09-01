@@ -1,8 +1,6 @@
 import fetch from "node-fetch";
 
 exports.handler = async ({ queryStringParameters: { url } }) => {
-  console.log("------------>", url);
-
   return fetch(url)
     .then(response => response.json())
     .then(data => ({

@@ -1,8 +1,8 @@
 import { icons } from "feather-icons";
 import * as React from "react";
+import { RouteComponentProps } from "react-router";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { RouteComponentProps } from "../../../../../../../Library/Caches/typescript/3.0/node_modules/@types/react-router";
 import { IArtImage } from "../../IArtImage";
 import { Sorting } from "../../Sorting";
 import { Feed } from "../Feed";
@@ -15,6 +15,8 @@ interface IState {
   open: boolean;
 }
 
+const scrollToTop = () => window.scrollTo(0, 0);
+
 class UserProfile extends React.Component<
   RouteComponentProps<IProps, {}, { art: IArtImage }>,
   IState
@@ -24,6 +26,7 @@ class UserProfile extends React.Component<
   };
 
   public componentDidMount() {
+    scrollToTop();
     setTimeout(this.setState.bind(this), 1, { open: true });
   }
 
