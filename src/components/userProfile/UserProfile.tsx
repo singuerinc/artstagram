@@ -38,7 +38,9 @@ class UserProfile extends React.Component<
           <img src={medium_avatar_url} alt={full_name} />
         </UserAvatar>
         <UserFullName>{full_name}</UserFullName>
-        <UserHeadline>{headline}</UserHeadline>
+        <UserHeadline dangerouslySetInnerHTML={{
+          __html: headline
+        }} />
         <UserCountryCityName>{location}</UserCountryCityName>
         <UserProfileLink href={artstation_profile_url} target="_blank">
           View on ArtStation
