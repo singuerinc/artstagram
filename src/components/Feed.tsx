@@ -4,19 +4,18 @@ import * as R from "ramda";
 import * as React from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
-import { IArtImage } from "../IArtImage";
+import { IArtImage, IUser } from "../IArtImage";
 import { load } from "../services/api";
 import { Sorting } from "../Sorting";
-import { FakeFeedItem } from "./FakeFeedItem";
-import { Title } from "./feed/Title";
-import { FeedItem } from "./FeedItem";
-import { NavBar } from "./NavBar";
+import { FakeFeedItem } from "./feedItem/FakeFeedItem";
+import { FeedItem } from "./feedItem/FeedItem";
 
 const hasCover = R.has(["cover"]);
 
 interface IProps {
   sorting: Sorting;
   urlFunc: string;
+  user?: IUser;
 }
 
 interface IState {
@@ -72,8 +71,6 @@ class Feed extends React.Component<IProps, IState> {
 
     return (
       <React.Fragment>
-        <Title title={sorting} />
-        <NavBar />
         {isLoading && (
           <FeedContainer>
             <FakeFeedItem />
@@ -84,7 +81,7 @@ class Feed extends React.Component<IProps, IState> {
           <FeedContainer>
             {R.map(
               (art: IArtImage) => (
-                <FeedItem key={art.id} art={art} />
+                <FeedItem key={art.id} art={art} user={this.props.user || art.user} />
               ),
               images
             )}
@@ -144,6 +141,7 @@ const FeedContainer = styled.ul`
   display: flex;
   flex-wrap: wrap;
   max-width: 48rem;
+  width: 100%;
 `;
 
 export { Feed, FeedContainer };

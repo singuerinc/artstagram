@@ -1,7 +1,7 @@
 import * as React from "react";
 import { hashHistory } from "react-router";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
-import { Feed } from "./Feed";
+import { Home } from "./Home";
 import { UserProfile } from "./userProfile/UserProfile";
 
 const App = () => (
@@ -10,12 +10,7 @@ const App = () => (
       <Route exact path="/" render={() => <Redirect to="/feed/picks/" />} />
       <Route
         path="/feed/:sorting/"
-        component={props => (
-          <Feed
-            urlFunc="/.netlify/functions/fetch?url=https://www.artstation.com/projects.json"
-            sorting={props.match.params.sorting}
-          />
-        )}
+        component={Home}
       />
       <Route path="/user/:id" component={UserProfile} />
     </div>

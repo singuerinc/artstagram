@@ -1,69 +1,39 @@
-import { icons } from "feather-icons";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
-import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { IArtImage } from "../../IArtImage";
-import { load } from "../../services/api";
-import { Gallery } from "../gallery/Gallery";
+import { IArtImage, IUser } from "../../IArtImage";
+import { Feed } from "../Feed";
+import { Sorting } from "../../Sorting";
+import { BackButton } from "../common/BackButton";
 
 interface IProps {
   sorting: string;
 }
 
-interface IState {
-  gallery: IArtImage[];
-}
-
 const scrollToTop = () => window.scrollTo(0, 0);
 
 class UserProfile extends React.Component<
-  RouteComponentProps<IProps, {}, { art: IArtImage }>,
-  IState
-> {
-  public state = {
-    gallery: null
-  };
+  RouteComponentProps<IProps, {}, { art: IArtImage, user: IUser }>
+  > {
 
   public componentDidMount() {
     scrollToTop();
-
-    const { username } = this.props.location.state.art.user;
-    load(
-      `/.netlify/functions/fetch?url=https://www.artstation.com/users/${username}/projects.json`,
-      {}
-    ).then(gallery => {
-      this.setState({ gallery });
-    });
   }
 
   public render() {
-    const {
-      match: {
-        params: { sorting }
-      }
-    } = this.props;
-    const { art } = this.props.location.state;
+    const { user } = this.props.location.state;
     const {
       headline,
       medium_avatar_url,
       full_name,
       artstation_profile_url,
-      location
-    } = art.user;
-
-    const { gallery } = this.state;
+      location,
+      username
+    } = user;
 
     return (
       <UserProfileContainer>
-        <BackButton to="" onClick={() => this.props.history.goBack()}>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: icons.x.toSvg()
-            }}
-          />
-        </BackButton>
-        {gallery !== null && <Gallery gallery={gallery} />}
+        <BackButton onClick={() => this.props.history.goBack()} />
         <UserAvatar>
           <img src={medium_avatar_url} alt={full_name} />
         </UserAvatar>
@@ -73,7 +43,7 @@ class UserProfile extends React.Component<
         <UserProfileLink href={artstation_profile_url} target="_blank">
           View on ArtStation
         </UserProfileLink>
-        {/* <UserBackground src={art.cover.medium_image_url} /> */}
+        <Feed user={user} sorting={Sorting.LATEST} urlFunc={`/.netlify/functions/fetch?url=https://www.artstation.com/users/${username}/projects.json`} />
       </UserProfileContainer>
     );
   }
@@ -82,17 +52,6 @@ class UserProfile extends React.Component<
     window.open(link);
   };
 }
-
-const BackButton = styled(NavLink)`
-  align-self: flex-start;
-  padding: 16px;
-  color: gray;
-  cursor: pointer;
-  transition: color 300ms;
-  &:hover {
-    color: black;
-  }
-`;
 
 const UserProfileContainer = styled.div`
   margin: 0 auto 2rem;

@@ -1,11 +1,11 @@
 import * as React from "react";
 import styled from "styled-components";
-import { ArtTitle, Footer } from "./feedItem/FeedItemFooter";
+import { ArtTitle, Footer } from "./FeedItemFooter";
 import {
   StyledNavLink,
   UserFullName,
   UserName
-} from "./feedItem/FeedItemHeader";
+} from "./FeedItemHeader";
 
 const FakeFeedItem = () => (
   <FakeFeedItemWrapper>

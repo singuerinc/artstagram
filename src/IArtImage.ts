@@ -1,4 +1,4 @@
-interface Icons {
+export interface Icons {
   image: boolean;
   video: boolean;
   model3d: boolean;
@@ -6,7 +6,7 @@ interface Icons {
   pano: boolean;
 }
 
-interface ICover {
+export interface ICover {
   id: number;
   small_image_url: string;
   medium_image_url: string;
@@ -16,7 +16,7 @@ interface ICover {
   aspect: number;
 }
 
-interface IUser {
+export interface IUser {
   id: number;
   username: string;
   first_name: string;

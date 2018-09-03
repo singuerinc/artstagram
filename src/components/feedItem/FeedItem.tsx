@@ -1,13 +1,15 @@
 import * as React from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
-import { IArtImage } from "../IArtImage";
-import { FeedItemFooter } from "./feedItem/FeedItemFooter";
-import { FeedItemHeader } from "./feedItem/FeedItemHeader";
-import { Image } from "./Image";
+import { IArtImage, IUser } from "../../IArtImage";
+import { FeedItemFooter } from "./FeedItemFooter";
+import { FeedItemHeader } from "./FeedItemHeader";
+import { Image } from "../Image";
+import { FeedItemWithAuthor } from "./FeedItemWithAuthor";
 
 interface IProps {
   art: IArtImage;
+  user: IUser;
 }
 interface IState {
   src: string;
@@ -20,13 +22,15 @@ class FeedItem extends React.Component<IProps, IState> {
 
   public render() {
     const { src } = this.state;
-    const { art } = this.props;
+    const { art, user } = this.props;
     const { id, cover } = art;
     const ref: React.RefObject<HTMLLIElement> = React.createRef();
 
+    // console.log(art);
+
     return (
       <FeedItemContainer key={id} ref={ref}>
-        {art.user && <FeedItemHeader art={art} />}
+        <FeedItemHeader art={art} user={user} />
         <Waypoint
           key={id}
           scrollableAncestor={window}
