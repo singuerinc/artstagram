@@ -13,7 +13,6 @@ import { FeedItem } from "./feedItem/FeedItem";
 const hasCover = R.has(["cover"]);
 
 interface IProps {
-  sorting: Sorting;
   urlFunc: string;
   user?: IUser;
 }
@@ -21,52 +20,24 @@ interface IProps {
 interface IState {
   images: IArtImage[];
   page: number;
-  sorting: Sorting;
 }
 
 class Feed extends React.Component<IProps, IState> {
-  public static getDerivedStateFromProps(props: IProps, prevState: IState) {
-    const { sorting } = props;
-
-    if (sorting !== prevState.sorting) {
-      const newState = {
-        ...prevState,
-        images: null,
-        sorting
-      };
-
-      return newState;
-    }
-
-    return null;
-  }
-
   public state = {
-    images: null,
-    page: 1,
-    sorting: null
+    images: [],
+    page: 1
   };
 
   public componentDidMount() {
+    const { page, images } = this.state;
     const { urlFunc } = this.props;
-    const { page, sorting } = this.state;
 
-    this.loadImagesByPage([], page, sorting, urlFunc);
-  }
-
-  public componentDidUpdate() {
-    const { urlFunc } = this.props;
-    const { images, page, sorting } = this.state;
-
-    // load the images if we don't have any
-    if (R.isNil(images)) {
-      this.loadImagesByPage([], page, sorting, urlFunc);
-    }
+    this.loadImagesByPage(images, page, urlFunc);
   }
 
   public render() {
-    const { page, sorting, images } = this.state;
-    const { urlFunc } = this.props;
+    const { page, images } = this.state;
+    const { urlFunc, user } = this.props;
     const isLoading = R.isNil(images);
 
     return (
@@ -81,12 +52,12 @@ class Feed extends React.Component<IProps, IState> {
           <FeedContainer>
             {R.map(
               (art: IArtImage) => (
-                <FeedItem key={art.id} art={art} user={this.props.user || art.user} />
+                <FeedItem key={art.id} art={art} user={user || art.user} />
               ),
               images
             )}
             <Waypoint
-              onEnter={this.loadNextPage(page, images, sorting, urlFunc)}
+              onEnter={() => this.loadImagesByPage(images, page, urlFunc)}
             />
           </FeedContainer>
         )}
@@ -97,12 +68,11 @@ class Feed extends React.Component<IProps, IState> {
   private loadImagesByPage = async (
     prevImages: IArtImage[],
     page: number,
-    sorting: Sorting,
     url: string
   ) => {
     NProgress.start();
 
-    const newImages = await load(url, { page, sorting });
+    const newImages = await load(url, { page });
     const add = R.compose(
       R.filter(hasCover),
       R.uniqBy(R.prop("id")),
@@ -117,20 +87,6 @@ class Feed extends React.Component<IProps, IState> {
     });
 
     NProgress.done();
-  };
-
-  private loadNextPage = (
-    page: number,
-    images: IArtImage[],
-    sorting: Sorting,
-    url: string
-  ) => () => {
-    this.updateSorting(sorting);
-    this.loadImagesByPage(images, page, sorting, url);
-  };
-
-  private updateSorting = (sorting: Sorting) => {
-    this.setState({ sorting });
   };
 }
 

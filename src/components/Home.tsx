@@ -2,17 +2,18 @@ import * as React from "react";
 import { Feed } from "./Feed";
 import { Title } from "./feed/Title";
 import { NavBar } from "./NavBar";
+import { Sorting } from "../Sorting";
 
-const Home = ({ match }) => {
-  const { params: { sorting } } = match;
-
-  return (
-    <React.Fragment>
-      <Title title={sorting} />
-      <NavBar />
-      <Feed sorting={sorting} urlFunc="/.netlify/functions/projects?a=1" />
-    </React.Fragment>
-  )
+interface IProps {
+  sorting: Sorting;
 }
+
+const Home = ({ sorting }: IProps) => (
+  <React.Fragment>
+    <Title title={sorting} />
+    <NavBar />
+    <Feed urlFunc={`/.netlify/functions/projects?sorting=${sorting}`} />
+  </React.Fragment>
+)
 
 export { Home }
