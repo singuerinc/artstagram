@@ -43,7 +43,7 @@ class UserProfile extends React.Component<
         <UserProfileLink href={artstation_profile_url} target="_blank">
           View on ArtStation
         </UserProfileLink>
-        <Feed user={user} sorting={Sorting.LATEST} urlFunc={`/.netlify/functions/user-projects?user=${user.username}`} />
+        <Feed user={user} urlFunc={`/.netlify/functions/user-projects?user=${user.username}`} />
       </UserProfileContainer>
     );
   }

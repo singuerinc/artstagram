@@ -6,7 +6,6 @@ import Waypoint from "react-waypoint";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../IArtImage";
 import { load } from "../services/api";
-import { Sorting } from "../Sorting";
 import { FakeFeedItem } from "./feedItem/FakeFeedItem";
 import { FeedItem } from "./feedItem/FeedItem";
 
@@ -28,16 +27,21 @@ class Feed extends React.Component<IProps, IState> {
     page: 1
   };
 
-  public componentDidMount() {
+  async componentDidMount() {
     const { page, images } = this.state;
     const { urlFunc } = this.props;
 
-    this.loadImagesByPage(images, page, urlFunc);
+    const parsed = await this.loadNextPage(urlFunc)(images, page);
+
+    this.setState((prevState) => ({
+      images: parsed,
+      page: prevState.page + 1
+    }));
   }
 
   public render() {
     const { page, images } = this.state;
-    const { urlFunc, user } = this.props;
+    const { user, urlFunc } = this.props;
     const isLoading = R.isNil(images);
 
     return (
@@ -57,7 +61,14 @@ class Feed extends React.Component<IProps, IState> {
               images
             )}
             <Waypoint
-              onEnter={() => this.loadImagesByPage(images, page, urlFunc)}
+              onEnter={async () => {
+                const parsed = await this.loadNextPage(urlFunc)(images, page);
+
+                this.setState((preState) => ({
+                  images: parsed,
+                  page: preState.page + 1
+                }));
+              }}
             />
           </FeedContainer>
         )}
@@ -65,10 +76,9 @@ class Feed extends React.Component<IProps, IState> {
     );
   }
 
-  private loadImagesByPage = async (
+  private loadNextPage = (url: string) => async (
     prevImages: IArtImage[],
-    page: number,
-    url: string
+    page: number
   ) => {
     NProgress.start();
 
@@ -81,12 +91,9 @@ class Feed extends React.Component<IProps, IState> {
 
     const parsed = add(newImages);
 
-    this.setState({
-      images: parsed,
-      page: page + 1
-    });
-
     NProgress.done();
+
+    return parsed;
   };
 }
 
