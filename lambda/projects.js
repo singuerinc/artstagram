@@ -1,13 +1,12 @@
 import fetch from "node-fetch";
 const { URLSearchParams } = require("url");
 
+const API_ENDPOINT = `https://www.artstation.com/projects.json`;
+
 exports.handler = async ({ queryStringParameters }) => {
-  const { url } = queryStringParameters;
-
   const params = new URLSearchParams(queryStringParameters);
-  params.delete("url");
 
-  return fetch(`${url}?${params.toString()}`)
+  return fetch(`${API_ENDPOINT}?${params.toString()}`)
     .then(response => response.json())
     .then(data => ({
       statusCode: 200,

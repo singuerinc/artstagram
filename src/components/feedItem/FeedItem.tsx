@@ -5,7 +5,6 @@ import { IArtImage, IUser } from "../../IArtImage";
 import { FeedItemFooter } from "./FeedItemFooter";
 import { FeedItemHeader } from "./FeedItemHeader";
 import { Image } from "../Image";
-import { FeedItemWithAuthor } from "./FeedItemWithAuthor";
 
 interface IProps {
   art: IArtImage;
@@ -25,8 +24,6 @@ class FeedItem extends React.Component<IProps, IState> {
     const { art, user } = this.props;
     const { id, cover } = art;
     const ref: React.RefObject<HTMLLIElement> = React.createRef();
-
-    // console.log(art);
 
     return (
       <FeedItemContainer key={id} ref={ref}>
