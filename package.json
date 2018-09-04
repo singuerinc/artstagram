@@ -12,20 +12,18 @@
     "build:server": "netlify-lambda build ./lambda"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/feather-icons": "^4.7.0",
     "@types/react": "^16.4.11",
     "@types/react-dom": "^16.0.7",
     "@types/react-router": "^4.0.30",
     "concurrently": "^3.6.1",
-    "express": "^4.16.3",
-    "http-proxy-middleware": "^0.18.0",
     "netlify-lambda": "^0.4.0",
-    "nodemon": "^1.18.3",
     "parcel-bundler": "^1.9.7",
     "tslint": "^5.11.0",
     "typescript": "^3.0.1"
   },
   "dependencies": {
-    "@types/axios": "^0.14.0",
     "axios": "^0.18.0",
     "feather-icons": "^4.7.3",
     "node-fetch": "^2.2.0",

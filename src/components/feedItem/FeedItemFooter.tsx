@@ -9,8 +9,14 @@ interface IProps {
 
 const FeedItemFooter = ({ art }: IProps) => (
   <Footer>
-    <ArtTitle>{art.title}</ArtTitle>
-    {navigator.share && <ShareButton art={art} />}
+    <ArtTitle
+      dangerouslySetInnerHTML={{
+        __html: art.title
+      }}
+    />
+    {navigator.share && (
+      <ShareButton title={art.title} permalink={art.permalink} />
+    )}
   </Footer>
 );
 

@@ -102,8 +102,14 @@ const StyledNavLink = styled(NavLink)`
   }
 
   &.selected {
-    color: whitesmoke;
+    color: white;
     cursor: auto;
+  }
+
+  @media only screen and (min-width: 48rem) {
+    &.selected {
+      color: #111;
+    }
   }
 `;
 
