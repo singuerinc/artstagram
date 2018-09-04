@@ -6,7 +6,13 @@ const API_ENDPOINT = `https://www.artstation.com/projects.json`;
 exports.handler = async ({ queryStringParameters }) => {
   const params = new URLSearchParams(queryStringParameters);
 
-  return fetch(`${API_ENDPOINT}?${params.toString()}`)
+  params.set("nocache", new Date().getTime());
+
+  const url = `${API_ENDPOINT}?${params.toString()}`;
+
+  console.log({ url });
+
+  return fetch(url)
     .then(response => response.json())
     .then(data => ({
       statusCode: 200,

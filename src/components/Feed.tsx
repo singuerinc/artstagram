@@ -23,15 +23,15 @@ interface IState {
 
 class Feed extends React.Component<IProps, IState> {
   public state = {
-    images: [],
+    images: null,
     page: 1
   };
 
   public async componentDidMount() {
-    const { page, images } = this.state;
+    const { page } = this.state;
     const { urlFunc } = this.props;
 
-    const parsed = await this.loadNextPage(urlFunc)(images, page);
+    const parsed = await this.loadNextPage(urlFunc)([], page);
 
     this.setState(prevState => ({
       images: parsed,
@@ -44,35 +44,34 @@ class Feed extends React.Component<IProps, IState> {
     const { user, urlFunc } = this.props;
     const isLoading = R.isNil(images);
 
-    return (
-      <React.Fragment>
-        {isLoading && (
-          <FeedContainer>
-            <FakeFeedItem />
-            <FakeFeedItem />
-          </FeedContainer>
-        )}
-        {!isLoading && (
-          <FeedContainer>
-            {R.map(
-              (art: IArtImage) => (
-                <FeedItem key={art.id} art={art} user={user || art.user} />
-              ),
-              images
-            )}
-            <Waypoint
-              onEnter={async () => {
-                const parsed = await this.loadNextPage(urlFunc)(images, page);
+    if (isLoading) {
+      return (
+        <FeedContainer>
+          <FakeFeedItem />
+          <FakeFeedItem />
+        </FeedContainer>
+      );
+    }
 
-                this.setState(preState => ({
-                  images: parsed,
-                  page: preState.page + 1
-                }));
-              }}
-            />
-          </FeedContainer>
+    return (
+      <FeedContainer>
+        {R.map(
+          (art: IArtImage) => (
+            <FeedItem key={art.id} art={art} user={user || art.user} />
+          ),
+          images
         )}
-      </React.Fragment>
+        <Waypoint
+          onEnter={async () => {
+            const parsed = await this.loadNextPage(urlFunc)(images, page);
+            console.log("onEnter! LOAD NEXT PAGE!!!", page);
+            this.setState(preState => ({
+              images: parsed,
+              page: preState.page + 1
+            }));
+          }}
+        />
+      </FeedContainer>
     );
   }
 

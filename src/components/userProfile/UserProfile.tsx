@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
 import { BackButton } from "../common/BackButton";
 import { Feed } from "../Feed";
-import { ShareButton } from "../feedItem/ShareButton";
+import { ShareButton, ShareButtonAsset } from "../feedItem/ShareButton";
 
 interface IProps {
   sorting: string;
@@ -26,8 +26,7 @@ class UserProfile extends React.Component<
       medium_avatar_url,
       full_name,
       artstation_profile_url,
-      location,
-      username
+      location
     } = user;
 
     return (
@@ -36,7 +35,9 @@ class UserProfile extends React.Component<
         <UserAvatar>
           <img src={medium_avatar_url} alt={full_name} />
         </UserAvatar>
-        <ShareButton title={full_name} permalink={artstation_profile_url} />
+        {navigator.share && (
+          <ShareButton title={full_name} permalink={artstation_profile_url} />
+        )}
         <UserFullName>{full_name}</UserFullName>
         <UserHeadline
           dangerouslySetInnerHTML={{
@@ -54,10 +55,6 @@ class UserProfile extends React.Component<
       </UserProfileContainer>
     );
   }
-
-  private openUserProfile = (link: string) => () => {
-    window.open(link);
-  };
 }
 
 const UserProfileContainer = styled.div`
@@ -70,6 +67,10 @@ const UserProfileContainer = styled.div`
   align-items: center;
   max-width: 48rem;
   width: 100%;
+
+  ${ShareButtonAsset} {
+    margin: 2rem 0 0;
+  }
 `;
 
 const UserBackground = styled.img`
@@ -95,12 +96,12 @@ const UserAvatar = styled.div`
     content: "";
     position: absolute;
     z-index: 3;
-    width: 70px;
-    height: 70px;
+    width: 74px;
+    height: 74px;
     border-radius: 50%;
-    border: 3px solid white;
-    top: -6px;
-    left: -6px;
+    border: 6px solid rgba(0, 0, 0, 0.05);
+    top: -11px;
+    left: -11px;
   }
 `;
 

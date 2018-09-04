@@ -8,7 +8,7 @@ import { UserProfile } from "./userProfile/UserProfile";
 const App = () => (
   <BrowserRouter history={hashHistory}>
     <div>
-      <Redirect from="/" to="/feed/picks/" />
+      <Route exact path="/" render={() => <Redirect to="/feed/picks/" />} />
       <Route
         path="/feed/picks/"
         component={() => <Home sorting={Sorting.PICKS} />}

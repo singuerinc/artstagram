@@ -49,4 +49,4 @@ const ShareButtonAsset = styled.a`
   }
 `;
 
-export { ShareButton };
+export { ShareButton, ShareButtonAsset };

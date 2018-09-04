@@ -6,6 +6,9 @@ const API_ENDPOINT = user =>
 
 exports.handler = async ({ queryStringParameters }) => {
   const params = new URLSearchParams(queryStringParameters);
+
+  params.set("nocache", new Date().getTime());
+
   const user = params.get("user");
   const url = `${API_ENDPOINT(user)}?${params.toString()}`;
 
