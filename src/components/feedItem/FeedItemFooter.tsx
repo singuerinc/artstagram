@@ -1,3 +1,4 @@
+import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 import { IArtImage } from "../../IArtImage";
@@ -30,7 +31,8 @@ const ArtTitle = styled.p`
   font-size: 1rem;
   font-weight: 300;
   margin: 0;
-  color: lightslategray;
+  padding: 0.25rem 0;
+  color: ${OpenColor.gray[9]};
   flex: 1;
 `;
 

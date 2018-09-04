@@ -1,3 +1,4 @@
+import * as OpenColor from "open-color";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import styled from "styled-components";
@@ -32,22 +33,24 @@ class UserProfile extends React.Component<
     return (
       <UserProfileContainer>
         <BackButton onClick={() => this.props.history.goBack()} />
-        <UserAvatar>
-          <img src={medium_avatar_url} alt={full_name} />
-        </UserAvatar>
-        {navigator.share && (
-          <ShareButton title={full_name} permalink={artstation_profile_url} />
-        )}
-        <UserFullName>{full_name}</UserFullName>
-        <UserHeadline
-          dangerouslySetInnerHTML={{
-            __html: headline
-          }}
-        />
-        <UserCountryCityName>{location}</UserCountryCityName>
-        <UserProfileLink href={artstation_profile_url} target="_blank">
-          View on ArtStation
-        </UserProfileLink>
+        <UserInfoContainer>
+          <UserAvatar>
+            <img src={medium_avatar_url} alt={full_name} />
+          </UserAvatar>
+          {navigator.share && (
+            <ShareButton title={full_name} permalink={artstation_profile_url} />
+          )}
+          <UserFullName>{full_name}</UserFullName>
+          <UserHeadline
+            dangerouslySetInnerHTML={{
+              __html: headline
+            }}
+          />
+          <UserCountryCityName>{location}</UserCountryCityName>
+          <UserProfileLink href={artstation_profile_url} target="_blank">
+            View on ArtStation
+          </UserProfileLink>
+        </UserInfoContainer>
         <Feed
           user={user}
           urlFunc={`/.netlify/functions/user-projects?user=${user.username}`}
@@ -56,6 +59,17 @@ class UserProfile extends React.Component<
     );
   }
 }
+
+const UserInfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+
+  ${ShareButtonAsset} {
+    margin: 2rem 0 0;
+  }
+`;
 
 const UserProfileContainer = styled.div`
   margin: 0 auto 2rem;
@@ -67,10 +81,6 @@ const UserProfileContainer = styled.div`
   align-items: center;
   max-width: 48rem;
   width: 100%;
-
-  ${ShareButtonAsset} {
-    margin: 2rem 0 0;
-  }
 `;
 
 const UserBackground = styled.img`
@@ -99,7 +109,7 @@ const UserAvatar = styled.div`
     width: 74px;
     height: 74px;
     border-radius: 50%;
-    border: 6px solid rgba(0, 0, 0, 0.05);
+    border: 6px solid ${OpenColor.gray[3]};
     top: -11px;
     left: -11px;
   }
@@ -132,11 +142,12 @@ const UserProfileLink = styled.a`
   width: 100%;
   text-align: center;
   display: block;
-  color: grey;
+  color: ${OpenColor.gray[6]};
   text-decoration: none;
   margin: 1rem;
+  transition: color 300ms;
   &:hover {
-    color: white;
+    color: ${OpenColor.gray[9]};
   }
 `;
 
