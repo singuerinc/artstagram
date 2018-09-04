@@ -27,13 +27,13 @@ class Feed extends React.Component<IProps, IState> {
     page: 1
   };
 
-  async componentDidMount() {
+  public async componentDidMount() {
     const { page, images } = this.state;
     const { urlFunc } = this.props;
 
     const parsed = await this.loadNextPage(urlFunc)(images, page);
 
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       images: parsed,
       page: prevState.page + 1
     }));
@@ -64,7 +64,7 @@ class Feed extends React.Component<IProps, IState> {
               onEnter={async () => {
                 const parsed = await this.loadNextPage(urlFunc)(images, page);
 
-                this.setState((preState) => ({
+                this.setState(preState => ({
                   images: parsed,
                   page: preState.page + 1
                 }));

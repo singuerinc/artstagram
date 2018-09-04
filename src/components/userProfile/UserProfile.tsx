@@ -2,9 +2,9 @@ import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
-import { Feed } from "../Feed";
-import { Sorting } from "../../Sorting";
 import { BackButton } from "../common/BackButton";
+import { Feed } from "../Feed";
+import { ShareButton } from "../feedItem/ShareButton";
 
 interface IProps {
   sorting: string;
@@ -13,9 +13,8 @@ interface IProps {
 const scrollToTop = () => window.scrollTo(0, 0);
 
 class UserProfile extends React.Component<
-  RouteComponentProps<IProps, {}, { art: IArtImage, user: IUser }>
-  > {
-
+  RouteComponentProps<IProps, {}, { art: IArtImage; user: IUser }>
+> {
   public componentDidMount() {
     scrollToTop();
   }
@@ -37,15 +36,21 @@ class UserProfile extends React.Component<
         <UserAvatar>
           <img src={medium_avatar_url} alt={full_name} />
         </UserAvatar>
+        <ShareButton title={full_name} permalink={artstation_profile_url} />
         <UserFullName>{full_name}</UserFullName>
-        <UserHeadline dangerouslySetInnerHTML={{
-          __html: headline
-        }} />
+        <UserHeadline
+          dangerouslySetInnerHTML={{
+            __html: headline
+          }}
+        />
         <UserCountryCityName>{location}</UserCountryCityName>
         <UserProfileLink href={artstation_profile_url} target="_blank">
           View on ArtStation
         </UserProfileLink>
-        <Feed user={user} urlFunc={`/.netlify/functions/user-projects?user=${user.username}`} />
+        <Feed
+          user={user}
+          urlFunc={`/.netlify/functions/user-projects?user=${user.username}`}
+        />
       </UserProfileContainer>
     );
   }

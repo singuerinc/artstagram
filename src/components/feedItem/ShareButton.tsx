@@ -4,10 +4,11 @@ import styled from "styled-components";
 import { IArtImage } from "../../IArtImage";
 
 interface IProps {
-  art: IArtImage;
+  title: string;
+  permalink: string;
 }
 
-const share = ({ title, permalink: url }: IArtImage) => async () => {
+const share = ({ title, permalink: url }: IProps) => async () => {
   // native share: only Android
   // @ts-ignore
   if (navigator.share) {
@@ -27,9 +28,9 @@ const share = ({ title, permalink: url }: IArtImage) => async () => {
   }
 };
 
-const ShareButton = ({ art }: IProps) => (
+const ShareButton = ({ title, permalink: url }: IProps) => (
   <ShareButtonAsset
-    onClick={share(art)}
+    onClick={share({ title, permalink: url })}
     dangerouslySetInnerHTML={{
       __html: icons["share-2"].toSvg()
     }}

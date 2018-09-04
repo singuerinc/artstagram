@@ -1,8 +1,8 @@
 import * as React from "react";
+import { Sorting } from "../Sorting";
 import { Feed } from "./Feed";
 import { Title } from "./feed/Title";
 import { NavBar } from "./NavBar";
-import { Sorting } from "../Sorting";
 
 interface IProps {
   sorting: Sorting;
@@ -14,6 +14,6 @@ const Home = ({ sorting }: IProps) => (
     <NavBar />
     <Feed urlFunc={`/.netlify/functions/projects?sorting=${sorting}`} />
   </React.Fragment>
-)
+);
 
-export { Home }
+export { Home };

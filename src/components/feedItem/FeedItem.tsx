@@ -2,9 +2,9 @@ import * as React from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
+import { Image } from "../Image";
 import { FeedItemFooter } from "./FeedItemFooter";
 import { FeedItemHeader } from "./FeedItemHeader";
-import { Image } from "../Image";
 
 interface IProps {
   art: IArtImage;
