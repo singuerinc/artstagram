@@ -1,9 +1,9 @@
-import OpenColor from "open-color";
+import * as OpenColor from "open-color";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 
-const BackButton = ({ onClick }) => (
+const BackButton = ({ onClick }: { onClick: () => void }) => (
   <Wrapper to="" onClick={onClick}>
     <svg
       xmlns="http://www.w3.org/2000/svg"

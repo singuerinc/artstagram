@@ -1,4 +1,4 @@
-import OpenColor from "open-color";
+import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 import { Sorting } from "../../Sorting";
@@ -7,7 +7,8 @@ interface IProps {
   title: string;
 }
 
-const communitify = x => (x === Sorting.COMMUNITY ? "community" : x);
+export const communitify = (x: string) =>
+  x === Sorting.COMMUNITY ? "community" : x;
 
 const Title = ({ title }: IProps) => (
   <StyledTitle>{communitify(title)}</StyledTitle>

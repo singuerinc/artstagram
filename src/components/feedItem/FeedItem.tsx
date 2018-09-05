@@ -1,4 +1,4 @@
-import OpenColor from "open-color";
+import * as OpenColor from "open-color";
 import * as React from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
