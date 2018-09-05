@@ -1,12 +1,11 @@
 import OpenColor from "open-color";
-import * as R from "ramda";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { Sorting } from "../Sorting";
 
 const is = (sorting: Sorting) => match =>
-  R.isNil(match) ? false : R.equals(match.url, `/feed/${sorting}/`);
+  !match ? false : match.url === `/feed/${sorting}/`;
 
 const scrollToTop = () => window.scrollTo(0, 0);
 

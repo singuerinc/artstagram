@@ -9,7 +9,7 @@ import { load } from "../services/api";
 import { FakeFeedItem } from "./feedItem/FakeFeedItem";
 import { FeedItem } from "./feedItem/FeedItem";
 
-const hasCover = R.has(["cover"]);
+const hasCover = x => !!x.cover;
 
 interface IProps {
   urlFunc: string;
