@@ -1,3 +1,4 @@
+import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 
@@ -13,8 +14,8 @@ const LoaderIcon = styled.div`
   box-sizing: border-box;
 
   border: solid 2px transparent;
-  border-top-color: white;
-  border-left-color: white;
+  border-top-color: ${OpenColor.white};
+  border-left-color: ${OpenColor.white};
   border-radius: 50%;
 
   animation: loader-spinner 800ms linear infinite;

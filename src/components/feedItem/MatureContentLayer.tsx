@@ -1,3 +1,4 @@
+import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 
@@ -17,7 +18,8 @@ const MatureContentLayer = ({ onClose }: IProps) => (
 
 const Wrapper = styled.div`
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: ${OpenColor.gray[9]};
+  opacity: 0.98;
   height: 100%;
   position: absolute;
   top: 0;
@@ -29,7 +31,7 @@ const Wrapper = styled.div`
 
 const ClickToViewText = styled.span`
   display: block;
-  color: gray;
+  color: ${OpenColor.gray[3]};
   text-align: center;
   font-size: 1.5rem;
   font-weight: 300;

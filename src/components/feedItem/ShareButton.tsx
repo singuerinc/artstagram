@@ -1,7 +1,7 @@
 import { icons } from "feather-icons";
+import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
-import { IArtImage } from "../../IArtImage";
 
 interface IProps {
   title: string;
@@ -22,7 +22,7 @@ const share = ({ title, permalink: url }: IProps) => async () => {
       .then(() => {
         //
       })
-      .catch(error => {
+      .catch(() => {
         //
       });
   }
@@ -40,12 +40,12 @@ const ShareButton = ({ title, permalink: url }: IProps) => (
 const ShareButtonAsset = styled.a`
   display: block;
   margin-left: 1rem;
-  color: lightgrey;
+  color: ${OpenColor.gray[3]};
   cursor: pointer;
   transition: color 300ms;
 
   &:hover {
-    color: grey;
+    color: ${OpenColor.gray[6]};
   }
 `;
 

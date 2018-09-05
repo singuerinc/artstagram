@@ -1,6 +1,7 @@
+import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
-import { IArtImage } from "../IArtImage";
+import { IArtImage, ICover } from "../IArtImage";
 import { Spinner } from "./common/Spinner";
 import { Cover } from "./feedItem/Cover";
 import { MatureContentLayer } from "./feedItem/MatureContentLayer";
@@ -16,7 +17,7 @@ interface IState {
   loaded: boolean;
 }
 
-const paddingTop = x => 100 / x.aspect + "%";
+const paddingTop = (x: ICover) => 100 / x.aspect + "%";
 
 class Image extends React.Component<IProps, IState> {
   public state = {
@@ -60,12 +61,10 @@ class Image extends React.Component<IProps, IState> {
   };
 }
 
-const ImageContainer = styled.div.attrs<{ pt: string }>({
-  pt: ({ pt }) => pt
-})`
+const ImageContainer = styled.div`
   position: relative;
-  background-color: rgba(0, 0, 0, 0.05);
-  padding-top: ${({ pt }) => pt};
+  background-color: ${OpenColor.gray[1]};
+  padding-top: ${({ pt }: { pt: string }) => pt};
 `;
 
 export { Image };

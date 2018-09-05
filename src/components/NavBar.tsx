@@ -1,4 +1,5 @@
 import { icons } from "feather-icons";
+import * as OpenColor from "open-color";
 import * as R from "ramda";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
@@ -70,7 +71,7 @@ const Wrapper = styled.ul`
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #111;
+  background-color: ${OpenColor.gray[9]};
   z-index: 999;
 
   @media only screen and (min-width: 48rem) {
@@ -94,21 +95,21 @@ const StyledNavLink = styled(NavLink)`
   text-transform: uppercase;
   display: block;
   text-decoration: none;
-  color: grey;
+  color: ${OpenColor.gray[3]};
   transition: color 300ms;
 
   &:hover {
-    color: lightgray;
+    color: ${OpenColor.gray[6]};
   }
 
   &.selected {
-    color: white;
+    color: ${OpenColor.white};
     cursor: auto;
   }
 
   @media only screen and (min-width: 48rem) {
     &.selected {
-      color: #111;
+      color: ${OpenColor.violet[9]};
     }
   }
 `;

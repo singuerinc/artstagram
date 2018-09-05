@@ -1,3 +1,4 @@
+import * as OpenColor from "open-color";
 import * as React from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
@@ -48,13 +49,13 @@ class FeedItem extends React.Component<IProps, IState> {
 
 const FeedItemContainer = styled.li`
   width: 100%;
-  background-color: #fff;
+  background-color: ${OpenColor.white};
   color: black;
   margin: 1rem 0;
   position: relative;
 
   @media only screen and (min-width: 48rem) {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid ${OpenColor.gray[3]};
     border-radius: 3px;
 
     &:first-child {

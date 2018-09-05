@@ -64,7 +64,6 @@ class Feed extends React.Component<IProps, IState> {
         <Waypoint
           onEnter={async () => {
             const parsed = await this.loadNextPage(urlFunc)(images, page);
-            console.log("onEnter! LOAD NEXT PAGE!!!", page);
             this.setState(preState => ({
               images: parsed,
               page: preState.page + 1

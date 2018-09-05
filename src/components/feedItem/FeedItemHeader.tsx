@@ -1,3 +1,4 @@
+import * as OpenColor from "open-color";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
@@ -31,7 +32,7 @@ const UserFullName = styled.h2`
 const UserName = styled.h3`
   margin: 0;
   font-weight: 300;
-  color: lightgray;
+  color: ${OpenColor.gray[6]};
   margin-left: auto;
   font-size: 0.9rem;
 `;
@@ -50,16 +51,16 @@ const StyledNavLink = styled(NavLink)`
   align-items: center;
   position: relative;
   cursor: pointer;
-  color: #111;
+  color: ${OpenColor.gray[9]};
   text-decoration: none;
   transition: color 300ms;
 
   &:hover {
-    color: gray;
+    color: ${OpenColor.gray[6]};
   }
 
   &::before {
-    border: 2px solid grey;
+    border: 2px solid ${OpenColor.gray[3]};
     border-radius: 50%;
     content: "";
     z-index: 1;
