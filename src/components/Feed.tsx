@@ -1,6 +1,5 @@
 import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import * as R from "ramda";
 import * as React from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
@@ -9,7 +8,15 @@ import { load } from "../services/api";
 import { FakeFeedItem } from "./feedItem/FakeFeedItem";
 import { FeedItem } from "./feedItem/FeedItem";
 
-const hasCover = R.has(["cover"]);
+const hasCover = x => !!x.cover;
+
+const unique = (arr: IArtImage[]) => {
+  return arr.filter((value: IArtImage, index: number, self: IArtImage[]) => {
+    return (
+      typeof self.find((x: IArtImage) => x.id === value.id) !== "undefined"
+    );
+  });
+};
 
 interface IProps {
   urlFunc: string;
@@ -42,7 +49,7 @@ class Feed extends React.Component<IProps, IState> {
   public render() {
     const { page, images } = this.state;
     const { user, urlFunc } = this.props;
-    const isLoading = R.isNil(images);
+    const isLoading = images === null;
 
     if (isLoading) {
       return (
@@ -55,12 +62,9 @@ class Feed extends React.Component<IProps, IState> {
 
     return (
       <FeedContainer>
-        {R.map(
-          (art: IArtImage) => (
-            <FeedItem key={art.id} art={art} user={user || art.user} />
-          ),
-          images
-        )}
+        {images.map((art: IArtImage) => (
+          <FeedItem key={art.id} art={art} user={user || art.user} />
+        ))}
         <Waypoint
           onEnter={async () => {
             const parsed = await this.loadNextPage(urlFunc)(images, page);
@@ -81,17 +85,13 @@ class Feed extends React.Component<IProps, IState> {
     NProgress.start();
 
     const newImages = await load(url, { page });
-    const add = R.compose(
-      R.filter(hasCover),
-      R.uniqBy(R.prop("id")),
-      R.concat(prevImages)
+    const onlyWithCover = unique([...prevImages, ...newImages]).filter(
+      hasCover
     );
-
-    const parsed = add(newImages);
 
     NProgress.done();
 
-    return parsed;
+    return onlyWithCover;
   };
 }
 

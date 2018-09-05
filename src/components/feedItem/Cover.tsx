@@ -1,4 +1,3 @@
-import * as R from "ramda";
 import * as React from "react";
 import styled from "styled-components";
 
@@ -13,7 +12,7 @@ interface IState {
   loaded: boolean;
 }
 
-const smallToLarge = R.replace("/small/", "/large/");
+const smallToLarge = x => x.replace("/small/", "/large/");
 
 const openLargeImage = (smallImageUrl: string) => () =>
   window.open(smallToLarge(smallImageUrl));
