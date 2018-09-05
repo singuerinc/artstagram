@@ -1,4 +1,4 @@
-import * as OpenColor from "open-color";
+import OpenColor from "open-color";
 import * as React from "react";
 import { RouteComponentProps } from "react-router";
 import styled from "styled-components";
