@@ -28,7 +28,6 @@
     "node-fetch": "^2.2.0",
     "nprogress": "^0.2.0",
     "open-color": "^1.6.3",
-    "ramda": "^0.25.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-router": "^4.3.1",

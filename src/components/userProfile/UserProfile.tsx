@@ -118,8 +118,8 @@ const UserAvatar = styled.div`
 const UserFullName = styled.h1`
   width: 100%;
   text-align: center;
-  margin: 1rem;
-  padding: 0;
+  margin: 1rem 0;
+  padding: 0 1rem;
   font-size: 1.6rem;
 `;
 
@@ -128,14 +128,14 @@ const UserCountryCityName = styled.p`
   text-align: center;
   font-style: italic;
   margin: 0.5rem;
-  padding: 0;
+  padding: 0 1rem;
 `;
 
 const UserHeadline = styled.p`
   width: 100%;
   text-align: center;
-  margin: 0 1rem;
-  padding: 0;
+  margin: 0;
+  padding: 0 1rem;
 `;
 
 const UserProfileLink = styled.a`
