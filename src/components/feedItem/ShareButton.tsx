@@ -2,12 +2,12 @@ import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 
-interface IProps {
+export interface IProps {
   title: string;
   permalink: string;
 }
 
-const share = ({ title, permalink: url }: IProps) => async () => {
+export const share = ({ title, permalink: url }: IProps) => async () => {
   // native share: only Android
   // @ts-ignore
   if (navigator.share) {
@@ -61,4 +61,4 @@ const ShareButtonAsset = styled.a`
   }
 `;
 
-export { ShareButton, ShareButtonAsset };
+export { ShareButton, ShareButtonAsset, share };
