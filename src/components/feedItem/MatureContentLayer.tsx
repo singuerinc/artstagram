@@ -2,7 +2,7 @@ import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 
-interface IProps {
+export interface IProps {
   onClose: () => void;
 }
 
