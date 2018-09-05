@@ -4,13 +4,18 @@ import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
 
-const FeedItemHeader = ({ art, user }: { art: IArtImage; user: IUser }) => (
+export interface IProps {
+  art: IArtImage;
+  user: IUser;
+}
+
+const FeedItemHeader = ({ art, user }: IProps) => (
   <StyledNavLink
     to={{ pathname: `/user/${user.username}`, state: { art, user } }}
   >
     <Avatar
-      title={user.username}
-      alt={user.username}
+      title={`@${user.username}`}
+      alt={`@${user.username}`}
       src={user.medium_avatar_url}
     />
     <UserFullName>{user.full_name}</UserFullName>
