@@ -1,4 +1,4 @@
-import OpenColor from "open-color";
+import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
 import { IArtImage, ICover } from "../IArtImage";
@@ -45,12 +45,12 @@ class Image extends React.Component<IProps, IState> {
         <ImageContainer pt={paddingTop(cover)}>
           {!loaded && <Spinner />}
           {mature && <MatureContentLayer onClose={this.hideMatureLayer} />}
-          <Cover
+          {/* <Cover
             onLoad={this.onLoad}
             src={src}
             title={title}
             smallImageUrl={cover.small_image_url}
-          />
+          /> */}
         </ImageContainer>
       </div>
     );
