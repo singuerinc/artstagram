@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { IArtImage } from "../../IArtImage";
 import { ShareButton } from "./ShareButton";
 
-interface IProps {
+export interface IProps {
   art: IArtImage;
 }
 
