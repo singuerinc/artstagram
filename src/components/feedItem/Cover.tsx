@@ -1,7 +1,7 @@
 import * as React from "react";
 import styled from "styled-components";
 
-interface IProps {
+export interface IProps {
   title: string;
   smallImageUrl: string;
   src: string | null;
@@ -12,7 +12,7 @@ interface IState {
   loaded: boolean;
 }
 
-const smallToLarge = x => x.replace("/small/", "/large/");
+const smallToLarge = (x: string) => x.replace("/small/", "/large/");
 
 const openLargeImage = (smallImageUrl: string) => () =>
   window.open(smallToLarge(smallImageUrl));
@@ -56,4 +56,4 @@ const StyledImage = styled.img`
   cursor: pointer;
 `;
 
-export { Cover };
+export { Cover, smallToLarge, openLargeImage };
