@@ -1,34 +1,15 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
+import { share } from "./share";
 
 export interface IProps {
   title: string;
   permalink: string;
 }
 
-export const share = ({ title, permalink: url }: IProps) => async () => {
-  // native share: only Android
-  // @ts-ignore
-  if (navigator.share) {
-    navigator
-      // @ts-ignore
-      .share({
-        text: "",
-        title,
-        url
-      })
-      .then(() => {
-        //
-      })
-      .catch(() => {
-        //
-      });
-  }
-};
-
 const ShareButton = ({ title, permalink: url }: IProps) => (
-  <ShareButtonAsset onClick={share({ title, permalink: url })}>
+  <ShareButtonAsset onClick={() => share({ title, permalink: url })}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
