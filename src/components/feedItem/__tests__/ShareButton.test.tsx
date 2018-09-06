@@ -1,11 +1,9 @@
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import * as React from "react";
-jest.mock("../ShareButton");
-import {
-  IProps as IShareButtonProps,
-  share,
-  ShareButton
-} from "../ShareButton";
+import { IProps as IShareButtonProps, ShareButton } from "../ShareButton";
+
+import { share } from "../share";
+jest.mock("../share", () => {});
 
 describe.skip("<ShareButton />", () => {
   it("should call the share onClick with the correct parameters", () => {
@@ -15,11 +13,9 @@ describe.skip("<ShareButton />", () => {
     };
 
     const wrapper = mount(<ShareButton {...props} />);
+
     wrapper.simulate("click");
 
     expect(share).toBeCalled();
-    // const a = wrapper.getDOMNode() as HTMLImageElement;
-
-    // expect(a.getAttribute("alt")).toBe("foo");
   });
 });

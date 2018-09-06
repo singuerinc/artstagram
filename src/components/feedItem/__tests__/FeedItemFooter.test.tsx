@@ -1,6 +1,5 @@
 import { mount } from "enzyme";
 import * as React from "react";
-import { BrowserRouter } from "react-router-dom";
 import {
   ArtTitle,
   FeedItemFooter,
@@ -11,7 +10,9 @@ import { art } from "./art.fixture";
 
 describe("<FeedItemFooter />", () => {
   it("should render children and props", () => {
-    navigator.share = jest.fn();
+    navigator.share = jest.fn().mockImplementation((title, permalink) => {
+      //
+    });
     art.permalink = "https://foo.bar/artwork/awesome";
     art.title = "foo &amp; bar";
 
@@ -19,11 +20,7 @@ describe("<FeedItemFooter />", () => {
       art
     };
 
-    const wrapper = mount(
-      <BrowserRouter>
-        <FeedItemFooter {...props} />
-      </BrowserRouter>
-    );
+    const wrapper = mount(<FeedItemFooter {...props} />);
 
     expect(wrapper.find(ArtTitle).text()).toBe("foo & bar");
     expect(wrapper.find(ShareButton).props()).toEqual({
