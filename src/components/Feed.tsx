@@ -8,7 +8,7 @@ import { load } from "../services/api";
 import { FakeFeedItem } from "./feedItem/FakeFeedItem";
 import { FeedItem } from "./feedItem/FeedItem";
 
-const hasCover = x => !!x.cover;
+const hasCover = (x: IArtImage) => !!x.cover;
 
 const unique = (arr: IArtImage[]) => {
   return arr.filter((value: IArtImage, index: number, self: IArtImage[]) => {
@@ -24,7 +24,7 @@ interface IProps {
 }
 
 interface IState {
-  images: IArtImage[];
+  images: IArtImage[] | null;
   page: number;
 }
 
