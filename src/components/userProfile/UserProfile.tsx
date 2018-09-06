@@ -1,27 +1,25 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
-import { RouteComponentProps } from "react-router";
 import styled from "styled-components";
-import { IArtImage, IUser } from "../../IArtImage";
+import { IUser } from "../../IArtImage";
 import { BackButton } from "../common/BackButton";
 import { Feed } from "../Feed";
 import { ShareButton, ShareButtonAsset } from "../feedItem/ShareButton";
 
-interface IProps {
-  sorting: string;
+export interface IProps {
+  user: IUser;
+  goBack: () => void;
 }
 
 const scrollToTop = () => window.scrollTo(0, 0);
 
-class UserProfile extends React.Component<
-  RouteComponentProps<IProps, {}, { art: IArtImage; user: IUser }>
-> {
+class UserProfile extends React.Component<IProps> {
   public componentDidMount() {
     scrollToTop();
   }
 
   public render() {
-    const { user } = this.props.location.state;
+    const { user } = this.props;
     const {
       headline,
       medium_avatar_url,
@@ -32,7 +30,7 @@ class UserProfile extends React.Component<
 
     return (
       <UserProfileContainer>
-        <BackButton onClick={() => this.props.history.goBack()} />
+        <BackButton onClick={() => this.props.goBack()} />
         <UserInfoContainer>
           <UserAvatar>
             <img src={medium_avatar_url} alt={full_name} />
@@ -83,12 +81,12 @@ const UserProfileContainer = styled.div`
   width: 100%;
 `;
 
-const UserBackground = styled.img`
-  position: absolute;
-  height: 100vh;
-  opacity: 0.3;
-  pointer-events: none;
-`;
+// const UserBackground = styled.img`
+//   position: absolute;
+//   height: 100vh;
+//   opacity: 0.3;
+//   pointer-events: none;
+// `;
 
 const UserAvatar = styled.div`
   position: relative;
@@ -153,7 +151,7 @@ const UserProfileLink = styled.a`
 
 export {
   UserProfile,
-  UserBackground,
+  // UserBackground,
   UserAvatar,
   UserFullName,
   UserCountryCityName,

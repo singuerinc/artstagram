@@ -1,6 +1,7 @@
 import * as React from "react";
-import { hashHistory } from "react-router";
+import { hashHistory, RouteComponentProps } from "react-router";
 import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import { IUser } from "../IArtImage";
 import { Sorting } from "../Sorting";
 import { Home } from "./Home";
 import { UserProfile } from "./userProfile/UserProfile";
@@ -25,7 +26,15 @@ const App = () => (
         path="/feed/randomize/"
         component={() => <Home sorting={Sorting.COMMUNITY} />}
       />
-      <Route path="/user/:id" component={UserProfile} />
+      <Route
+        path="/user/:id"
+        component={({
+          history,
+          location
+        }: RouteComponentProps<{}, {}, { user: IUser }>) => (
+          <UserProfile goBack={history.goBack} user={location.state.user} />
+        )}
+      />
     </div>
   </BrowserRouter>
 );
