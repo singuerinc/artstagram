@@ -2,13 +2,12 @@ import { mount } from "enzyme";
 import * as React from "react";
 import { IProps as IShareButtonProps, ShareButton } from "../ShareButton";
 
-import { share } from "../share";
-jest.mock("../share", () => {});
-
-describe.skip("<ShareButton />", () => {
+describe("<ShareButton />", () => {
   it("should call the share onClick with the correct parameters", () => {
+    const share = jest.fn();
     const props: IShareButtonProps = {
       permalink: "bar",
+      share,
       title: "foo"
     };
 
@@ -16,6 +15,7 @@ describe.skip("<ShareButton />", () => {
 
     wrapper.simulate("click");
 
+    expect(wrapper).toBeTruthy();
     expect(share).toBeCalled();
   });
 });

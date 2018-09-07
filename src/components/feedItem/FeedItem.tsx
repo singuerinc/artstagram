@@ -12,7 +12,7 @@ interface IProps {
   user: IUser;
 }
 interface IState {
-  src: string;
+  src: string | null;
 }
 
 class FeedItem extends React.Component<IProps, IState> {
