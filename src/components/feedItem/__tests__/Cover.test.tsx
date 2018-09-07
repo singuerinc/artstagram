@@ -52,7 +52,9 @@ describe("<Cover />", () => {
 
     const wrapper = mount(<Cover {...props} />);
     // const img = wrapper.getDOMNode() as HTMLImageElement;
-    wrapper.simulate("onload", () => {});
+    wrapper.simulate("onload", () => {
+      //
+    });
     expect(wrapper.state("loaded")).toBeFalsy();
   });
 });

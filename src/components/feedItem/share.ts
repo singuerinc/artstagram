@@ -1,10 +1,9 @@
-export interface IShare {
+interface IShare {
   title: string;
   permalink: string;
 }
 
-export const share = async ({ title, permalink: url }: IShare) => {
-  console.log("SHARE!");
+function share({ title, permalink: url }: IShare) {
   // native share: only Android
   // @ts-ignore
   if (navigator.share) {
@@ -22,4 +21,6 @@ export const share = async ({ title, permalink: url }: IShare) => {
         //
       });
   }
-};
+}
+
+export { IShare, share };

@@ -1,15 +1,20 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
-import { share } from "./share";
+import { IShare } from "./share";
 
 export interface IProps {
   title: string;
   permalink: string;
+  share: (opt: IShare) => void;
 }
 
-const ShareButton = ({ title, permalink: url }: IProps) => (
-  <ShareButtonAsset onClick={() => share({ title, permalink: url })}>
+const ShareButton = ({ title, permalink: url, share }: IProps) => (
+  <ShareButtonAsset
+    onClick={() => {
+      share({ title, permalink: url });
+    }}
+  >
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -42,4 +47,4 @@ const ShareButtonAsset = styled.a`
   }
 `;
 
-export { ShareButton, ShareButtonAsset, share };
+export { ShareButton, ShareButtonAsset };

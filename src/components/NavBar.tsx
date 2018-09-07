@@ -93,11 +93,11 @@ const StyledNavLink = styled(NavLink)`
   text-transform: uppercase;
   display: block;
   text-decoration: none;
-  color: ${OpenColor.gray[3]};
+  color: ${OpenColor.gray[6]};
   transition: color 300ms;
 
   &:hover {
-    color: ${OpenColor.gray[6]};
+    color: ${OpenColor.gray[9]};
   }
 
   &.selected {
