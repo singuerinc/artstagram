@@ -21,7 +21,7 @@ export interface IUser {
   username: string;
   first_name: string;
   last_name: string;
-  avatar_file_name: string;
+  avatar_file_name: string | null;
   country: string;
   city: string;
   subdomain: string;

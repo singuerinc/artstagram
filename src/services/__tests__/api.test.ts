@@ -14,6 +14,6 @@ describe("asQuery", () => {
 describe("load", () => {
   it("should ", async () => {
     const res: IArtImage[] = await load("https://u.rl");
-    expect(res).toBe("algo");
+    expect(res).toHaveLength(50);
   });
 });
