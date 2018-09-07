@@ -1,0 +1,524 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1536329465083" clover="3.2.0">
+  <project timestamp="1536329465083" name="All files">
+    <metrics statements="436" coveredstatements="298" conditionals="353" coveredconditionals="157" methods="130" coveredmethods="57" elements="919" coveredelements="512" complexity="0" loc="436" ncloc="436" packages="9" files="18" classes="18">
+      <package name="src">
+        <metrics statements="10" coveredstatements="10" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <file name="Sorting.ts" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/Sorting.ts">
+          <metrics statements="6" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="5" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+        </file>
+        <file name="setupTests.ts" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/setupTests.ts">
+          <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="9" type="stmt"/>
+          <line num="3" count="9" type="stmt"/>
+          <line num="4" count="9" type="stmt"/>
+          <line num="5" count="9" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components">
+        <metrics statements="139" coveredstatements="58" conditionals="122" coveredconditionals="28" methods="54" coveredmethods="12"/>
+        <file name="Feed.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/Feed.tsx">
+          <metrics statements="98" coveredstatements="32" conditionals="97" coveredconditionals="17" methods="39" coveredmethods="6"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="cond" truecount="1" falsecount="3"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="16" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="19" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="20" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="27" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="28" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="32" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="33" count="0" type="stmt"/>
+          <line num="34" count="0" type="cond" truecount="0" falsecount="13"/>
+          <line num="35" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="36" count="0" type="cond" truecount="0" falsecount="6"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="42" count="0" type="cond" truecount="0" falsecount="7"/>
+          <line num="43" count="0" type="cond" truecount="0" falsecount="6"/>
+          <line num="44" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="45" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="46" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="50" count="0" type="stmt"/>
+          <line num="51" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+          <line num="56" count="1" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+          <line num="58" count="1" type="stmt"/>
+          <line num="59" count="1" type="stmt"/>
+          <line num="60" count="1" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
+          <line num="62" count="1" type="stmt"/>
+          <line num="63" count="1" type="stmt"/>
+          <line num="64" count="1" type="stmt"/>
+          <line num="65" count="0" type="stmt"/>
+          <line num="66" count="0" type="stmt"/>
+          <line num="69" count="1" type="stmt"/>
+          <line num="70" count="1" type="stmt"/>
+          <line num="72" count="0" type="cond" truecount="0" falsecount="3"/>
+          <line num="73" count="0" type="stmt"/>
+          <line num="77" count="0" type="stmt"/>
+          <line num="79" count="0" type="stmt"/>
+          <line num="80" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="82" count="0" type="stmt"/>
+          <line num="83" count="0" type="stmt"/>
+          <line num="85" count="0" type="stmt"/>
+          <line num="86" count="0" type="stmt"/>
+          <line num="87" count="0" type="stmt"/>
+          <line num="88" count="0" type="stmt"/>
+          <line num="92" count="0" type="stmt"/>
+          <line num="94" count="1" type="stmt"/>
+          <line num="95" count="0" type="stmt"/>
+          <line num="97" count="0" type="stmt"/>
+          <line num="98" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="100" count="0" type="stmt"/>
+          <line num="101" count="0" type="stmt"/>
+          <line num="102" count="0" type="stmt"/>
+          <line num="104" count="0" type="stmt"/>
+          <line num="105" count="0" type="stmt"/>
+          <line num="109" count="0" type="stmt"/>
+          <line num="114" count="1" type="stmt"/>
+          <line num="115" count="0" type="stmt"/>
+          <line num="116" count="0" type="stmt"/>
+          <line num="117" count="0" type="stmt"/>
+          <line num="118" count="0" type="stmt"/>
+          <line num="119" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="120" count="0" type="stmt"/>
+          <line num="124" count="0" type="stmt"/>
+          <line num="125" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="126" count="0" type="stmt"/>
+          <line num="128" count="0" type="stmt"/>
+          <line num="129" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="130" count="0" type="stmt"/>
+          <line num="132" count="0" type="stmt"/>
+          <line num="133" count="0" type="stmt"/>
+          <line num="137" count="0" type="stmt"/>
+          <line num="142" count="1" type="stmt"/>
+          <line num="144" count="1" type="stmt"/>
+          <line num="145" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="146" count="1" type="stmt"/>
+        </file>
+        <file name="Image.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/Image.tsx">
+          <metrics statements="41" coveredstatements="26" conditionals="25" coveredconditionals="11" methods="15" coveredmethods="6"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="cond" truecount="1" falsecount="3"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="16" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="30" count="0" type="cond" truecount="0" falsecount="3"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="35" count="0" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="43" count="1" type="stmt"/>
+          <line num="44" count="0" type="stmt"/>
+          <line num="46" count="1" type="stmt"/>
+          <line num="47" count="0" type="stmt"/>
+          <line num="48" count="0" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+          <line num="57" count="1" type="stmt"/>
+          <line num="58" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="59" count="0" type="stmt"/>
+          <line num="60" count="0" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components.common">
+        <metrics statements="24" coveredstatements="22" conditionals="16" coveredconditionals="14" methods="4" coveredmethods="3"/>
+        <file name="BackButton.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/common/BackButton.tsx">
+          <metrics statements="13" coveredstatements="11" conditionals="7" coveredconditionals="6" methods="2" coveredmethods="1"/>
+          <line num="2" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="2" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="0" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="18" count="2" type="stmt"/>
+          <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+        </file>
+        <file name="Spinner.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/common/Spinner.tsx">
+          <metrics statements="11" coveredstatements="11" conditionals="9" coveredconditionals="8" methods="2" coveredmethods="2"/>
+          <line num="2" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="4" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="4" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="13" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="14" count="2" type="cond" truecount="2" falsecount="0"/>
+        </file>
+      </package>
+      <package name="src.components.feed">
+        <metrics statements="15" coveredstatements="15" conditionals="9" coveredconditionals="8" methods="3" coveredmethods="3"/>
+        <file name="Title.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feed/Title.tsx">
+          <metrics statements="15" coveredstatements="15" conditionals="9" coveredconditionals="8" methods="3" coveredmethods="3"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="1" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="4" type="cond" truecount="2" falsecount="0"/>
+          <line num="14" count="1" type="stmt"/>
+          <line num="15" count="2" type="stmt"/>
+          <line num="16" count="2" type="stmt"/>
+          <line num="18" count="1" type="stmt"/>
+          <line num="19" count="1" type="cond" truecount="2" falsecount="0"/>
+        </file>
+      </package>
+      <package name="src.components.feedItem">
+        <metrics statements="153" coveredstatements="136" conditionals="97" coveredconditionals="72" methods="37" coveredmethods="28"/>
+        <file name="Cover.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/Cover.tsx">
+          <metrics statements="38" coveredstatements="34" conditionals="23" coveredconditionals="15" methods="15" coveredmethods="12"/>
+          <line num="2" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="2" type="stmt"/>
+          <line num="4" count="2" type="cond" truecount="1" falsecount="3"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="16" count="2" type="cond" truecount="1" falsecount="1"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
+          <line num="20" count="2" type="stmt"/>
+          <line num="21" count="2" type="stmt"/>
+          <line num="22" count="2" type="stmt"/>
+          <line num="23" count="2" type="stmt"/>
+          <line num="24" count="3" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="27" count="2" type="stmt"/>
+          <line num="28" count="2" type="stmt"/>
+          <line num="29" count="2" type="stmt"/>
+          <line num="31" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="32" count="2" type="stmt"/>
+          <line num="35" count="2" type="stmt"/>
+          <line num="36" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="39" count="2" type="stmt"/>
+          <line num="41" count="2" type="stmt"/>
+          <line num="42" count="2" type="stmt"/>
+          <line num="43" count="2" type="stmt"/>
+          <line num="44" count="2" type="stmt"/>
+          <line num="46" count="2" type="stmt"/>
+          <line num="48" count="2" type="stmt"/>
+          <line num="49" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="50" count="1" type="stmt"/>
+          <line num="51" count="1" type="cond" truecount="1" falsecount="1"/>
+        </file>
+        <file name="FakeFeedItem.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/FakeFeedItem.tsx">
+          <metrics statements="14" coveredstatements="14" conditionals="11" coveredconditionals="10" methods="2" coveredmethods="1"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="6" count="1" type="stmt"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="8" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="23" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="24" count="1" type="cond" truecount="2" falsecount="0"/>
+        </file>
+        <file name="FeedItem.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/FeedItem.tsx">
+          <metrics statements="38" coveredstatements="25" conditionals="23" coveredconditionals="11" methods="11" coveredmethods="6"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="cond" truecount="1" falsecount="3"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="16" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="17" count="1" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="30" count="0" type="cond" truecount="0" falsecount="3"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="34" count="0" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="41" count="0" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="45" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="46" count="0" type="stmt"/>
+          <line num="52" count="1" type="stmt"/>
+          <line num="54" count="1" type="stmt"/>
+          <line num="55" count="1" type="cond" truecount="2" falsecount="0"/>
+        </file>
+        <file name="FeedItemFooter.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/FeedItemFooter.tsx">
+          <metrics statements="16" coveredstatements="16" conditionals="11" coveredconditionals="10" methods="2" coveredmethods="2"/>
+          <line num="2" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="4" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="4" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="19" count="2" type="stmt"/>
+          <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="21" count="2" type="stmt"/>
+          <line num="22" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="23" count="2" type="stmt"/>
+        </file>
+        <file name="FeedItemHeader.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/FeedItemHeader.tsx">
+          <metrics statements="20" coveredstatements="20" conditionals="13" coveredconditionals="12" methods="2" coveredmethods="2"/>
+          <line num="2" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="8" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="8" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="20" count="2" type="stmt"/>
+          <line num="21" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="22" count="2" type="stmt"/>
+          <line num="23" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="24" count="2" type="stmt"/>
+          <line num="25" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="26" count="2" type="stmt"/>
+          <line num="27" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="28" count="2" type="stmt"/>
+        </file>
+        <file name="MatureContentLayer.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/MatureContentLayer.tsx">
+          <metrics statements="13" coveredstatements="13" conditionals="9" coveredconditionals="8" methods="2" coveredmethods="2"/>
+          <line num="2" count="2" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="4" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="4" type="stmt"/>
+          <line num="6" count="2" type="stmt"/>
+          <line num="7" count="2" type="stmt"/>
+          <line num="8" count="2" type="stmt"/>
+          <line num="9" count="2" type="stmt"/>
+          <line num="10" count="2" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="18" count="2" type="stmt"/>
+          <line num="19" count="2" type="cond" truecount="2" falsecount="0"/>
+          <line num="20" count="2" type="cond" truecount="2" falsecount="0"/>
+        </file>
+        <file name="ShareButton.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/ShareButton.tsx">
+          <metrics statements="14" coveredstatements="14" conditionals="7" coveredconditionals="6" methods="3" coveredmethods="3"/>
+          <line num="2" count="3" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="3" type="cond" truecount="1" falsecount="1"/>
+          <line num="4" count="3" type="stmt"/>
+          <line num="6" count="3" type="stmt"/>
+          <line num="7" count="3" type="stmt"/>
+          <line num="8" count="3" type="stmt"/>
+          <line num="9" count="3" type="stmt"/>
+          <line num="10" count="3" type="stmt"/>
+          <line num="11" count="2" type="stmt"/>
+          <line num="12" count="2" type="stmt"/>
+          <line num="13" count="1" type="stmt"/>
+          <line num="22" count="3" type="stmt"/>
+          <line num="23" count="3" type="cond" truecount="2" falsecount="0"/>
+          <line num="24" count="3" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components.feedItem.__tests__">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="art.fixture.ts" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/feedItem/__tests__/art.fixture.ts">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="2" type="stmt"/>
+          <line num="3" count="2" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components.userProfile">
+        <metrics statements="46" coveredstatements="43" conditionals="35" coveredconditionals="27" methods="13" coveredmethods="10"/>
+        <file name="UserProfile.tsx" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/userProfile/UserProfile.tsx">
+          <metrics statements="46" coveredstatements="43" conditionals="35" coveredconditionals="27" methods="13" coveredmethods="10"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="1" type="stmt"/>
+          <line num="4" count="1" type="cond" truecount="1" falsecount="3"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="7" count="1" type="stmt"/>
+          <line num="9" count="1" type="stmt"/>
+          <line num="10" count="1" type="stmt"/>
+          <line num="11" count="1" type="stmt"/>
+          <line num="12" count="1" type="cond" truecount="1" falsecount="1"/>
+          <line num="15" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="16" count="7" type="cond" truecount="1" falsecount="1"/>
+          <line num="17" count="7" type="stmt"/>
+          <line num="19" count="1" type="stmt"/>
+          <line num="20" count="1" type="stmt"/>
+          <line num="21" count="1" type="stmt"/>
+          <line num="22" count="1" type="stmt"/>
+          <line num="23" count="1" type="stmt"/>
+          <line num="24" count="1" type="stmt"/>
+          <line num="25" count="1" type="stmt"/>
+          <line num="26" count="1" type="stmt"/>
+          <line num="27" count="1" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="30" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="32" count="1" type="stmt"/>
+          <line num="33" count="1" type="stmt"/>
+          <line num="35" count="1" type="stmt"/>
+          <line num="36" count="1" type="stmt"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="53" count="1" type="stmt"/>
+          <line num="55" count="1" type="stmt"/>
+          <line num="56" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="57" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="64" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="65" count="1" type="stmt"/>
+          <line num="66" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="67" count="1" type="stmt"/>
+          <line num="68" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="69" count="1" type="stmt"/>
+          <line num="70" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="71" count="1" type="stmt"/>
+          <line num="72" count="1" type="cond" truecount="2" falsecount="0"/>
+          <line num="73" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.components.userProfile.__tests__">
+        <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="user.fixture.ts" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/components/userProfile/__tests__/user.fixture.ts">
+          <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="2" count="1" type="stmt"/>
+          <line num="3" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="src.services">
+        <metrics statements="45" coveredstatements="10" conditionals="72" coveredconditionals="6" methods="18" coveredmethods="0"/>
+        <file name="api.ts" path="/Users/nahuel.scotti/code/singuerinc/x/artstagram/src/services/api.ts">
+          <metrics statements="45" coveredstatements="10" conditionals="72" coveredconditionals="6" methods="18" coveredmethods="0"/>
+          <line num="2" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="3" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="4" count="0" type="stmt"/>
+          <line num="5" count="0" type="stmt"/>
+          <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="7" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="10" count="1" type="cond" truecount="3" falsecount="0"/>
+          <line num="11" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="12" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="16" count="0" type="stmt"/>
+          <line num="17" count="0" type="cond" truecount="0" falsecount="13"/>
+          <line num="18" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="19" count="0" type="cond" truecount="0" falsecount="6"/>
+          <line num="20" count="0" type="stmt"/>
+          <line num="21" count="0" type="stmt"/>
+          <line num="22" count="0" type="stmt"/>
+          <line num="23" count="0" type="stmt"/>
+          <line num="25" count="0" type="cond" truecount="0" falsecount="7"/>
+          <line num="26" count="0" type="cond" truecount="0" falsecount="6"/>
+          <line num="27" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="28" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="29" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="30" count="0" type="stmt"/>
+          <line num="32" count="0" type="stmt"/>
+          <line num="33" count="0" type="stmt"/>
+          <line num="34" count="0" type="cond" truecount="0" falsecount="4"/>
+          <line num="37" count="1" type="stmt"/>
+          <line num="38" count="1" type="stmt"/>
+          <line num="39" count="1" type="stmt"/>
+          <line num="40" count="1" type="stmt"/>
+          <line num="41" count="1" type="stmt"/>
+          <line num="42" count="0" type="stmt"/>
+          <line num="43" count="0" type="stmt"/>
+          <line num="46" count="1" type="stmt"/>
+          <line num="47" count="1" type="stmt"/>
+          <line num="49" count="0" type="stmt"/>
+          <line num="50" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="52" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="53" count="0" type="cond" truecount="0" falsecount="2"/>
+          <line num="54" count="0" type="stmt"/>
+          <line num="56" count="0" type="stmt"/>
+          <line num="57" count="0" type="stmt"/>
+          <line num="61" count="1" type="stmt"/>
+        </file>
+      </package>
+    </metrics>
+  </project>
+</coverage>

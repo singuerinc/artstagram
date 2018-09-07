@@ -10,14 +10,14 @@ interface IParams {
 }
 
 const encode = encodeURIComponent;
-const asQuery = obj =>
+const asQuery = (obj: IParams) =>
   Object.keys(obj)
     .map(key => encode(key) + "=" + encode(obj[key]))
     .join("&");
 
 const request = (url: string): axios.AxiosPromise<IResponse> => axios.get(url);
 
-const load = async (endpoint: string, params: IParams | null) => {
+const load = async (endpoint: string, params?: IParams | null) => {
   const query = asQuery(params || {});
   const url = `${endpoint}${query ? `&${query}` : ""}`;
   const {
@@ -27,4 +27,4 @@ const load = async (endpoint: string, params: IParams | null) => {
   return data as IArtImage[];
 };
 
-export { load };
+export { load, request, asQuery, IParams, IResponse };

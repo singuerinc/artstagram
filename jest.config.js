@@ -10,6 +10,5 @@ module.exports = {
   transform: {
     "^.+\\.(ts|tsx)$": "<rootDir>/../config/test-preprocessor.js"
   },
-  testMatch: ["**/__tests__/*.(test|spec).(ts|tsx|js)"],
-  "jest.showCoverageOnLoad": true
+  testMatch: ["**/__tests__/*.(test|spec).(ts|tsx|js)"]
 };
