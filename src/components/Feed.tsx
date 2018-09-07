@@ -38,6 +38,8 @@ class Feed extends React.Component<IProps, IState> {
     const { page } = this.state;
     const { urlFunc } = this.props;
 
+    // FIXME: if we are loading and the component is unmounted
+    // then we get an error
     const parsed = await this.loadNextPage(urlFunc)([], page);
 
     this.setState(prevState => ({
