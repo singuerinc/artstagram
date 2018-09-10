@@ -67,4 +67,4 @@ const ImageContainer = styled.div`
   padding-top: ${({ pt }: { pt: string }) => pt};
 `;
 
-export { Image };
+export { Image, IProps };
