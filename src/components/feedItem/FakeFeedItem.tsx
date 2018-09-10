@@ -73,4 +73,4 @@ const FakeFeedItemWrapper = styled.li`
   }
 `;
 
-export { FakeFeedItem };
+export { FakeFeedItem, ImageContainer, FakeAvatar };
