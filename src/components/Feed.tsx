@@ -107,4 +107,4 @@ const FeedContainer = styled.ul`
   width: 100%;
 `;
 
-export { Feed, FeedContainer };
+export { Feed, FeedContainer, IProps };
