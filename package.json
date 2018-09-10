@@ -10,8 +10,7 @@
     "build": "yarn build:client && yarn build:server",
     "build:client": "parcel build src/index.html --out-dir dist/client",
     "build:server": "netlify-lambda build ./lambda",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
+    "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
   "devDependencies": {
@@ -27,6 +26,7 @@
     "http-proxy-middleware": "^0.19.0",
     "netlify-lambda": "^0.4.0",
     "parcel-bundler": "^1.9.7",
+    "ts-jest": "^23.1.4",
     "tslint": "^5.11.0",
     "typescript": "^3.0.1"
   },
