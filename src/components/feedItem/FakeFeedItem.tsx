@@ -22,7 +22,7 @@ const FakeFeedItem = () => (
 
 const ImageContainer = styled.div`
   position: relative;
-  padding-top: 75%;
+  padding-top: 100%;
   background-color: ${OpenColor.gray[1]};
 `;
 
