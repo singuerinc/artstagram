@@ -17,8 +17,6 @@ interface IState {
   loaded: boolean;
 }
 
-const paddingTop = (x: ICover) => 100 / x.aspect + "%";
-
 class Image extends React.Component<IProps, IState> {
   public state = {
     loaded: false,
@@ -42,14 +40,14 @@ class Image extends React.Component<IProps, IState> {
 
     return (
       <div ref={this.props.innerRef}>
-        <ImageContainer pt={paddingTop(cover)}>
+        <ImageContainer>
           {!loaded && <Spinner />}
           {mature && <MatureContentLayer onClose={this.hideMatureLayer} />}
           <Cover
             onLoad={this.onLoad}
             src={src}
             title={title}
-            smallImageUrl={cover.small_image_url}
+            smallImageUrl={cover.small_square_url}
           />
         </ImageContainer>
       </div>
@@ -64,7 +62,7 @@ class Image extends React.Component<IProps, IState> {
 const ImageContainer = styled.div`
   position: relative;
   background-color: ${OpenColor.gray[1]};
-  padding-top: ${({ pt }: { pt: string }) => pt};
+  padding-top: 100%;
 `;
 
 export { Image, IProps };
