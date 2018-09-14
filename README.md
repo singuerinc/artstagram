@@ -1,6 +1,6 @@
 # ArtStagram
 
-Unofficial ArtStation client with an Instagram inspired feed.
+Unofficial/Unsolicited ArtStation client with an Instagram inspired feed.
 
 [https://artstagram.singuerinc.com/](https://artstagram.singuerinc.com/)
 
@@ -11,17 +11,13 @@ Unofficial ArtStation client with an Instagram inspired feed.
 
 ## Screenshots
 
-### Feed (desktop)
+| Feed                               | Profile                                |
+| ---------------------------------- | -------------------------------------- |
+| ![Night](./docs/feed-mobile-1.png) | ![Cloudy](./docs/profile-mobile-1.png) |
 
-![Feed - Desktop](./desktop-feed.png)
-
-### Feed (mobile)
-
-![Feed - Mobile](./mobile-feed.png)
-
-### Artist profile
-
-![Artist Profile](./user-profile.png)
+| Desktop / Tablet
+| -----------------------------------
+| ![Night](./docs/feed-desktop-1.png)
 
 ## Good stuff that make my life easier
 
