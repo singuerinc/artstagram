@@ -13,7 +13,7 @@ export interface IShare {
 
 export function share({ title, url, text, shareFn }: IShare) {
   // native share: only Android
-  if (shareFn) {
+  if (typeof shareFn !== "undefined") {
     shareFn({
       url
     })
