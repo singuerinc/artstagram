@@ -23,8 +23,8 @@ describe("<ShareButton />", () => {
 
     expect(wrapper).toBeTruthy();
     expect(share).toBeCalledWith({
-      text: "baz",
-      title: "foo",
+      // text: "baz",
+      // title: "foo",
       url: "bar"
     });
   });
