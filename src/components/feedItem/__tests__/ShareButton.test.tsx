@@ -4,14 +4,13 @@ import { IProps as IShareButtonProps, ShareButton } from "../ShareButton";
 
 describe("<ShareButton />", () => {
   it("should call the share onClick with the correct parameters", () => {
-    const share = jest.fn(() => {
+    navigator.share = jest.fn(() => {
       return new Promise(() => {
         //
       });
     });
 
     const props: IShareButtonProps = {
-      shareFn: share,
       text: "baz",
       title: "foo",
       url: "bar"
@@ -22,9 +21,9 @@ describe("<ShareButton />", () => {
     wrapper.simulate("click");
 
     expect(wrapper).toBeTruthy();
-    expect(share).toBeCalledWith({
-      // text: "baz",
-      // title: "foo",
+    expect(navigator.share).toBeCalledWith({
+      text: "baz",
+      title: "foo",
       url: "bar"
     });
   });

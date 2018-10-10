@@ -37,7 +37,6 @@ class UserProfile extends React.Component<IProps> {
           </UserAvatar>
           {navigator.share && (
             <ShareButton
-              shareFn={navigator.share}
               title={full_name}
               text={headline}
               url={artstation_profile_url}

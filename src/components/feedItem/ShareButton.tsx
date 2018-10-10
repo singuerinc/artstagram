@@ -7,13 +7,12 @@ export interface IProps {
   title: string;
   text: string;
   url: string;
-  shareFn: (options: ShareOptions) => Promise<{}>;
 }
 
-const ShareButton = ({ title, text, url, shareFn }: IProps) => (
+const ShareButton = ({ title, text, url }: IProps) => (
   <ShareButtonAsset
     onClick={() => {
-      share({ title, text, url, shareFn });
+      share({ title, text, url });
     }}
   >
     <svg
