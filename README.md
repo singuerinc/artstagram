@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/singuerinc/artstagram/tree/master.svg?style=svg)](https://circleci.com/gh/singuerinc/artstagram/tree/master) [![codecov](https://codecov.io/gh/singuerinc/artstagram/branch/master/graph/badge.svg)](https://codecov.io/gh/singuerinc/artstagram) [![Known Vulnerabilities](https://snyk.io/test/github/singuerinc/artstagram/badge.svg)](https://snyk.io/test/github/singuerinc/artstagram) [![Codacy Badge](https://api.codacy.com/project/badge/Grade/017484db6b3548f4b63e1be6e72d4e8f)](https://www.codacy.com/app/nahuel.scotti/artstagram)
+
 # ArtStagram
 
 Unofficial/Unsolicited ArtStation client with an Instagram inspired feed.
