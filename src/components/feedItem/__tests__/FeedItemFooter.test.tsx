@@ -29,7 +29,6 @@ describe("<FeedItemFooter />", () => {
 
     expect(wrapper.find(ArtTitle).text()).toBe("foo & bar");
     expect(wrapper.find(ShareButton).props()).toEqual({
-      shareFn: navigator.share,
       text: "foz &amp; baz",
       title: "foo &amp; bar",
       url: "https://foo.bar/artwork/awesome"
