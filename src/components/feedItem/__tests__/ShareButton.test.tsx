@@ -4,11 +4,17 @@ import { IProps as IShareButtonProps, ShareButton } from "../ShareButton";
 
 describe("<ShareButton />", () => {
   it("should call the share onClick with the correct parameters", () => {
-    const share = jest.fn();
+    const share = jest.fn(() => {
+      return new Promise(() => {
+        //
+      });
+    });
+
     const props: IShareButtonProps = {
-      permalink: "bar",
-      share,
-      title: "foo"
+      shareFn: share,
+      text: "baz",
+      title: "foo",
+      url: "bar"
     };
 
     const wrapper = mount(<ShareButton {...props} />);
@@ -16,6 +22,10 @@ describe("<ShareButton />", () => {
     wrapper.simulate("click");
 
     expect(wrapper).toBeTruthy();
-    expect(share).toBeCalled();
+    expect(share).toBeCalledWith({
+      text: "baz",
+      title: "foo",
+      url: "bar"
+    });
   });
 });

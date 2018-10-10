@@ -10,11 +10,16 @@ import { art } from "./art.fixture";
 
 describe("<FeedItemFooter />", () => {
   it("should render children and props", () => {
-    navigator.share = jest.fn().mockImplementation((title, permalink) => {
-      //
-    });
     art.permalink = "https://foo.bar/artwork/awesome";
     art.title = "foo &amp; bar";
+    art.description = "foz &amp; baz";
+
+    // @ts-ignore
+    navigator.share = jest.fn(() => {
+      return new Promise(() => {
+        //
+      });
+    });
 
     const props: IFeedItemFooterProps = {
       art
@@ -24,8 +29,10 @@ describe("<FeedItemFooter />", () => {
 
     expect(wrapper.find(ArtTitle).text()).toBe("foo & bar");
     expect(wrapper.find(ShareButton).props()).toEqual({
-      permalink: "https://foo.bar/artwork/awesome",
-      title: "foo &amp; bar"
+      shareFn: navigator.share,
+      text: "foz &amp; baz",
+      title: "foo &amp; bar",
+      url: "https://foo.bar/artwork/awesome"
     });
   });
 });

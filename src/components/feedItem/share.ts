@@ -1,26 +1,28 @@
-interface IShare {
+export interface IShare {
+  url: string;
+  text: string;
   title: string;
-  permalink: string;
+  shareFn: (
+    data: {
+      url?: string;
+      text?: string;
+      title?: string;
+    }
+  ) => Promise<any>;
 }
 
-function share({ title, permalink: url }: IShare) {
+export function share({ title, url, text, shareFn }: IShare) {
   // native share: only Android
-  // @ts-ignore
-  if (navigator.share) {
-    navigator
-      // @ts-ignore
-      .share({
-        text: "",
-        title,
-        url
-      })
+  if (shareFn) {
+    shareFn({
+      url
+    })
       .then(() => {
         //
       })
-      .catch(() => {
-        //
+      .catch(e => {
+        // tslint:disable-next-line
+        console.error(e);
       });
   }
 }
-
-export { IShare, share };

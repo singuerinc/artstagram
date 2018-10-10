@@ -1,18 +1,19 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
 import styled from "styled-components";
-import { IShare } from "./share";
+import { share } from "./share";
 
 export interface IProps {
   title: string;
-  permalink: string;
-  share: (opt: IShare) => void;
+  text: string;
+  url: string;
+  shareFn: (options: ShareOptions) => Promise<{}>;
 }
 
-const ShareButton = ({ title, permalink: url, share }: IProps) => (
+const ShareButton = ({ title, text, url, shareFn }: IProps) => (
   <ShareButtonAsset
     onClick={() => {
-      share({ title, permalink: url });
+      share({ title, text, url, shareFn });
     }}
   >
     <svg
