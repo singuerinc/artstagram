@@ -12,8 +12,7 @@ interface IState {
   loaded: boolean;
 }
 
-const smallToLarge = (x: string) =>
-  x.replace(/\/[\d]+\/small_square\//, "/large/");
+const smallToLarge = (x: string) => x.replace(/\/small_square\//, "/large/");
 
 const openLargeImage = (smallImageUrl: string) => () => {
   window.open(smallToLarge(smallImageUrl));

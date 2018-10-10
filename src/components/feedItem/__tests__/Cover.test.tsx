@@ -62,7 +62,7 @@ describe("<Cover />", () => {
 describe("smallToLarge", () => {
   it("should convert an URL", () => {
     const small =
-      "https://cdnb.artstation.com/p/assets/images/images/012/713/977/small/aisosa-ugiagbe-1.jpg?1536153239";
+      "https://cdnb.artstation.com/p/assets/images/images/012/713/977/small_square/aisosa-ugiagbe-1.jpg?1536153239";
     const large =
       "https://cdnb.artstation.com/p/assets/images/images/012/713/977/large/aisosa-ugiagbe-1.jpg?1536153239";
 
@@ -71,9 +71,9 @@ describe("smallToLarge", () => {
 });
 
 describe("openLargeImage", () => {
-  it("should open a link in a new window with a converted small image into large", () => {
+  it("should open a link in a new window with a converted small_square image into large", () => {
     const small =
-      "https://cdnb.artstation.com/p/assets/images/images/012/713/977/small/aisosa-ugiagbe-1.jpg?1536153239";
+      "https://cdnb.artstation.com/p/assets/images/images/012/713/977/small_square/aisosa-ugiagbe-1.jpg?1536153239";
     const large =
       "https://cdnb.artstation.com/p/assets/images/images/012/713/977/large/aisosa-ugiagbe-1.jpg?1536153239";
 

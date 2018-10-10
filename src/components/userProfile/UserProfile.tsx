@@ -36,7 +36,11 @@ class UserProfile extends React.Component<IProps> {
             <img src={medium_avatar_url} alt={full_name} />
           </UserAvatar>
           {navigator.share && (
-            <ShareButton title={full_name} permalink={artstation_profile_url} />
+            <ShareButton
+              title={full_name}
+              text={headline}
+              url={artstation_profile_url}
+            />
           )}
           <UserFullName>{full_name}</UserFullName>
           <UserHeadline

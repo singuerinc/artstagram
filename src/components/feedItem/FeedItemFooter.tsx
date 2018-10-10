@@ -16,7 +16,11 @@ const FeedItemFooter = ({ art }: IProps) => (
       }}
     />
     {navigator.share && (
-      <ShareButton title={art.title} permalink={art.permalink} />
+      <ShareButton
+        title={art.title}
+        text={art.description}
+        url={art.permalink}
+      />
     )}
   </Footer>
 );
