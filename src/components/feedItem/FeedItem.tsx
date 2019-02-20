@@ -49,13 +49,16 @@ class FeedItem extends React.Component<IProps, IState> {
 
 const FeedItemContainer = styled.li`
   width: 100%;
-  background-color: ${OpenColor.white};
+  /* background-color: ${OpenColor.white}; */
+  background-color: transparent;
   color: black;
   margin: 1rem 0;
   position: relative;
+  box-shadow: 0 0 3em black;
 
   @media only screen and (min-width: 48rem) {
-    border: 1px solid ${OpenColor.gray[3]};
+    /* border: 1px solid ${OpenColor.gray[3]}; */
+    border: 1px solid #222;
     border-radius: 3px;
 
     &:first-child {
