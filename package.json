@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
-    "jest": "^23.5.0",
+    "jest": "^24.0.0",
     "node-fetch": "^2.2.0",
     "nprogress": "^0.2.0",
     "open-color": "^1.6.3",
