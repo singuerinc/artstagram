@@ -32,6 +32,7 @@ const UserFullName = styled.h2`
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: ${OpenColor.gray[9]};
 `;
 
 const UserName = styled.h3`

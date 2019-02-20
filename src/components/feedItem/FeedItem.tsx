@@ -55,6 +55,7 @@ const FeedItemContainer = styled.li`
   position: relative;
 
   @media only screen and (min-width: 48rem) {
+    box-shadow: 0 0 3em ${OpenColor.gray[3]};
     border: 1px solid ${OpenColor.gray[3]};
     border-radius: 3px;
 
@@ -64,4 +65,4 @@ const FeedItemContainer = styled.li`
   }
 `;
 
-export { FeedItem };
+export { FeedItem, FeedItemContainer };
