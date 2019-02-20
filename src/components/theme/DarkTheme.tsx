@@ -2,7 +2,12 @@ import * as OpenColor from "open-color";
 import * as React from "react";
 import { createGlobalStyle } from "styled-components";
 import { FeedItemContainer } from "../feedItem/FeedItem";
-import { Avatar, StyledNavLink } from "../feedItem/FeedItemHeader";
+import { ArtTitle } from "../feedItem/FeedItemFooter";
+import {
+  Avatar,
+  StyledNavLink,
+  UserFullName
+} from "../feedItem/FeedItemHeader";
 
 export function Theme() {
   const Dark = createGlobalStyle`
@@ -12,9 +17,9 @@ export function Theme() {
 
     ${FeedItemContainer}{
       background-color: transparent;
-      box-shadow: 0 0 3em black;
 
       @media only screen and (min-width: 48rem) {
+        box-shadow: 0 0 3em black;
         border: 1px solid ${OpenColor.gray[9]};
       }
     }
@@ -32,8 +37,12 @@ export function Theme() {
       }
 
       &::before {
-        border: 2px solid ${OpenColor.gray[8]};
+        border-color: transparent;
       }
+    }
+
+    ${ArtTitle}, ${UserFullName}{
+      color: ${OpenColor.gray[6]};
     }
   `;
 
@@ -52,7 +61,7 @@ export function Icon({ onClick }: IProps) {
       height="24"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="#222"
+      stroke="#444"
       strokeWidth="2"
       strokeLinecap="round"
       strokeLinejoin="round"
