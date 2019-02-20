@@ -107,7 +107,7 @@ const StyledNavLink = styled(NavLink)`
 
   @media only screen and (min-width: 48rem) {
     &.selected {
-      color: ${OpenColor.violet[9]};
+      color: ${OpenColor.gray[1]};
     }
   }
 `;

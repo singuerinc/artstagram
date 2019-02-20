@@ -34,6 +34,7 @@ const FakeAvatar = styled.div`
 `;
 
 const FakeFeedItemWrapper = styled.li`
+  border-radius: 3px;
   width: 100%;
   background-color: ${OpenColor.white};
   color: black;
