@@ -37,6 +37,7 @@ const UserFullName = styled.h2`
 const UserName = styled.h3`
   margin: 0;
   font-weight: 300;
+  color: ${OpenColor.gray[6]};
   margin-left: auto;
   font-size: 0.9rem;
 `;
@@ -47,8 +48,6 @@ const Avatar = styled.img`
   height: 32px;
   border-radius: 50%;
   overflow: hidden;
-  filter: grayscale(50%);
-  opacity: 0.3;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -57,16 +56,16 @@ const StyledNavLink = styled(NavLink)`
   align-items: center;
   position: relative;
   cursor: pointer;
-  color: ${OpenColor.gray[8]};
+  color: ${OpenColor.gray[9]};
   text-decoration: none;
   transition: color 300ms;
 
   &:hover {
-    color: ${OpenColor.gray[7]};
+    color: ${OpenColor.gray[6]};
   }
 
   &::before {
-    border: 2px solid ${OpenColor.gray[8]};
+    border: 2px solid ${OpenColor.gray[3]};
     border-radius: 50%;
     content: "";
     z-index: 1;
