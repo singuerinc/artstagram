@@ -1,13 +1,21 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
 import { createGlobalStyle } from "styled-components";
+import { StyledTitle } from "../feed/Title";
+import {
+  FakeAvatar,
+  FakeFeedItemWrapper,
+  ImageContainer as FakeImageContainer
+} from "../feedItem/FakeFeedItem";
 import { FeedItemContainer } from "../feedItem/FeedItem";
 import { ArtTitle } from "../feedItem/FeedItemFooter";
 import {
   Avatar,
   StyledNavLink,
-  UserFullName
+  UserFullName,
+  UserName
 } from "../feedItem/FeedItemHeader";
+import { ImageContainer } from "../Image";
 
 export function Theme() {
   const Dark = createGlobalStyle`
@@ -43,6 +51,29 @@ export function Theme() {
 
     ${ArtTitle}, ${UserFullName}{
       color: ${OpenColor.gray[6]};
+    }
+
+    ${StyledTitle}{
+      color: ${OpenColor.gray[3]};
+      background-color: transparent;
+    }
+
+    ${FakeFeedItemWrapper} {
+      ${UserFullName}, ${UserName}, ${FakeAvatar}{
+        background-color: ${OpenColor.gray[9]};
+      }
+      ${StyledNavLink}{
+        &::before {
+          border-color: ${OpenColor.gray[9]};
+        }
+      }
+      ${ArtTitle}{
+        background-color: ${OpenColor.gray[9]};
+      }
+    }
+
+    ${FakeImageContainer}, ${ImageContainer}, ${FakeFeedItemWrapper} {
+      background-color: transparent;
     }
   `;
 

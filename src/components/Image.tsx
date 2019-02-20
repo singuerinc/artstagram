@@ -65,4 +65,4 @@ const ImageContainer = styled.div`
   padding-top: 100%;
 `;
 
-export { Image, IProps };
+export { Image, ImageContainer, IProps };
