@@ -1,5 +1,7 @@
 import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
+import { openLargeImage } from "./cover.utils";
 
 export interface IProps {
   title: string;
@@ -8,42 +10,24 @@ export interface IProps {
   onLoad: () => void;
 }
 
-interface IState {
-  loaded: boolean;
-}
+function Cover({ onLoad: onLoadCover, title, smallImageUrl, src }: IProps) {
+  const [loaded, setLoaded] = useState(false);
 
-const smallToLarge = (x: string) =>
-  x.replace(/(\/[\d]{14})?\/small_square\//gi, "/large/");
-
-const openLargeImage = (smallImageUrl: string) => () => {
-  window.open(smallToLarge(smallImageUrl));
-};
-
-class Cover extends React.Component<IProps, IState> {
-  public state = {
-    loaded: false
-  };
-
-  public render() {
-    const { title, smallImageUrl, src } = this.props;
-    const { loaded } = this.state;
-
-    return (
-      <StyledImage
-        onLoad={this.onLoad}
-        loaded={loaded}
-        src={src}
-        title={title}
-        alt={title}
-        onClick={openLargeImage(smallImageUrl)}
-      />
-    );
+  function onLoad() {
+    setLoaded(true);
+    onLoadCover();
   }
 
-  private onLoad = () => {
-    this.setState({ loaded: true });
-    this.props.onLoad();
-  };
+  return (
+    <StyledImage
+      onLoad={onLoad}
+      loaded={loaded}
+      src={src}
+      title={title}
+      alt={title}
+      onClick={openLargeImage(smallImageUrl)}
+    />
+  );
 }
 
 const StyledImage = styled.img`
@@ -58,4 +42,4 @@ const StyledImage = styled.img`
   cursor: pointer;
 `;
 
-export { Cover, smallToLarge, openLargeImage };
+export { Cover };
