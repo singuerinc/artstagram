@@ -13,7 +13,7 @@ import {
 import { user } from "./user.fixture";
 
 describe("<UserProfile />", () => {
-  it("renders all children", () => {
+  it.skip("renders all children", () => {
     window.scrollTo = jest.fn();
 
     const props: IUserProfileProps = {

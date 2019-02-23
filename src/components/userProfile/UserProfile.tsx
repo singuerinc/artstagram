@@ -12,10 +12,8 @@ export interface IProps {
   goBack: () => void;
 }
 
-const scrollToTop = () => window.scrollTo(0, 0);
-
 function UserProfile({ user, goBack }: IProps) {
-  useEffect(() => scrollToTop());
+  useEffect(() => window.scrollTo(0, 0));
 
   const {
     headline,

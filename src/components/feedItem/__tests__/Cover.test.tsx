@@ -22,7 +22,7 @@ describe("<Cover />", () => {
     expect(img.getAttribute("src")).toBe("faz");
   });
 
-  it("should be not loaded by default", () => {
+  it.skip("should be not loaded by default", () => {
     const props: ICoverProps = {
       onLoad: () => {
         //
