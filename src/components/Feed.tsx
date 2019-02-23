@@ -1,6 +1,7 @@
 import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import * as React from "react";
+import { useEffect, useState } from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../IArtImage";
@@ -9,13 +10,12 @@ import { FakeFeedItem } from "./feedItem/FakeFeedItem";
 import { FeedItem } from "./feedItem/FeedItem";
 
 const hasCover = (x: IArtImage) => !!x.cover;
-
+const equal = (value: IArtImage) => (x: IArtImage) => x.id === value.id;
 const unique = (arr: IArtImage[]) => {
-  return arr.filter((value: IArtImage, index: number, self: IArtImage[]) => {
-    return (
-      typeof self.find((x: IArtImage) => x.id === value.id) !== "undefined"
-    );
-  });
+  return arr.filter(
+    (value: IArtImage, _: number, self: IArtImage[]) =>
+      typeof self.find(equal(value)) !== "undefined"
+  );
 };
 
 interface IProps {
@@ -23,78 +23,36 @@ interface IProps {
   user?: IUser;
 }
 
-interface IState {
-  images: IArtImage[] | null;
-  page: number;
-}
+function Feed({ urlFunc, user }: IProps) {
+  const [images, setImages] = useState<IArtImage[]>([]);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(true);
 
-class Feed extends React.Component<IProps, IState> {
-  public state = {
-    images: [],
-    page: 1
-  };
-
-  public async componentDidMount() {
-    const { page } = this.state;
-    const { urlFunc } = this.props;
-
-    // FIXME: if we are loading and the component is unmounted
-    // then we get an error
-    const parsed = await this.loadNextPage(urlFunc)([], page);
-
-    this.setState(prevState => ({
-      images: parsed,
-      page: prevState.page + 1
-    }));
-  }
-
-  public render() {
-    const { page, images } = this.state;
-    const { user, urlFunc } = this.props;
-    const isLoading = images.length === 0;
-
-    if (isLoading) {
-      return (
-        <FeedContainer>
-          <FakeFeedItem />
-          <FakeFeedItem />
-        </FeedContainer>
-      );
-    }
-
-    return (
-      <FeedContainer>
-        {images.map((art: IArtImage) => (
-          <FeedItem key={art.id} art={art} user={user || art.user} />
-        ))}
-        <Waypoint
-          onEnter={async () => {
-            const parsed = await this.loadNextPage(urlFunc)(images, page);
-            this.setState(preState => ({
-              images: parsed,
-              page: preState.page + 1
-            }));
-          }}
-        />
-      </FeedContainer>
-    );
-  }
-
-  private loadNextPage = (url: string) => async (
-    prevImages: IArtImage[],
-    page: number
-  ) => {
+  useEffect(() => {
     NProgress.start();
+    // ! no way of canceling the loading
+    load(urlFunc, { page }).then(newImages => {
+      const onlyWithCover = unique([...images, ...newImages]).filter(hasCover);
+      setImages(onlyWithCover);
+      setIsLoading(false);
+      NProgress.done();
+    });
+  }, [page]);
 
-    const newImages = await load(url, { page });
-    const onlyWithCover = unique([...prevImages, ...newImages]).filter(
-      hasCover
-    );
-
-    NProgress.done();
-
-    return onlyWithCover;
-  };
+  // TODO: use Suspense
+  return isLoading ? (
+    <FeedContainer>
+      <FakeFeedItem />
+      <FakeFeedItem />
+    </FeedContainer>
+  ) : (
+    <FeedContainer>
+      {images.map((art: IArtImage) => (
+        <FeedItem key={art.id} art={art} user={user || art.user} />
+      ))}
+      <Waypoint onEnter={() => setPage(page + 1)} />
+    </FeedContainer>
+  );
 }
 
 const FeedContainer = styled.ul`
