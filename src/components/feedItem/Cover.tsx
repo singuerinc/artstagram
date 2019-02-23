@@ -30,13 +30,13 @@ function Cover({ onLoad: onLoadCover, title, smallImageUrl, src }: IProps) {
   );
 }
 
-const StyledImage = styled.img`
+const StyledImage = styled<{ loaded: boolean }>("img")`
   width: 100%;
   display: block;
   margin: 0 auto;
   position: absolute;
   top: 0;
-  opacity: ${({ loaded }: { loaded: boolean }) => (loaded ? 1 : 0)};
+  opacity: ${props => (props.loaded ? 1 : 0)};
   transition: opacity 0.3s;
   transition-delay: 0.3s;
   cursor: pointer;
