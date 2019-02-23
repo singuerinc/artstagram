@@ -1,5 +1,5 @@
 import { IArtImage } from "../../IArtImage";
-import { asQuery, IParams, IResponse, load, request } from "../api";
+import { asQuery, IParams, load } from "../api";
 
 describe("asQuery", () => {
   it("should convert parameters in query", () => {

@@ -54,8 +54,9 @@ describe("<Image />", () => {
       art,
       src: null
     };
-    const wrapper = mount(<Image {...props} />);
+    const wrapper = mount<Image>(<Image {...props} />);
     wrapper.setState({ mature: true });
+    // @ts-ignore
     wrapper.hideMatureLayer();
 
     expect(wrapper.state().mature).toBeTruthy();

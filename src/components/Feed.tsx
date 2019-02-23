@@ -30,7 +30,7 @@ interface IState {
 
 class Feed extends React.Component<IProps, IState> {
   public state = {
-    images: null,
+    images: [],
     page: 1
   };
 
@@ -51,7 +51,7 @@ class Feed extends React.Component<IProps, IState> {
   public render() {
     const { page, images } = this.state;
     const { user, urlFunc } = this.props;
-    const isLoading = images === null;
+    const isLoading = images.length === 0;
 
     if (isLoading) {
       return (

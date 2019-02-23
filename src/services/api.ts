@@ -15,6 +15,7 @@ const asQuery = (obj: IParams) =>
     .map(key => encode(key) + "=" + encode(obj[key]))
     .join("&");
 
+// @ts-ignore
 const request = (url: string): axios.AxiosPromise<IResponse> => axios.get(url);
 
 const load = async (endpoint: string, params?: IParams | null) => {

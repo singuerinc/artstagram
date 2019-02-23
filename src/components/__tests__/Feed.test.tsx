@@ -1,4 +1,4 @@
-import { mount, render } from "enzyme";
+import { mount } from "enzyme";
 import * as React from "react";
 import { BrowserRouter } from "react-router-dom";
 import { data as images } from "../../__mocks__/remote.fixture";
