@@ -15,26 +15,6 @@ enum Theme {
 export function ThemeSwitch() {
   const [theme, setTheme] = useState(Theme.DARK);
 
-  const Wapper = styled.div`
-    display: none;
-    @media only screen and (min-width: 48rem) {
-      display: flex;
-      position: fixed;
-      bottom: 2em;
-      right: 2em;
-      width: 2.5em;
-      height: 2.5em;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: opacity 0.4s ease;
-
-      &:hover {
-        opacity: 0.2;
-      }
-    }
-  `;
-
   return (
     <Wapper>
       {theme === Theme.DEFAULT && (
@@ -52,3 +32,23 @@ export function ThemeSwitch() {
     </Wapper>
   );
 }
+
+const Wapper = styled.div`
+  display: none;
+  @media only screen and (min-width: 48rem) {
+    display: flex;
+    position: fixed;
+    bottom: 2em;
+    right: 2em;
+    width: 2.5em;
+    height: 2.5em;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.4s ease;
+
+    &:hover {
+      opacity: 0.2;
+    }
+  }
+`;
