@@ -1,5 +1,6 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import { IUser } from "../../IArtImage";
 import { BackButton } from "../common/BackButton";
@@ -13,53 +14,48 @@ export interface IProps {
 
 const scrollToTop = () => window.scrollTo(0, 0);
 
-class UserProfile extends React.Component<IProps> {
-  public componentDidMount() {
-    scrollToTop();
-  }
+function UserProfile({ user, goBack }: IProps) {
+  useEffect(() => scrollToTop());
 
-  public render() {
-    const { user } = this.props;
-    const {
-      headline,
-      medium_avatar_url,
-      full_name,
-      artstation_profile_url,
-      location
-    } = user;
+  const {
+    headline,
+    medium_avatar_url,
+    full_name,
+    artstation_profile_url,
+    location
+  } = user;
 
-    return (
-      <UserProfileContainer>
-        <BackButton onClick={() => this.props.goBack()} />
-        <UserInfoContainer>
-          <UserAvatar>
-            <img src={medium_avatar_url} alt={full_name} />
-          </UserAvatar>
-          {navigator.share && (
-            <ShareButton
-              title={full_name}
-              text={headline}
-              url={artstation_profile_url}
-            />
-          )}
-          <UserFullName>{full_name}</UserFullName>
-          <UserHeadline
-            dangerouslySetInnerHTML={{
-              __html: headline
-            }}
+  return (
+    <UserProfileContainer>
+      <BackButton onClick={() => goBack()} />
+      <UserInfoContainer>
+        <UserAvatar>
+          <img src={medium_avatar_url} alt={full_name} />
+        </UserAvatar>
+        {navigator.share && (
+          <ShareButton
+            title={full_name}
+            text={headline}
+            url={artstation_profile_url}
           />
-          <UserCountryCityName>{location}</UserCountryCityName>
-          <UserProfileLink href={artstation_profile_url} target="_blank">
-            View on ArtStation
-          </UserProfileLink>
-        </UserInfoContainer>
-        <Feed
-          user={user}
-          urlFunc={`/.netlify/functions/user-projects?user=${user.username}`}
+        )}
+        <UserFullName>{full_name}</UserFullName>
+        <UserHeadline
+          dangerouslySetInnerHTML={{
+            __html: headline
+          }}
         />
-      </UserProfileContainer>
-    );
-  }
+        <UserCountryCityName>{location}</UserCountryCityName>
+        <UserProfileLink href={artstation_profile_url} target="_blank">
+          View on ArtStation
+        </UserProfileLink>
+      </UserInfoContainer>
+      <Feed
+        user={user}
+        urlFunc={`/.netlify/functions/user-projects?user=${user.username}`}
+      />
+    </UserProfileContainer>
+  );
 }
 
 const UserInfoContainer = styled.div`
@@ -84,13 +80,6 @@ const UserProfileContainer = styled.div`
   max-width: 48rem;
   width: 100%;
 `;
-
-// const UserBackground = styled.img`
-//   position: absolute;
-//   height: 100vh;
-//   opacity: 0.3;
-//   pointer-events: none;
-// `;
 
 const UserAvatar = styled.div`
   position: relative;
@@ -155,7 +144,6 @@ const UserProfileLink = styled.a`
 
 export {
   UserProfile,
-  // UserBackground,
   UserAvatar,
   UserFullName,
   UserCountryCityName,
