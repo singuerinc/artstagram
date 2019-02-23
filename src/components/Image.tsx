@@ -1,7 +1,8 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
+import { useState } from "react";
 import styled from "styled-components";
-import { IArtImage, ICover } from "../IArtImage";
+import { IArtImage } from "../IArtImage";
 import { Spinner } from "./common/Spinner";
 import { Cover } from "./feedItem/Cover";
 import { MatureContentLayer } from "./feedItem/MatureContentLayer";
@@ -12,51 +13,33 @@ interface IProps {
   src: string | null;
 }
 
-interface IState {
-  mature: boolean;
-  loaded: boolean;
-}
+function Image({
+  innerRef,
+  art: { adult_content, cover, title },
+  src
+}: IProps) {
+  const [loaded, setLoaded] = useState(false);
+  const [mature, setMature] = useState(adult_content);
 
-class Image extends React.Component<IProps, IState> {
-  public state = {
-    loaded: false,
-    mature: false
-  };
+  const hideMatureLayer = () => setMature(false);
+  const onLoad = () => setLoaded(true);
 
-  public hideMatureLayer = () => {
-    this.setState({ mature: false });
-  };
+  // TODO: use Ruspenders
 
-  public componentWillReceiveProps(nextProps: IProps) {
-    this.setState({ mature: nextProps.art.adult_content });
-  }
-
-  public render() {
-    const {
-      art: { cover, title },
-      src
-    } = this.props;
-    const { mature, loaded } = this.state;
-
-    return (
-      <div ref={this.props.innerRef}>
-        <ImageContainer>
-          {!loaded && <Spinner />}
-          {mature && <MatureContentLayer onClose={this.hideMatureLayer} />}
-          <Cover
-            onLoad={this.onLoad}
-            src={src}
-            title={title}
-            smallImageUrl={cover.small_square_url}
-          />
-        </ImageContainer>
-      </div>
-    );
-  }
-
-  private onLoad = () => {
-    this.setState({ loaded: true });
-  };
+  return (
+    <div ref={innerRef}>
+      <ImageContainer>
+        {!loaded && <Spinner />}
+        {mature && <MatureContentLayer onClose={hideMatureLayer} />}
+        <Cover
+          onLoad={onLoad}
+          src={src}
+          title={title}
+          smallImageUrl={cover.small_square_url}
+        />
+      </ImageContainer>
+    </div>
+  );
 }
 
 const ImageContainer = styled.div`
