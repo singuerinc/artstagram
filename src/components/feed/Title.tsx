@@ -3,16 +3,16 @@ import * as React from "react";
 import styled from "styled-components";
 import { Sorting } from "../../Sorting";
 
+export const communitify = (x: string) =>
+  x === Sorting.COMMUNITY ? "community" : x;
+
 interface IProps {
   title: string;
 }
 
-export const communitify = (x: string) =>
-  x === Sorting.COMMUNITY ? "community" : x;
-
-const Title = ({ title }: IProps) => (
-  <StyledTitle>{communitify(title)}</StyledTitle>
-);
+function Title({ title }: IProps) {
+  return <StyledTitle>{communitify(title)}</StyledTitle>;
+}
 
 const StyledTitle = styled.h3`
   margin: 0;
