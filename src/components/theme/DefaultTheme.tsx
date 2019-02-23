@@ -1,11 +1,7 @@
 import * as React from "react";
-import { createGlobalStyle } from "styled-components";
 
 export function Theme() {
-  const Default = createGlobalStyle`
-  `;
-
-  return <Default />;
+  return null;
 }
 
 interface IProps {

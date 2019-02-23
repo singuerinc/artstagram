@@ -8,6 +8,7 @@ html {
   margin: 0;
   padding: 0;
   background-color: white;
+  transition: background-color 0.2s ease;
 }
 
 body {
