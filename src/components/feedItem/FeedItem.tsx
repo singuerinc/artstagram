@@ -1,5 +1,6 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
+import { useRef, useState } from "react";
 import Waypoint from "react-waypoint";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
@@ -11,40 +12,30 @@ interface IProps {
   art: IArtImage;
   user: IUser;
 }
-interface IState {
-  src: string | null;
-}
 
-class FeedItem extends React.Component<IProps, IState> {
-  public state = {
-    src: null
-  };
+function FeedItem({ art, user }: IProps) {
+  const [src, setSrc] = useState<string | null>(null);
+  const { id, cover } = art;
+  const ref = useRef<HTMLLIElement>();
 
-  public render() {
-    const { src } = this.state;
-    const { art, user } = this.props;
-    const { id, cover } = art;
-    const ref: React.RefObject<HTMLLIElement> = React.createRef();
-
-    return (
-      <FeedItemContainer key={id} ref={ref}>
-        <FeedItemHeader art={art} user={user} />
-        <Waypoint
-          key={id}
-          scrollableAncestor={window}
-          bottomOffset={-500}
-          onEnter={() => {
-            if (src === null) {
-              this.setState({ src: cover.small_square_url });
-            }
-          }}
-        >
-          <Image art={art} src={src} />
-        </Waypoint>
-        <FeedItemFooter art={art} />
-      </FeedItemContainer>
-    );
-  }
+  return (
+    <FeedItemContainer key={id} ref={ref}>
+      <FeedItemHeader art={art} user={user} />
+      <Waypoint
+        key={id}
+        scrollableAncestor={window}
+        bottomOffset={-500}
+        onEnter={() => {
+          if (src === null) {
+            setSrc(cover.small_square_url);
+          }
+        }}
+      >
+        <Image art={art} src={src} />
+      </Waypoint>
+      <FeedItemFooter art={art} />
+    </FeedItemContainer>
+  );
 }
 
 const FeedItemContainer = styled.li`
