@@ -16,6 +16,7 @@ import {
   UserName
 } from "../feedItem/FeedItemHeader";
 import { ImageContainer } from "../Image";
+import { StyledNavLink as NavStyledNavLink } from "../NavBar";
 
 export function Theme() {
   const Dark = createGlobalStyle`
@@ -49,6 +50,14 @@ export function Theme() {
       }
     }
 
+    ${NavStyledNavLink}{
+      @media only screen and (min-width: 48rem) {
+        &.selected {
+          color: ${OpenColor.gray[1]};
+        }
+      }
+    }
+
     ${ArtTitle}, ${UserFullName}{
       color: ${OpenColor.gray[6]};
     }
@@ -65,11 +74,13 @@ export function Theme() {
       ${UserFullName}, ${UserName}, ${FakeAvatar}{
         background-color: ${OpenColor.gray[9]};
       }
+
       ${StyledNavLink}{
         &::before {
           border-color: ${OpenColor.gray[9]};
         }
       }
+
       ${ArtTitle}{
         background-color: ${OpenColor.gray[9]};
       }
