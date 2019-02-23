@@ -6,7 +6,7 @@ import { StyledNavLink, UserFullName, UserName } from "./FeedItemHeader";
 
 const FakeFeedItem = () => (
   <FakeFeedItemWrapper>
-    <div>
+    <>
       <StyledNavLink to="">
         <FakeAvatar />
         <UserFullName />
@@ -16,7 +16,7 @@ const FakeFeedItem = () => (
       <Footer>
         <ArtTitle />
       </Footer>
-    </div>
+    </>
   </FakeFeedItemWrapper>
 );
 
