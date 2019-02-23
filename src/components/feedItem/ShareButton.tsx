@@ -9,12 +9,8 @@ export interface IProps {
   url: string;
 }
 
-const ShareButton = ({ title, text, url }: IProps) => (
-  <ShareButtonAsset
-    onClick={() => {
-      share({ title, text, url });
-    }}
-  >
+const ShareButton = (props: IProps) => (
+  <ShareButtonAsset onClick={() => share(props)}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
