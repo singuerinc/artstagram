@@ -1,11 +1,7 @@
 import { mount, shallow } from "enzyme";
 import * as React from "react";
-import {
-  Cover,
-  IProps as ICoverProps,
-  openLargeImage,
-  smallToLarge
-} from "../Cover";
+import { Cover, IProps as ICoverProps } from "../Cover";
+import { openLargeImage, smallToLarge } from "../cover.utils";
 
 describe("<Cover />", () => {
   it("renders props correctly", () => {
