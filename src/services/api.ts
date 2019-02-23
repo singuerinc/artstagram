@@ -1,4 +1,4 @@
-import * as axios from "axios";
+import ky, { ResponsePromise } from "ky";
 import { IArtImage } from "../IArtImage";
 
 interface IResponse {
@@ -15,15 +15,12 @@ const asQuery = (obj: IParams) =>
     .map(key => encode(key) + "=" + encode(obj[key]))
     .join("&");
 
-// @ts-ignore
-const request = (url: string): axios.AxiosPromise<IResponse> => axios.get(url);
+const request = (url: string): ResponsePromise => ky.get(url);
 
 const load = async (endpoint: string, params?: IParams | null) => {
   const query = asQuery(params || {});
   const url = `${endpoint}${query ? `&${query}` : ""}`;
-  const {
-    data: { data }
-  } = await request(url);
+  const { data } = await request(url).json();
 
   return data as IArtImage[];
 };

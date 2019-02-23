@@ -23,7 +23,7 @@ Unofficial/Unsolicited ArtStation client with an Instagram inspired feed.
 
 ## Good stuff that make my life easier
 
-- [axios](https://github.com/axios/axios)
+- [ky](https://github.com/sindresorhus/ky)
 - [React](https://reactjs.org/)
 - [React Router](https://github.com/ReactTraining/react-router)
 - [react-waypoint](https://github.com/brigade/react-waypoint)
