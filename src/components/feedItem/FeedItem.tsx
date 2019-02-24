@@ -14,7 +14,7 @@ interface IProps {
 }
 
 function FeedItem({ art, user }: IProps) {
-  const [src, setSrc] = useState<string>("");
+  const [src, setSrc] = useState<string>();
   const { id, cover } = art;
   const ref = useRef<HTMLLIElement>(null);
 
@@ -26,7 +26,7 @@ function FeedItem({ art, user }: IProps) {
         scrollableAncestor={window}
         bottomOffset={-500}
         onEnter={() => {
-          if (src === null) {
+          if (typeof src === "undefined") {
             setSrc(cover.small_square_url);
           }
         }}

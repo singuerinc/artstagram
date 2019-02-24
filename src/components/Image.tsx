@@ -10,7 +10,7 @@ import { MatureContentLayer } from "./feedItem/MatureContentLayer";
 interface IProps {
   innerRef?: any;
   art: IArtImage;
-  src: string;
+  src: string | undefined;
 }
 
 function Image({

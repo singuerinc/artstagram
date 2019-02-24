@@ -6,7 +6,7 @@ import { openLargeImage } from "./cover.utils";
 export interface IProps {
   title: string;
   smallImageUrl: string;
-  src: string;
+  src: string | undefined;
   onLoad: () => void;
 }
 
