@@ -9,7 +9,7 @@ describe("<Image />", () => {
   it("should render the spinner when the image is not loaded", () => {
     const props: IImageProps = {
       art,
-      src: null
+      src: ""
     };
     const wrapper = mount(<Image {...props} />);
 
@@ -19,7 +19,7 @@ describe("<Image />", () => {
   it.skip("should not render the spinner when the image is loaded", () => {
     const props: IImageProps = {
       art,
-      src: null
+      src: ""
     };
     const wrapper = mount(<Image {...props} />);
     wrapper.setState({ loaded: true });
@@ -30,7 +30,7 @@ describe("<Image />", () => {
   it.skip("should render the mature content layer when adult_content is true", () => {
     const props: IImageProps = {
       art,
-      src: null
+      src: ""
     };
     const wrapper = mount(<Image {...props} />);
     wrapper.setState({ mature: true });
@@ -41,7 +41,7 @@ describe("<Image />", () => {
   it.skip("should not render the mature content layer when adult_content is false", () => {
     const props: IImageProps = {
       art,
-      src: null
+      src: ""
     };
     const wrapper = mount(<Image {...props} />);
     wrapper.setState({ mature: false });
@@ -52,7 +52,7 @@ describe("<Image />", () => {
   it.skip("should set mature to false after calling hideMatureLayer", () => {
     const props: IImageProps = {
       art,
-      src: null
+      src: ""
     };
     const wrapper = mount(<Image {...props} />);
     wrapper.setState({ mature: true });

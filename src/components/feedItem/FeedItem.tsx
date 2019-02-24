@@ -14,9 +14,9 @@ interface IProps {
 }
 
 function FeedItem({ art, user }: IProps) {
-  const [src, setSrc] = useState<string | null>(null);
+  const [src, setSrc] = useState<string>("");
   const { id, cover } = art;
-  const ref = useRef<HTMLLIElement>();
+  const ref = useRef<HTMLLIElement>(null);
 
   return (
     <FeedItemContainer key={id} ref={ref}>

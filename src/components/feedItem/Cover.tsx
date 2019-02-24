@@ -6,7 +6,7 @@ import { openLargeImage } from "./cover.utils";
 export interface IProps {
   title: string;
   smallImageUrl: string;
-  src: string | null;
+  src: string;
   onLoad: () => void;
 }
 
@@ -30,13 +30,13 @@ function Cover({ onLoad: onLoadCover, title, smallImageUrl, src }: IProps) {
   );
 }
 
-const StyledImage = styled<{ loaded: boolean }>("img")`
+const StyledImage = styled.img`
   width: 100%;
   display: block;
   margin: 0 auto;
   position: absolute;
   top: 0;
-  opacity: ${props => (props.loaded ? 1 : 0)};
+  opacity: ${({ loaded }: { loaded: boolean }) => (loaded ? 1 : 0)};
   transition: opacity 0.3s;
   transition-delay: 0.3s;
   cursor: pointer;
