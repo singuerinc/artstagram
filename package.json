@@ -41,7 +41,7 @@
     "open-color": "^1.6.3",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
-    "react-router": "^4.3.1",
+    "react-router": "^5.0.1",
     "react-router-dom": "^4.3.1",
     "react-waypoint": "^8.0.3",
     "styled-components": "^4.1.3"
