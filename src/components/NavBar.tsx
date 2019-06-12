@@ -58,26 +58,23 @@ const NavBar = () => (
   </Wrapper>
 );
 
-const Wrapper = styled.ul`
+const Wrapper = styled.nav`
   margin: 0 auto;
   padding: 1rem;
   list-style-type: none;
   display: flex;
   width: 100%;
   max-width: 48rem;
-  position: fixed;
+  position: sticky;
   bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
   background-color: ${OpenColor.gray[9]};
   z-index: 999;
 
   @media only screen and (min-width: 48rem) {
-    margin: 0 auto;
-    padding: 1rem;
+    top: 0;
+    bottom: auto;
+    margin: 0 auto 3em;
     position: relative;
-    left: auto;
-    transform: none;
     background-color: transparent;
   }
 `;

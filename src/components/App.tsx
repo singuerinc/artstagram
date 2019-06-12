@@ -10,7 +10,7 @@ import { UserProfile } from "./userProfile/UserProfile";
 const App = () => (
   <>
     <BrowserRouter history={hashHistory}>
-      <div>
+      <>
         <Route exact path="/" render={() => <Redirect to="/feed/picks/" />} />
         <Route
           path="/feed/picks/"
@@ -37,7 +37,7 @@ const App = () => (
             <UserProfile goBack={history.goBack} user={location.state.user} />
           )}
         />
-      </div>
+      </>
     </BrowserRouter>
     <ThemeSwitch />
   </>

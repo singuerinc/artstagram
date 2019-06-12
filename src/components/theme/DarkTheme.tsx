@@ -68,8 +68,10 @@ export function Theme() {
     }
 
     ${FakeFeedItemWrapper} {
-      box-shadow: 0 0 3em black;
-      border: 1px solid ${OpenColor.gray[9]};
+      @media only screen and (min-width: 48rem) {
+        box-shadow: 0 0 3em black;
+        border: 1px solid ${OpenColor.gray[9]};
+      }
 
       ${UserFullName}, ${UserName}, ${FakeAvatar}{
         background-color: ${OpenColor.gray[9]};
