@@ -1,7 +1,7 @@
 import * as OpenColor from "open-color";
 import * as React from "react";
 import { useRef, useState } from "react";
-import Waypoint from "react-waypoint";
+import { Waypoint } from "react-waypoint";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
 import { Image } from "../Image";

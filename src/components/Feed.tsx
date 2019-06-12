@@ -2,7 +2,7 @@ import * as NProgress from "nprogress";
 import "nprogress/nprogress.css";
 import * as React from "react";
 import { useEffect, useState } from "react";
-import Waypoint from "react-waypoint";
+import { Waypoint } from "react-waypoint";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../IArtImage";
 import { load } from "../services/api";
