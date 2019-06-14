@@ -21,7 +21,7 @@
     "@types/react": "^16.8.19",
     "@types/react-dom": "^16.8.4",
     "@types/react-router": "^5.0.1",
-    "@types/react-router-dom": "^4.3.3",
+    "@types/react-router-dom": "^4.3.4",
     "@types/styled-components": "^4.1.16",
     "concurrently": "^4.1.0",
     "enzyme": "^3.10.0",
