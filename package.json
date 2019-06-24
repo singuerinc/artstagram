@@ -14,7 +14,7 @@
     "test:watch": "jest --watch"
   },
   "devDependencies": {
-    "@types/enzyme": "^3.9.3",
+    "@types/enzyme": "^3.9.4",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.15",
     "@types/nprogress": "^0.2.0",
