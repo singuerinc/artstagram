@@ -73,7 +73,7 @@ const Wrapper = styled.nav`
   @media only screen and (min-width: 48rem) {
     top: 0;
     bottom: auto;
-    margin: 0 auto 3em;
+    margin: 1em auto;
     position: relative;
     background-color: transparent;
   }

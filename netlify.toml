@@ -1,9 +1,12 @@
 [build]
   publish = "dist/client"
-  command = "yarn build:client && yarn build:server"
   functions = "dist/server"
 
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+
+[build.environment]
+  YARN_VERSION = "1.19.1"
+  NODE_VERSION = "10"
