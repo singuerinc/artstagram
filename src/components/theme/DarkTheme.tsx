@@ -20,15 +20,15 @@ import { StyledNavLink as NavStyledNavLink } from "../NavBar";
 
 export function Theme() {
   const Dark = createGlobalStyle`
-    html {
-      background-color: rgba(0, 0, 0, 0.92);
+    html, body {
+      background-color: ${OpenColor.gray[9]};
     }
 
     ${FeedItemContainer}{
       background-color: transparent;
 
       @media only screen and (min-width: 48rem) {
-        box-shadow: 0 0 3em black;
+        box-shadow: 0 0 3em #0000007a;
         border: 1px solid ${OpenColor.gray[9]};
       }
     }

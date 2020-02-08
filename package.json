@@ -7,9 +7,9 @@
     "start": "concurrently 'yarn start:client' 'yarn start:server'",
     "start:client": "node start.js",
     "start:server": "netlify-lambda serve ./lambda",
-    "build": "yarn build:client && yarn build:server",
-    "build:client": "parcel build src/index.html --out-dir dist/client",
-    "build:server": "netlify-lambda build ./lambda",
+    "build": "yarn build_client && yarn build_server",
+    "build_client": "NODE_ENV=production parcel build src/index.html --out-dir dist/client",
+    "build_server": "NODE_ENV=production netlify-lambda build ./lambda",
     "test": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -30,7 +30,6 @@
     "netlify-lambda": "^1.6.3",
     "parcel-bundler": "^1.12.4",
     "ts-jest": "^25.2.0",
-    "tslint": "^6.0.0",
     "typescript": "^3.7.5"
   },
   "dependencies": {

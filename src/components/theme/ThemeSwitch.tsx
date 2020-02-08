@@ -16,24 +16,24 @@ export function ThemeSwitch() {
   const [theme, setTheme] = useState(Theme.DARK);
 
   return (
-    <Wapper>
+    <Wrapper>
       {theme === Theme.DEFAULT && (
         <>
-          <DefaultThemeIcon onClick={() => setTheme(Theme.DARK)} />
+          <DarkThemeIcon onClick={() => setTheme(Theme.DARK)} />
           <DefaultTheme />
         </>
       )}
       {theme === Theme.DARK && (
         <>
-          <DarkThemeIcon onClick={() => setTheme(Theme.DEFAULT)} />
+          <DefaultThemeIcon onClick={() => setTheme(Theme.DEFAULT)} />
           <DarkTheme />
         </>
       )}
-    </Wapper>
+    </Wrapper>
   );
 }
 
-const Wapper = styled.div`
+const Wrapper = styled.div`
   display: none;
   @media only screen and (min-width: 48rem) {
     display: flex;

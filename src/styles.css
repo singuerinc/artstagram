@@ -4,7 +4,8 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html {
+html,
+body {
   margin: 0;
   padding: 0;
   background-color: white;
