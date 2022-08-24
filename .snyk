@@ -1,0 +1,22 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.0
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  SNYK-JS-LODASH-567746:
+    - open-color > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
+    - styled-components > @babel/traverse > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
+    - styled-components > babel-plugin-styled-components > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
+    - styled-components > @babel/traverse > @babel/generator > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
+    - jest > @jest/core > jest-snapshot > @babel/types > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
+    - jest > @jest/core > @jest/transform > @babel/core > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
+    - jest > @jest/core > @jest/transform > @babel/core > @babel/traverse > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
+    - jest > @jest/core > jest-config > jest-environment-jsdom > jsdom > request-promise-native > request-promise-core > lodash:
+        patched: '2022-08-24T18:52:09.009Z'
