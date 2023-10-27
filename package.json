@@ -33,7 +33,7 @@
     "typescript": "^3.7.5"
   },
   "dependencies": {
-    "axios": "^0.19.2",
+    "axios": "^1.6.0",
     "jest": "^25.1.0",
     "node-fetch": "^2.6.0",
     "nprogress": "^0.2.0",
