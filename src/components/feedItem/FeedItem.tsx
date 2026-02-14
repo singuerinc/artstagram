@@ -47,7 +47,7 @@ const FeedItemContainer = styled.li`
   @media only screen and (min-width: 48rem) {
     box-shadow: 0 0 3em ${OpenColor.gray[3]};
     border: 1px solid ${OpenColor.gray[3]};
-    border-radius: 3px;
+    border-radius: 12px;
 
     &:first-child {
       margin: 0 0 1rem;

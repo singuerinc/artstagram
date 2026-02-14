@@ -11,7 +11,7 @@ const FeedItemFooter = ({ art }: IProps) => (
   <Footer>
     <ArtTitle
       dangerouslySetInnerHTML={{
-        __html: art.title
+        __html: art.title,
       }}
     />
     {navigator.share && (
@@ -39,4 +39,4 @@ const ArtTitle = styled.p`
   flex: 1;
 `;
 
-export { FeedItemFooter, Footer, ArtTitle };
+export { ArtTitle, FeedItemFooter, Footer };

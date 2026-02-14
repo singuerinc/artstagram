@@ -1,5 +1,5 @@
-import OpenColor from "open-color";
 import { Link } from "@tanstack/react-router";
+import OpenColor from "open-color";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
 
@@ -60,7 +60,7 @@ const Avatar = styled.img`
 `;
 
 const StyledLink = styled(Link)`
-  margin: 0.7rem 1rem;
+  margin: 1rem;
   display: flex;
   align-items: center;
   position: relative;
@@ -87,4 +87,4 @@ const StyledLink = styled(Link)`
   }
 `;
 
-export { FeedItemHeader, StyledLink, UserFullName, UserName, Avatar };
+export { Avatar, FeedItemHeader, StyledLink, UserFullName, UserName };
