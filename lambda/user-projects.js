@@ -10,6 +10,7 @@ exports.handler = async ({ queryStringParameters }) => {
   params.set("nocache", new Date().getTime());
 
   const user = params.get("user");
+  params.delete("user");
   const url = `${API_ENDPOINT(user)}?${params.toString()}`;
 
   return fetch(url)

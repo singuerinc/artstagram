@@ -1,45 +1,41 @@
-import { mount } from "enzyme";
-import * as React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { data as images } from "../../__mocks__/remote.fixture";
+import { render, waitFor } from "@testing-library/react";
+import {
+  createMemoryHistory,
+  createRootRoute,
+  createRouter,
+  RouterProvider,
+} from "@tanstack/react-router";
 import { Feed, IProps as IFeedProps } from "../Feed";
-import { FakeFeedItem } from "../feedItem/FakeFeedItem";
-import { FeedItem } from "../feedItem/FeedItem";
+
+vi.mock("../../services/api", () => ({
+  load: vi.fn(() => Promise.resolve([]))
+}));
+
+vi.mock("nprogress", () => ({
+  default: { start: vi.fn(), done: vi.fn() }
+}));
+
+function renderWithRouter(ui: React.ReactElement) {
+  const rootRoute = createRootRoute({ component: () => ui });
+  const routeTree = rootRoute.addChildren([]);
+  const router = createRouter({
+    routeTree,
+    history: createMemoryHistory({ initialEntries: ["/"] }),
+  });
+  return render(<RouterProvider router={router} />);
+}
 
 describe("<Feed />", () => {
-  it("should render the fake Feed when the images are not loaded", () => {
+  it("should render the fake Feed when the images are not loaded", async () => {
     const props: IFeedProps = {
       urlFunc: ""
     };
 
-    Feed.prototype.componentDidMount = jest.fn();
+    const { container } = renderWithRouter(<Feed {...props} />);
 
-    const wrapper = mount(
-      <BrowserRouter>
-        <Feed {...props} />
-      </BrowserRouter>
-    );
-
-    expect(wrapper.find(FakeFeedItem)).toHaveLength(2);
-    expect(wrapper.find(FeedItem)).toHaveLength(0);
-  });
-
-  it.skip("should render the real Feed when the images are loaded", () => {
-    const props: IFeedProps = {
-      urlFunc: ""
-    };
-
-    Feed.prototype.componentDidMount = jest.fn();
-
-    const wrapper = mount(
-      <BrowserRouter>
-        <Feed {...props} />
-      </BrowserRouter>
-    );
-
-    wrapper.setState({ page: 1, images }, () => {
-      expect(wrapper.find(FakeFeedItem)).toHaveLength(0);
-      expect(wrapper.find(FeedItem)).toHaveLength(50);
+    await waitFor(() => {
+      const listItems = container.querySelectorAll("li");
+      expect(listItems).toHaveLength(2);
     });
   });
 });

@@ -1,5 +1,4 @@
-import * as OpenColor from "open-color";
-import * as React from "react";
+import OpenColor from "open-color";
 import styled from "styled-components";
 import { IArtImage } from "../../IArtImage";
 import { ShareButton } from "./ShareButton";

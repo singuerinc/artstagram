@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { Icon as DarkThemeIcon, Theme as DarkTheme } from "./DarkTheme";
@@ -12,20 +11,32 @@ enum Theme {
   DARK = "dark"
 }
 
+const STORAGE_KEY = "artstagram-theme";
+
+function getStoredTheme(): Theme {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  return stored === Theme.DEFAULT ? Theme.DEFAULT : Theme.DARK;
+}
+
 export function ThemeSwitch() {
-  const [theme, setTheme] = useState(Theme.DARK);
+  const [theme, setTheme] = useState(getStoredTheme);
+
+  const switchTheme = (next: Theme) => {
+    localStorage.setItem(STORAGE_KEY, next);
+    setTheme(next);
+  };
 
   return (
     <Wrapper>
       {theme === Theme.DEFAULT && (
         <>
-          <DarkThemeIcon onClick={() => setTheme(Theme.DARK)} />
+          <DarkThemeIcon onClick={() => switchTheme(Theme.DARK)} />
           <DefaultTheme />
         </>
       )}
       {theme === Theme.DARK && (
         <>
-          <DefaultThemeIcon onClick={() => setTheme(Theme.DEFAULT)} />
+          <DefaultThemeIcon onClick={() => switchTheme(Theme.DEFAULT)} />
           <DarkTheme />
         </>
       )}

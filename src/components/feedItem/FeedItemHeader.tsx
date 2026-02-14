@@ -1,6 +1,5 @@
-import * as OpenColor from "open-color";
-import * as React from "react";
-import { NavLink } from "react-router-dom";
+import OpenColor from "open-color";
+import { Link } from "@tanstack/react-router";
 import styled from "styled-components";
 import { IArtImage, IUser } from "../../IArtImage";
 
@@ -10,8 +9,17 @@ export interface IProps {
 }
 
 const FeedItemHeader = ({ art, user }: IProps) => (
-  <StyledNavLink
-    to={{ pathname: `/user/${user.username}`, state: { art, user } }}
+  <StyledLink
+    to="/user/$id"
+    params={{ id: user.username }}
+    search={{
+      username: user.username,
+      full_name: user.full_name,
+      medium_avatar_url: user.medium_avatar_url,
+      headline: user.headline,
+      artstation_profile_url: user.artstation_profile_url,
+      location: user.location,
+    }}
   >
     <Avatar
       title={`@${user.username}`}
@@ -20,7 +28,7 @@ const FeedItemHeader = ({ art, user }: IProps) => (
     />
     <UserFullName>{user.full_name}</UserFullName>
     <UserName>@{user.username}</UserName>
-  </StyledNavLink>
+  </StyledLink>
 );
 
 const UserFullName = styled.h2`
@@ -51,7 +59,7 @@ const Avatar = styled.img`
   overflow: hidden;
 `;
 
-const StyledNavLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   margin: 0.7rem 1rem;
   display: flex;
   align-items: center;
@@ -79,4 +87,4 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-export { FeedItemHeader, StyledNavLink, UserFullName, UserName, Avatar };
+export { FeedItemHeader, StyledLink, UserFullName, UserName, Avatar };

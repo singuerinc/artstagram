@@ -1,34 +1,41 @@
-import { shallow } from "enzyme";
-import * as React from "react";
-import { BackButton } from "../../common/BackButton";
+import { render, screen, waitFor } from "@testing-library/react";
 import {
-  IProps as IUserProfileProps,
-  UserAvatar,
-  UserCountryCityName,
-  UserFullName,
-  UserHeadline,
-  UserProfile,
-  UserProfileLink
-} from "../UserProfile";
+  createMemoryHistory,
+  createRootRoute,
+  createRouter,
+  RouterProvider,
+} from "@tanstack/react-router";
+import { UserProfile } from "../UserProfile";
 import { user } from "./user.fixture";
 
+vi.mock("../../../services/api", () => ({
+  load: vi.fn(() => Promise.resolve([]))
+}));
+
+vi.mock("nprogress", () => ({
+  default: { start: vi.fn(), done: vi.fn() }
+}));
+
+function renderWithRouter(ui: React.ReactElement) {
+  const rootRoute = createRootRoute({ component: () => ui });
+  const routeTree = rootRoute.addChildren([]);
+  const router = createRouter({
+    routeTree,
+    history: createMemoryHistory({ initialEntries: ["/"] }),
+  });
+  return render(<RouterProvider router={router} />);
+}
+
 describe("<UserProfile />", () => {
-  it.skip("renders all children", () => {
-    window.scrollTo = jest.fn();
+  it("renders user information", async () => {
+    window.scrollTo = vi.fn() as any;
 
-    const props: IUserProfileProps = {
-      goBack: () => {
-        //
-      },
-      user
-    };
+    renderWithRouter(<UserProfile user={user} />);
 
-    const wrapper = shallow(<UserProfile {...props} />);
-    expect(wrapper.find(BackButton)).toHaveLength(1);
-    expect(wrapper.find(UserAvatar)).toHaveLength(1);
-    expect(wrapper.find(UserFullName)).toHaveLength(1);
-    expect(wrapper.find(UserCountryCityName)).toHaveLength(1);
-    expect(wrapper.find(UserHeadline)).toHaveLength(1);
-    expect(wrapper.find(UserProfileLink)).toHaveLength(1);
+    await waitFor(() => {
+      expect(screen.getByText(user.full_name)).toBeTruthy();
+    });
+    expect(screen.getByText(user.location)).toBeTruthy();
+    expect(screen.getByText("View on ArtStation")).toBeTruthy();
   });
 });

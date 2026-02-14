@@ -1,10 +1,8 @@
-import * as OpenColor from "open-color";
-import * as React from "react";
-import { NavLink } from "react-router-dom";
+import OpenColor from "open-color";
 import styled from "styled-components";
 
 const BackButton = ({ onClick }: { onClick: () => void }) => (
-  <Wrapper to="" onClick={onClick}>
+  <Wrapper onClick={onClick}>
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="24"
@@ -22,12 +20,14 @@ const BackButton = ({ onClick }: { onClick: () => void }) => (
   </Wrapper>
 );
 
-const Wrapper = styled(NavLink)`
+const Wrapper = styled.button`
   align-self: flex-start;
   padding: 16px;
   color: ${OpenColor.gray[6]};
   cursor: pointer;
   transition: color 300ms;
+  background: none;
+  border: none;
   &:hover {
     color: ${OpenColor.gray[9]};
   }

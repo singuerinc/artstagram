@@ -1,10 +1,9 @@
-import { render } from "enzyme";
-import * as React from "react";
+import { render } from "@testing-library/react";
 import { Spinner } from "../Spinner";
 
-describe.skip("<Spinner />", () => {
-  it("renders correctly", () => {
-    const tree = render(<Spinner />);
-    expect(tree).toMatchSnapshot();
+describe("<Spinner />", () => {
+  it("renders without crashing", () => {
+    const { container } = render(<Spinner />);
+    expect(container.firstChild).toBeTruthy();
   });
 });

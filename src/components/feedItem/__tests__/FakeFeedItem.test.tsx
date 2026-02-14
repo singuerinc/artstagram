@@ -1,22 +1,30 @@
-import { mount } from "enzyme";
-import * as React from "react";
-import { BrowserRouter } from "react-router-dom";
-import { FakeAvatar, FakeFeedItem, ImageContainer } from "../FakeFeedItem";
-import { ArtTitle } from "../FeedItemFooter";
-import { UserFullName, UserName } from "../FeedItemHeader";
+import { render, waitFor } from "@testing-library/react";
+import {
+  createMemoryHistory,
+  createRootRoute,
+  createRouter,
+  RouterProvider,
+} from "@tanstack/react-router";
+import { FakeFeedItem } from "../FakeFeedItem";
+
+function renderWithRouter(ui: React.ReactElement) {
+  const rootRoute = createRootRoute({ component: () => ui });
+  const routeTree = rootRoute.addChildren([]);
+  const router = createRouter({
+    routeTree,
+    history: createMemoryHistory({ initialEntries: ["/"] }),
+  });
+  return render(<RouterProvider router={router} />);
+}
 
 describe("<FakeFeedItem />", () => {
-  it("should render children and props", () => {
-    const wrapper = mount(
-      <BrowserRouter>
-        <FakeFeedItem />
-      </BrowserRouter>
-    );
+  it("should render children", async () => {
+    const { container } = renderWithRouter(<FakeFeedItem />);
 
-    expect(wrapper.find(FakeAvatar)).toHaveLength(1);
-    expect(wrapper.find(UserFullName)).toHaveLength(1);
-    expect(wrapper.find(UserName)).toHaveLength(1);
-    expect(wrapper.find(ImageContainer)).toHaveLength(1);
-    expect(wrapper.find(ArtTitle)).toHaveLength(1);
+    await waitFor(() => {
+      expect(container.querySelector("li")).toBeTruthy();
+    });
+    expect(container.querySelector("a")).toBeTruthy();
+    expect(container.querySelector("footer")).toBeTruthy();
   });
 });

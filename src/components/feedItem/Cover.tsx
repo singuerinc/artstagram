@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import styled from "styled-components";
 import { openLargeImage } from "./cover.utils";
@@ -21,7 +20,7 @@ function Cover({ onLoad: onLoadCover, title, smallImageUrl, src }: IProps) {
   return (
     <StyledImage
       onLoad={onLoad}
-      loaded={loaded}
+      $loaded={loaded}
       src={src}
       title={title}
       alt={title}
@@ -30,13 +29,13 @@ function Cover({ onLoad: onLoadCover, title, smallImageUrl, src }: IProps) {
   );
 }
 
-const StyledImage = styled.img`
+const StyledImage = styled.img<{ $loaded: boolean }>`
   width: 100%;
   display: block;
   margin: 0 auto;
   position: absolute;
   top: 0;
-  opacity: ${({ loaded }: { loaded: boolean }) => (loaded ? 1 : 0)};
+  opacity: ${({ $loaded }) => ($loaded ? 1 : 0)};
   transition: opacity 0.3s;
   transition-delay: 0.3s;
   cursor: pointer;

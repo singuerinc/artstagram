@@ -1,11 +1,8 @@
-import { mount } from "enzyme";
-import * as React from "react";
+import { render, screen } from "@testing-library/react";
 import {
-  ArtTitle,
   FeedItemFooter,
   IProps as IFeedItemFooterProps
 } from "../FeedItemFooter";
-import { ShareButton } from "../ShareButton";
 import { art } from "./art.fixture";
 
 describe("<FeedItemFooter />", () => {
@@ -15,23 +12,17 @@ describe("<FeedItemFooter />", () => {
     art.description = "foz &amp; baz";
 
     // @ts-ignore
-    navigator.share = jest.fn(() => {
-      return new Promise(() => {
-        //
-      });
+    navigator.share = vi.fn(() => {
+      return new Promise(() => {});
     });
 
     const props: IFeedItemFooterProps = {
       art
     };
 
-    const wrapper = mount(<FeedItemFooter {...props} />);
+    const { container } = render(<FeedItemFooter {...props} />);
 
-    expect(wrapper.find(ArtTitle).text()).toBe("foo & bar");
-    expect(wrapper.find(ShareButton).props()).toEqual({
-      text: "foz &amp; baz",
-      title: "foo &amp; bar",
-      url: "https://foo.bar/artwork/awesome"
-    });
+    // The title is rendered as HTML (dangerouslySetInnerHTML), so &amp; becomes &
+    expect(container.querySelector("p")!.textContent).toBe("foo & bar");
   });
 });

@@ -1,11 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
     "strict": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "allowJs": true,
+    "esModuleInterop": true,
     "experimentalDecorators": false,
-    "lib": ["dom", "es2015"]
+    "lib": ["dom", "esnext"],
+    "types": ["vitest/globals"]
   }
 }

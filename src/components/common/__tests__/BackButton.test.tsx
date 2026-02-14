@@ -1,27 +1,18 @@
-import { render } from "enzyme";
-import * as React from "react";
+import { render, fireEvent } from "@testing-library/react";
 import { BackButton } from "../BackButton";
 
-describe.skip("<BackButton />", () => {
-  it("renders the text correctly", () => {
-    const wrapper = render(
-      <BackButton
-        onClick={() => {
-          //
-        }}
-      />
-    );
-    expect(wrapper.text()).toBe("foo");
+describe("<BackButton />", () => {
+  it("renders a button element", () => {
+    const { container } = render(<BackButton onClick={() => {}} />);
+    const button = container.querySelector("button");
+    expect(button).toBeTruthy();
   });
 
-  it("renders returns 'Community' any time the title is randomize", () => {
-    const wrapper = render(
-      <BackButton
-        onClick={() => {
-          //
-        }}
-      />
-    );
-    expect(wrapper.text()).toBe("community");
+  it("calls onClick when clicked", () => {
+    const onClick = vi.fn();
+    const { container } = render(<BackButton onClick={onClick} />);
+    const button = container.querySelector("button")!;
+    fireEvent.click(button);
+    expect(onClick).toHaveBeenCalled();
   });
 });

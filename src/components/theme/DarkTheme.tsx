@@ -1,5 +1,5 @@
-import * as OpenColor from "open-color";
-import * as React from "react";
+import OpenColor from "open-color";
+import React from "react";
 import { createGlobalStyle } from "styled-components";
 import { StyledTitle } from "../feed/Title";
 import {
@@ -11,12 +11,11 @@ import { FeedItemContainer } from "../feedItem/FeedItem";
 import { ArtTitle } from "../feedItem/FeedItemFooter";
 import {
   Avatar,
-  StyledNavLink,
+  StyledLink,
   UserFullName,
   UserName
 } from "../feedItem/FeedItemHeader";
 import { ImageContainer } from "../Image";
-import { StyledNavLink as NavStyledNavLink } from "../NavBar";
 
 export function Theme() {
   const Dark = createGlobalStyle`
@@ -38,7 +37,7 @@ export function Theme() {
       opacity: 0.3;
     }
 
-    ${StyledNavLink}{
+    ${StyledLink}{
       color: ${OpenColor.gray[8]};
 
       &:hover {
@@ -50,9 +49,9 @@ export function Theme() {
       }
     }
 
-    ${NavStyledNavLink}{
+    .nav-link {
       @media only screen and (min-width: 48rem) {
-        &.selected {
+        &.active {
           color: ${OpenColor.gray[1]};
         }
       }
@@ -77,7 +76,7 @@ export function Theme() {
         background-color: ${OpenColor.gray[9]};
       }
 
-      ${StyledNavLink}{
+      ${StyledLink}{
         &::before {
           border-color: ${OpenColor.gray[9]};
         }

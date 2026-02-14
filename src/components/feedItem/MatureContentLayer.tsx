@@ -1,5 +1,4 @@
-import * as OpenColor from "open-color";
-import * as React from "react";
+import OpenColor from "open-color";
 import styled from "styled-components";
 
 export interface IProps {

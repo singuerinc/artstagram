@@ -1,6 +1,6 @@
-import * as OpenColor from "open-color";
-import * as React from "react";
+import OpenColor from "open-color";
 import { useEffect } from "react";
+import { useRouter } from "@tanstack/react-router";
 import styled from "styled-components";
 import { IUser } from "../../IArtImage";
 import { BackButton } from "../common/BackButton";
@@ -9,10 +9,11 @@ import { ShareButton, ShareButtonAsset } from "../feedItem/ShareButton";
 
 export interface IProps {
   user: IUser;
-  goBack: () => void;
 }
 
-function UserProfile({ user, goBack }: IProps) {
+function UserProfile({ user }: IProps) {
+  const router = useRouter();
+
   useEffect(() => window.scrollTo(0, 0));
 
   const {
@@ -25,7 +26,7 @@ function UserProfile({ user, goBack }: IProps) {
 
   return (
     <UserProfileContainer>
-      <BackButton onClick={() => goBack()} />
+      <BackButton onClick={() => router.history.back()} />
       <UserInfoContainer>
         <UserAvatar>
           <img src={medium_avatar_url} alt={full_name} />

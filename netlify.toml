@@ -1,4 +1,5 @@
 [build]
+  command = "pnpm build"
   publish = "dist/client"
   functions = "dist/server"
 
@@ -8,5 +9,4 @@
   status = 200
 
 [build.environment]
-  YARN_VERSION = "1.19.1"
-  NODE_VERSION = "10"
+  NODE_VERSION = "20"

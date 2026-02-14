@@ -1,6 +1,5 @@
-import * as NProgress from "nprogress";
+import NProgress from "nprogress";
 import "nprogress/nprogress.css";
-import * as React from "react";
 import { useEffect, useState } from "react";
 import { Waypoint } from "react-waypoint";
 import styled from "styled-components";

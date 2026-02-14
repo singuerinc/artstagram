@@ -1,13 +1,10 @@
-import { mount } from "enzyme";
-import * as React from "react";
+import { render, fireEvent } from "@testing-library/react";
 import { IProps as IShareButtonProps, ShareButton } from "../ShareButton";
 
 describe("<ShareButton />", () => {
   it("should call the share onClick with the correct parameters", () => {
-    navigator.share = jest.fn(() => {
-      return new Promise(() => {
-        //
-      });
+    navigator.share = vi.fn(() => {
+      return new Promise(() => {});
     });
 
     const props: IShareButtonProps = {
@@ -16,11 +13,10 @@ describe("<ShareButton />", () => {
       url: "bar"
     };
 
-    const wrapper = mount(<ShareButton {...props} />);
+    const { container } = render(<ShareButton {...props} />);
 
-    wrapper.simulate("click");
+    fireEvent.click(container.firstChild as HTMLElement);
 
-    expect(wrapper).toBeTruthy();
     expect(navigator.share).toBeCalledWith({
       text: "baz",
       title: "foo",

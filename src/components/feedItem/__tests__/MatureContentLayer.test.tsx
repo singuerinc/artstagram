@@ -1,30 +1,19 @@
-import { mount, shallow } from "enzyme";
-import * as React from "react";
-import {
-  IProps as IMatureContentLayerProps,
-  MatureContentLayer
-} from "../MatureContentLayer";
+import { render, screen, fireEvent } from "@testing-library/react";
+import { MatureContentLayer } from "../MatureContentLayer";
 
 describe("<MatureContentLayer />", () => {
   it("should render the correct text", () => {
-    const props: IMatureContentLayerProps = {
-      onClose: () => {
-        //
-      }
-    };
-
-    const wrapper = mount(<MatureContentLayer {...props} />);
-    expect(wrapper.find("span").text()).toBe("Mature contentClick to view");
+    render(<MatureContentLayer onClose={() => {}} />);
+    expect(screen.getByText(/Mature content/)).toBeTruthy();
+    expect(screen.getByText(/Click to view/)).toBeTruthy();
   });
 
   it("should call the onClose function on click", () => {
-    const props: IMatureContentLayerProps = {
-      onClose: jest.fn()
-    };
+    const onClose = vi.fn();
+    const { container } = render(<MatureContentLayer onClose={onClose} />);
 
-    const wrapper = mount(<MatureContentLayer {...props} />);
-    wrapper.simulate("click");
+    fireEvent.click(container.firstChild as HTMLElement);
 
-    expect(props.onClose).toBeCalled();
+    expect(onClose).toBeCalled();
   });
 });

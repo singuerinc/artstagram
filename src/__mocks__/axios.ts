@@ -4,4 +4,4 @@ function get() {
   return { data: { data } };
 }
 
-export { get };
+export default { get };

@@ -1,8 +1,10 @@
-import * as React from "react";
-import * as ReactDOM from "react-dom";
-import { App } from "./components/App";
+import { createRoot } from "react-dom/client";
+import { RouterProvider } from "@tanstack/react-router";
+import { router } from "./router";
 import "./styles.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+createRoot(document.getElementById("root")!).render(
+  <RouterProvider router={router} />
+);
 
 navigator.serviceWorker.register("./services/service-worker.js");

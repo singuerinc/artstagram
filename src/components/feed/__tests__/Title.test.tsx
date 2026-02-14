@@ -1,16 +1,15 @@
-import { render } from "enzyme";
-import * as React from "react";
+import { render, screen } from "@testing-library/react";
 import { communitify, Title } from "../Title";
 
 describe("<Title />", () => {
   it("renders the text correctly", () => {
-    const wrapper = render(<Title title="foo" />);
-    expect(wrapper.text()).toBe("foo");
+    render(<Title title="foo" />);
+    expect(screen.getByText("foo")).toBeTruthy();
   });
 
-  it("renders returns 'Community' any time the title is randomize", () => {
-    const wrapper = render(<Title title="randomize" />);
-    expect(wrapper.text()).toBe("community");
+  it("renders 'community' any time the title is randomize", () => {
+    render(<Title title="randomize" />);
+    expect(screen.getByText("community")).toBeTruthy();
   });
 });
 

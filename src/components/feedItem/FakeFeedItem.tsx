@@ -1,17 +1,16 @@
-import * as OpenColor from "open-color";
-import * as React from "react";
+import OpenColor from "open-color";
 import styled from "styled-components";
 import { ArtTitle, Footer } from "./FeedItemFooter";
-import { StyledNavLink, UserFullName, UserName } from "./FeedItemHeader";
+import { StyledLink, UserFullName, UserName } from "./FeedItemHeader";
 
 const FakeFeedItem = () => (
   <FakeFeedItemWrapper>
     <>
-      <StyledNavLink to="">
+      <StyledLink to="/" tabIndex={-1}>
         <FakeAvatar />
         <UserFullName />
         <UserName />
-      </StyledNavLink>
+      </StyledLink>
       <ImageContainer />
       <Footer>
         <ArtTitle />
@@ -53,7 +52,7 @@ const FakeFeedItemWrapper = styled.li`
     height: 18px;
   }
 
-  ${StyledNavLink} {
+  ${StyledLink} {
     pointer-events: none;
     &::before {
       border: 2px solid ${OpenColor.gray[1]};
