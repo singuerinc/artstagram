@@ -1,0 +1,8 @@
+{
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist/client",
+  "rewrites": [
+    { "source": "/feed/(.*)", "destination": "/index.html" },
+    { "source": "/user/(.*)", "destination": "/index.html" }
+  ]
+}

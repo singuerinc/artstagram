@@ -9,7 +9,7 @@ interface IProps {
 const Home = ({ sorting }: IProps) => (
   <>
     <Title title={sorting} />
-    <Feed urlFunc={`/.netlify/functions/projects?sorting=${sorting}`} />
+    <Feed urlFunc={`/api/projects?sorting=${sorting}`} />
   </>
 );
 

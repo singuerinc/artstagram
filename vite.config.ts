@@ -10,9 +10,8 @@ export default defineConfig({
   server: {
     port: 1234,
     proxy: {
-      "/.netlify": {
-        target: "http://localhost:9000",
-        rewrite: (path) => path.replace(/^\/.netlify\/functions/, ""),
+      "/api": {
+        target: "http://localhost:3000",
       },
     },
   },

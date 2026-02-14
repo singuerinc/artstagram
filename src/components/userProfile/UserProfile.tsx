@@ -51,7 +51,7 @@ function UserProfile({ user }: IProps) {
       </UserInfoContainer>
       <Feed
         user={user}
-        urlFunc={`/.netlify/functions/user-projects?user=${user.username}`}
+        urlFunc={`/api/user-projects?user=${user.username}`}
       />
     </UserProfileContainer>
   );

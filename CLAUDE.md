@@ -4,12 +4,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Artstagram is an unofficial ArtStation client with an Instagram-inspired feed. It's a React SPA with Netlify Lambda functions as a backend proxy to the ArtStation API.
+Artstagram is an unofficial ArtStation client with an Instagram-inspired feed. It's a React SPA with Vercel Serverless Functions as a backend proxy to the ArtStation API.
 
 ## Commands
 
-- **Dev server:** `pnpm start` (runs client on port 1234 + lambda server on port 9000 concurrently)
-- **Build:** `pnpm build` (builds both client and server for production)
+- **Dev server:** `pnpm start` (runs `vercel dev`)
+- **Build:** `pnpm build` (builds the client with Vite)
 - **Tests:** `pnpm test` (Vitest)
 - **Watch tests:** `pnpm test:watch`
 - **Single test:** `pnpm test -- --testPathPattern=<pattern>` (e.g., `pnpm test -- --testPathPattern=api.test`)
@@ -25,11 +25,10 @@ Artstagram is an unofficial ArtStation client with an Instagram-inspired feed. I
 - **Feed sorting:** `Sorting.ts` enum maps to ArtStation API sorting parameters
 - **API layer:** `src/services/api.ts` makes requests to the lambda proxy endpoints
 
-### Lambda Functions (`lambda/`)
+### Serverless Functions (`api/`)
 - `projects.js` — proxies requests to `artstation.com/projects.json`
 - `user-projects.js` — proxies requests to `artstation.com/users/{user}/projects.json`
-- Served locally via `netlify-lambda` at `/.netlify/functions/`
-- Vite's dev server proxy forwards `/.netlify` requests to the lambda server during development
+- Served at `/api/projects` and `/api/user-projects` by Vercel
 
 ### Testing
 - Vitest + React Testing Library
@@ -38,6 +37,6 @@ Artstagram is an unofficial ArtStation client with an Instagram-inspired feed. I
 - Vitest config is in `vite.config.ts` (globals, jsdom environment)
 
 ### Deployment
-- Hosted on Netlify; config in `netlify.toml`
-- Client builds to `dist/client`, lambda functions to `dist/server`
+- Hosted on Vercel; config in `vercel.json`
+- Client builds to `dist/client`
 - SPA fallback: all routes redirect to `/index.html`
