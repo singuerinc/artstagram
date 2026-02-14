@@ -5,18 +5,38 @@ import {
   Outlet,
   redirect,
 } from "@tanstack/react-router";
+import styled from "styled-components";
 import { IUser } from "./IArtImage";
 import { Sorting } from "./Sorting";
 import { Home } from "./components/Home";
+import { NavBar } from "./components/NavBar";
 import { ThemeSwitch } from "./components/theme/ThemeSwitch";
 import { UserProfile } from "./components/userProfile/UserProfile";
 
+const Layout = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media only screen and (min-width: 48rem) {
+    flex-direction: row;
+  }
+`;
+
+const Content = styled.div`
+  flex: 1;
+  min-width: 0;
+  margin-top: 1.5rem;
+`;
+
 const rootRoute = createRootRoute({
   component: () => (
-    <>
-      <Outlet />
+    <Layout>
+      <NavBar />
+      <Content>
+        <Outlet />
+      </Content>
       <ThemeSwitch />
-    </>
+    </Layout>
   ),
 });
 

@@ -60,22 +60,26 @@ const NavBar = () => (
 );
 
 const Wrapper = styled.nav`
-  margin: 0 auto;
+  margin: 0;
   padding: 1rem;
   list-style-type: none;
   display: flex;
   width: 100%;
-  max-width: 48rem;
   position: sticky;
   bottom: 0;
   background-color: ${OpenColor.gray[9]};
   z-index: 999;
 
   @media only screen and (min-width: 48rem) {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    position: sticky;
     top: 0;
     bottom: auto;
-    margin: 1em auto;
-    position: relative;
+    width: 4rem;
+    height: 100vh;
     background-color: transparent;
   }
 
@@ -108,6 +112,10 @@ const Wrapper = styled.nav`
 const NavBarItem = styled.li`
   flex: 1;
   text-align: center;
+
+  @media only screen and (min-width: 48rem) {
+    flex: none;
+  }
 `;
 
 export { NavBar };
