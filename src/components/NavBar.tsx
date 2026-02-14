@@ -74,7 +74,7 @@ const Wrapper = styled.nav`
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 4px;
     position: sticky;
     top: 0;
     bottom: auto;
@@ -102,6 +102,15 @@ const Wrapper = styled.nav`
     }
 
     @media only screen and (min-width: 48rem) {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 2px solid transparent;
+      transition: color 300ms, border-color 300ms;
+
+      &:hover {
+        border-color: ${OpenColor.gray[3]};
+      }
+
       &.active {
         color: ${OpenColor.gray[9]};
       }
